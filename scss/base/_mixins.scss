@@ -1,0 +1,53 @@
+@mixin transform-translate3d($x, $y, $z) {
+  -webkit-transform: translate3d($x, $y, $z);
+  -moz-transform: translate3d($x, $y, $z);
+  -o-transform: translate3d($x, $y, $z);
+  -ms-transform: translate3d($x, $y, $z);
+  transform: translate3d($x, $y, $z);
+}
+
+@mixin transform-rotate3d($x, $y, $z, $a) {
+  -webkit-transform: rotate3d($x, $y, $z, $a);
+  -moz-transform: rotate3d($x, $y, $z, $a);
+  -o-transform: rotate3d($x, $y, $z, $a);
+  -ms-transform: rotate3d($x, $y, $z, $a);
+  transform: rotate3d($x, $y, $z, $a);
+}
+
+@mixin transform-origin($x, $y) {
+  -webkit-transform-origin: $x $y;
+  -moz-transform-origin: $x $y;
+  -o-transform-origin: $x $y;
+  -ms-transform-origin: $x $y;
+  transform-origin: $x $y;
+}
+
+@mixin transform-scale($scale) {
+  -webkit-transform: scale($scale);
+  -moz-transform: scale($scale);
+  -o-transform: scale($scale);
+  -ms-transform: scale($scale);
+  transform: scale($scale);
+}
+
+@mixin transition-transform($duration) {
+  -webkit-transition: -webkit-transform $duration;
+  -moz-transition: -moz-transform $duration;
+  -o-transition: -o-transform $duration;
+  transition: -ms-transform $duration;
+  transition: transform $duration;
+}
+
+@mixin transition-color($duration) {
+  -webkit-transition: color $duration;
+  -moz-transition: color $duration;
+  -o-transition: color $duration;
+  transition: color $duration;
+}
+
+@mixin transition-opacity($duration) {
+  -webkit-transition: opacity $duration;
+  -moz-transition: opacity $duration;
+  -o-transition: opacity $duration;
+  transition: opacity $duration;
+}

@@ -1,0 +1,140 @@
+//fonts
+$font_0: lucida grande;
+$font_1: tahoma;
+$font_2: verdana;
+$font_3: arial;
+$font_4: sans-serif;
+
+.sidr {
+  display: none;
+  position: absolute;
+  position: fixed;
+  top: 0;
+  height: 100%;
+  z-index: 999999;
+  width: 260px;
+  overflow-x: none;
+  overflow-y: auto;
+  font-family: $font_0, $font_1, $font_2, $font_3, $font_4;
+  font-size: 15px;
+  .sidr-inner {
+    padding: 0 0 15px;
+  }
+  .sidr-inner>p {
+    margin-left: 15px;
+    margin-right: 15px;
+  }
+  &.right {
+    left: auto;
+    right: -260px;
+  }
+  &.left {
+    left: -260px;
+    right: auto;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-size: 11px;
+    font-weight: normal;
+    padding: 0 15px;
+    margin: 0 0 5px;
+    line-height: 24px;
+    box-shadow: 0 5px 5px 3px $black_20;
+  }
+  p {
+    font-size: 13px;
+    margin: 0 0 12px;
+  }
+  ul {
+    display: block;
+    margin: 0 0 15px;
+    padding: 0;
+    li {
+      display: block;
+      margin: 0;
+      line-height: 48px;
+      &:hover {
+        border-top: none;
+        line-height: 49px;
+      }
+      &.active {
+        border-top: none;
+        line-height: 49px;
+      }
+      &.sidr-class-active {
+        border-top: none;
+        line-height: 49px;
+      }
+      a,
+      span {
+        padding: 0 15px;
+        display: block;
+        text-decoration: none;
+      }
+      ul {
+        border-bottom: none;
+        margin: 0;
+        li {
+          line-height: 40px;
+          font-size: 13px;
+          &:last-child {
+            border-bottom: none;
+          }
+          &:hover {
+            border-top: none;
+            line-height: 41px;
+          }
+          &.active {
+            border-top: none;
+            line-height: 41px;
+          }
+          &.sidr-class-active {
+            border-top: none;
+            line-height: 41px;
+          }
+        }
+      }
+    }
+  }
+  form {
+    margin: 0 15px;
+  }
+  label {
+    font-size: 13px;
+  }
+  input[type="text"],
+  input[type="password"],
+  input[type="date"],
+  input[type="datetime"],
+  input[type="email"],
+  input[type="number"],
+  input[type="search"],
+  input[type="tel"],
+  input[type="time"],
+  input[type="url"],
+  textarea,
+  select {
+    width: 100%;
+    font-size: 13px;
+    padding: 5px;
+    box-sizing: border-box;
+    margin: 0 0 10px;
+    border-radius: 2px;
+    border: none;
+    display: block;
+    clear: both;
+  }
+  input[type=checkbox] {
+    width: auto;
+    display: inline;
+    clear: none;
+  }
+}
+.sidr>p {
+  margin-left: 15px;
+  margin-right: 15px;
+}

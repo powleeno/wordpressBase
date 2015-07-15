@@ -1,0 +1,32 @@
+.absolute-stretch {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.background-image {
+  background-size: cover;
+  background-position: 50%;
+}
+
+.full-width {
+  max-width: 100%;
+  width: 100%;
+}
+
+.square {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+}
+
+.table {
+  display: table;
+  text-align: center;
+  .table-cell {
+    display: table-cell;
+    vertical-align: middle;
+  }
+}

@@ -1,0 +1,135 @@
+.square {
+	width: 100%;
+	max-width: 100%;
+	height: auto;
+}
+
+.background-image {
+	background-size: cover;
+	background-position: 50%;
+}
+
+.table {
+	display: table;
+	text-align: center;
+	.table-cell {
+		display: table-cell;
+		vertical-align: middle;
+	}
+}
+
+// LAYOUT ---------------------------------------
+
+.section-margin {
+	margin:	$column-gutter*2 auto;
+}
+
+.box {
+	background-color: white;
+	.main {
+		padding: $column-gutter*3 $column-gutter*5;
+		text-align: center;
+	}
+	.secondary {
+		&.left {
+			padding-left: 0;
+		}
+		&.right {
+			padding-right: 0;
+		}
+		.image-wrapper {
+			background-size: cover;
+			background-position: 50%;
+			height: 100%;
+		}
+	}
+}
+
+
+// TYPE -----------------------------------------
+
+h1 {
+	color: $secondary-color;
+	&.sub-header {
+		color: $primary-color;
+		font-style: italic;
+		font-size: $h2-font-size;
+	}
+}
+h2 {
+	&.sub-header {
+		color: $secondary-color;
+		font-weight: bold;
+		font-style: italic;
+	}
+}
+
+// HEADER ---------------------------------------
+
+header {
+	-webkit-box-shadow: 0px 1px 5px 0px rgba($black, 0.2);
+	-moz-box-shadow: 0px 1px 5px 0px rgba($black, 0.2);
+	box-shadow: 0px 1px 5px 0px rgba($black, 0.2);
+}
+
+
+// TOP-BAR --------------------------------------
+
+.top-bar {
+	.top-bar-section {
+		ul {
+			li {
+				ul.dropdown {
+					li {
+						a {
+							line-height: 80px;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+
+// BANNER ---------------------------------------
+
+.banner {
+	.wrapper {
+		height: $headerHeight;
+		padding: 0;
+		@extend .background-image;
+		.text-wrapper {
+			height: 100%;
+			width: 100%;
+			background-color: rgba($black, $overlayOpacity);
+			@extend .table;
+			.text {
+				@extend .table-cell;
+				padding: $column-gutter*2;
+				h1, h2, h3, h4, h5 {
+					color: $white;
+				}
+			}
+		}
+	}
+}
+
+
+// GALLERY --------------------------------------
+
+.gallery {
+	h2 {
+		color: $secondary-color;
+		margin-bottom: $column-gutter
+	}
+}
+
+.fancybox {
+	display: block;
+	@extend .background-image;
+}
+
+
+
+
