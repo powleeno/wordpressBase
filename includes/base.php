@@ -73,7 +73,7 @@ add_action('get_header', 'features_get_header');
 function features_wp_enqueue_scripts()
 {
     //  Custom Stylesheet
-    wp_register_style('custom_stylesheet', get_template_directory_uri() . '/css/style.css');
+    wp_register_style('custom_stylesheet', get_template_directory_uri() . '/css/base.css');
     wp_enqueue_style('custom_stylesheet');
 
     // Google Fonts
