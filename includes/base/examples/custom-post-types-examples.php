@@ -1,4 +1,4 @@
-
+<?php
 
 /** WP Custom Post Type Class :: https://github.com/jjgrainger/wp-custom-post-type-class/ **/
 

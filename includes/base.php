@@ -1,6 +1,14 @@
 <?php
 
 
+// Helpers
+require_once 'base/helpers.php';
+
+
+// Shortcodes
+require_once 'base/shortcodes.php';
+
+
 function features_after_setup_theme()
 {
     // Menus
@@ -82,5 +90,3 @@ function features_wp_enqueue_scripts()
 add_action('wp_enqueue_scripts', 'features_wp_enqueue_scripts');
 
 
-//  Shortcodes
-require_once 'base/shortcodes.php';

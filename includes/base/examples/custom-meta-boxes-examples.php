@@ -1,35 +1,7 @@
+<?php
 
 
 /** Custom Meta Boxes 2 :: https://github.com/WebDevStudios/CMB2 **/
-
-
-// Wysiwyg options ------------------------------
-
-$wysiwygMinimal = array(
-    'wpautop' => false,
-    'media_buttons' => false,
-    'textarea_rows' => get_option('default_post_edit_rows', 5),
-    'tabindex' => '',
-    'editor_css' => '',
-    'editor_class' => '',
-    'teeny' => false,
-    'dfw' => false,
-    'tinymce' => false,
-    'quicktags' => false
-);
-
-$wysiwygFull = array(
-    'wpautop' => true,
-    'media_buttons' => true,
-    'textarea_rows' => get_option('default_post_edit_rows', 10),
-    'tabindex' => '',
-    'editor_css' => '',
-    'editor_class' => '',
-    'teeny' => false,
-    'dfw' => false,
-    'tinymce' => true,
-    'quicktags' => true
-);
 
 
 // Example #1 -----------------------------------
@@ -91,7 +63,7 @@ $meta_boxes['blocks_section'] = array(
             'id'      => $prefix . 'blocks_section_activation',
             'type'    => 'radio_inline',
             'description' => __( 'Select whether this section is to be displayed in the front-end.', 'custom metaboxes' ),
-            'default' => 'inactive',
+            'default' => 'active',
             'options' => array(
                 'active'  => __( 'Active Section', 'custom metaboxes' ),
                 'inactive' => __( 'Inactive Section', 'custom metaboxes' ),
@@ -122,7 +94,7 @@ $meta_boxes['blocks_section'] = array(
                     ),
                 ),
                 array(
-                    'name' => __( 'Image', 'custom metaboxes' ),
+                    'name' => __( 'Image' ),
                     'id' => $prefix . 'block_image',
                     'type' => 'file',
                     'description' => __( 'Only available with "Boxed" layout.', 'custom metaboxes' ),
@@ -140,44 +112,21 @@ $meta_boxes['blocks_section'] = array(
                     ),
                 ),
                 array(
-                    'name' => __( 'Main Column', 'custom metaboxes' ),
+                    'name' => __( 'Main Column' ),
                     'id' => $prefix . 'block_main_column',
                     'sanitization_cb' => false,
                     'type' => 'wysiwyg',
                     'options' => $wysiwygFull
                 ),
                 array(
-                    'name' => __( 'Icons Column', 'custom metaboxes' ),
-                    'description' => __( 'Select one or several icons. Only available with "Split Width" layout.', 'custom metaboxes' ),
-                    'id' => $prefix . 'block_icons_column',
-                    'type' => 'multicheck',
-                    'options' => array(
-                        'icon1' => __( 'Private Homes', 'custom metaboxes' ),
-                        'icon2' => __( 'Hotels', 'custom metaboxes' ),
-                        'icon3' => __( 'Offices', 'custom metaboxes' ),
-                        'icon4' => __( 'Apartments', 'custom metaboxes' ),
-                        'icon5' => __( 'Senior Centres', 'custom metaboxes' ),
-                        'icon6' => __( 'Malls', 'custom metaboxes' ),
-                        'icon7' => __( 'Eco Boutiques', 'custom metaboxes' ),
-                        'icon8' => __( 'Waiting Rooms', 'custom metaboxes' ),
-                        'icon9' => __( 'Restaurants', 'custom metaboxes' ),
-                        'icon10' => __( 'Libraries', 'custom metaboxes' ),
-                        'icon11' => __( 'Schools', 'custom metaboxes' ),
-                        'icon12' => __( 'Yoga Studios', 'custom metaboxes' ),
-                    )
+                    'name' => __( 'Secondary Column' ),
+                    'id' => $prefix . 'block_secondary_column',
+                    'description' => __( 'Only available with "Split Width" layout.', 'custom metaboxes' ),
+                    'sanitization_cb' => false,
+                    'type' => 'wysiwyg',
+                    'options' => $wysiwygFull
                 ),
             ),
         ),
     ),
 );
-
-
-// Remove feature support -----------------------
-
-$templates['blocks-page'] = array(
-    'page_file' => 'blocks-page.php',
-    'remove_support' => array( 'editor', 'comments', 'custom-fields', 'discussion', 'author', 'thumbnail' )
-);
-
-
-

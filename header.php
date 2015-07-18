@@ -12,8 +12,13 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
     <title><?php bloginfo('name'); ?></title>
-	<?php set_favicons(); ?>
-    <?php wp_head(); ?>
+
+	<?php
+    $favicon_path = $path = get_template_directory_uri().'/images/ico/';
+    set_favicons($favicon_path);
+    wp_head();
+    ?>
+    
 </head>
 
 <body>
