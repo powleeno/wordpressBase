@@ -87,13 +87,16 @@ $column-gutter: 24px;
 // - - - - - - - - - - - - - - - - - - - - - - - - -
 
 // We use these to define default font stacks
-// $font-family-sans-serif: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
-// $font-family-serif: Georgia, Cambria, "Times New Roman", Times, serif;
-// $font-family-monospace: Consolas, "Liberation Mono", Courier, monospace;
+$font-family-sans-serif: "Roboto", "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+$font-family-serif: "Roboto Slab", Georgia, Cambria, "Times New Roman", Times, serif;
+$font-family-monospace: "Roboto Mono", Consolas, "Liberation Mono", Courier, monospace;
 
 // We use these to define default font weights
-// $font-weight-normal: normal;
-// $font-weight-bold: bold;
+$font-weight-light: 300;
+$font-weight-normal: 400;
+$font-weight-medium: 500;
+$font-weight-bold: 700;
+$font-weight-black: 900;
 
 // $white       : #FFFFFF;
 // $ghost       : #FAFAFA;
@@ -392,8 +395,8 @@ $include-html-block-grid-classes: $include-html-classes;
 $include-xl-html-block-grid-classes: false;
 
 // We use this to control the maximum number of block grid elements per row
-$block-grid-elements: 12;
-$block-grid-default-spacing: 24px;
+$block-grid-elements: $total-columns;
+$block-grid-default-spacing: $column-gutter;
 
 $align-block-grid-to-grid: false;
 @if $align-block-grid-to-grid {$block-grid-default-spacing: $column-gutter;}

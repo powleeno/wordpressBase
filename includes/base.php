@@ -77,10 +77,12 @@ function features_wp_enqueue_scripts()
     wp_enqueue_style('custom_stylesheet');
 
     // Google Fonts
-    wp_register_style('google_font_lora', 'http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic');
-	wp_enqueue_style('google_font_lora');
-    wp_register_style('google_font_lato', 'http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic');
-    wp_enqueue_style('google_font_lato');
+    wp_register_style('google_font_roboto', 'http://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic,500,500italic,700,700italic,900,900italic');
+    wp_enqueue_style('google_font_roboto');
+    wp_register_style('google_font_roboto_slab', 'http://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700');
+    wp_enqueue_style('google_font_roboto_slab');
+    wp_register_style('google_font_roboto_mono', 'http://fonts.googleapis.com/css?family=Roboto+Mono:400,300,300italic,400italic,700,700italic');
+    wp_enqueue_style('google_font_roboto_mono');
 
     // Scripts
     require_once 'base/scripts.php';

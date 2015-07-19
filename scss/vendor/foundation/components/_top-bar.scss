@@ -258,8 +258,7 @@ $topbar-dropdown-arrows: true !default; //Set false to remove the \00bb >> text 
             color: $topbar-menu-link-color;
             height: 34px;
             line-height: 33px;
-//            padding: 0 $topbar-link-padding+rem-calc(25) 0 $topbar-link-padding;
-            padding: 0 $topbar-link-padding 0 $topbar-link-padding;
+            padding: 0 $topbar-link-padding+rem-calc(25) 0 $topbar-link-padding;
             position: relative;
           }
         }
