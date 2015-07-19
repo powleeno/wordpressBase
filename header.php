@@ -14,7 +14,7 @@
     <title><?php bloginfo('name'); ?></title>
 
 	<?php
-    $favicon_path = $path = get_template_directory_uri().'/images/ico/';
+    $favicon_path = $path = get_template_directory_uri().'/images/favicon/';
     set_favicons($favicon_path);
     wp_head();
     ?>
