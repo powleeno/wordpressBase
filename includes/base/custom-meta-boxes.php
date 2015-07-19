@@ -7,7 +7,7 @@
 function set_custom_meta_boxes(array $meta_boxes)
 {
     // Start with an underscore to hide fields from custom fields list
-    $prefix = '_cmb_';
+    $prefix = get_prefix();
 
     /*
      *

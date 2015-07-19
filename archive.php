@@ -1,6 +1,7 @@
 <?php
 
 get_header();
+$prefix = get_prefix();
 
 
 
