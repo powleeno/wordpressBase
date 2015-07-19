@@ -35,8 +35,7 @@
 			</ul>
 			<section class="top-bar-section">
 				<ul class="left">
-					<?php
-
+                <?php
 					$defaults = array(
 						'theme_location' => 'header-menu',
 						'container' => '',
@@ -44,15 +43,8 @@
 						'walker' => new Walker_Foundation_Topbar()
 					);
 					wp_nav_menu($defaults);
-					?>
+                ?>
 				</ul>
-
-				<ul class="right">
-					<li><a href="#">FR</a></li>
-					<li><a href="#">EN</a></li>
-					<li><a href="#">FR</a></li>
-				</ul>
-
 			</section>
 		</nav>
 
