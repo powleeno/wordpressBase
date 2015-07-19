@@ -11,11 +11,7 @@ function init_fancybox(element) {
 
 function init_foundation(element) {
 	/** Foundation Zurb :: http://foundation.zurb.com/docs/javascript.html **/
-	$(element).foundation({
-		accordion : {
-			multi_expand: true
-		}
-	});
+	$(element).foundation();
 }
 
 function init_lazyload(element) {

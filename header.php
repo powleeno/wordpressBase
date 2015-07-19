@@ -34,6 +34,7 @@
 				<li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
 			</ul>
 			<section class="top-bar-section">
+                <!-- Do not forget to add class 'has-dropdown' to menu element in back-end! -->
 				<ul class="left">
                 <?php
 					$defaults = array(

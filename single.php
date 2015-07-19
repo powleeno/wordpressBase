@@ -1,7 +1,11 @@
 <?php
 
-get_header();
 $prefix = get_prefix();
+global $post;
+
+get_header();
+
+
 
 
 
