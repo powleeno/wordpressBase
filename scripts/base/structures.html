@@ -1,0 +1,55 @@
+<!-- To apply with stretch_object() ---------------------------------- -->
+
+<div>
+
+    <!-- --------------------------------------------
+    Reference :: .str-ref
+        serves as height reference for container to be stretched vertically;
+        stretching utilizes outerHeight so css property margin is best avoided;
+        -->
+    <div class="str-ref">Your content here.</div>
+
+    <!-- --------------------------------------------
+    Container :: .str-con
+        this basically has it's height stretched to match .str-ref;
+        height of .str-obj depends of this;
+        -->
+    <div class="str-con">
+
+        <!-- --------------------------------------------
+        Object :: .str-obj
+            this has it's width stretched and is positioned according to classes assigned;
+            it receives the following classes:
+                .box :
+                    with this, .str-obj gets stretched to match .str-con (as in a box);
+                .top :
+                    with this, .str-obj gets stretched to the edge of the window;
+                    with .top, either .left or .right must be assigned to .str-obj; they regulate it's float;
+                    -->
+        <div class="str-obj top right"></div>
+
+        <div>More content can go here if intended.</div>
+    </div>
+
+</div>
+
+
+
+<!-- Example 1: a left floated image background stretched to the window edges -->
+
+<div>
+    <div class="str-ref">Your content here.</div>
+    <div class="str-con">
+        <div class="str-obj top left" style="background-image: url('path/to/image')"></div>
+        <div>More content can go here if intended.</div>
+    </div>
+</div>
+
+
+<!-- Example 2: a box with an image -->
+<div>
+    <div class="str-ref">Your content here.</div>
+    <div class="str-con">
+        <div class="str-obj box" style="background-image: url('path/to/image')"></div>
+    </div>
+</div>
