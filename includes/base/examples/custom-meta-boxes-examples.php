@@ -4,7 +4,7 @@
 /** Custom Meta Boxes 2 :: https://github.com/WebDevStudios/CMB2 **/
 
 
-// Example #1 -----------------------------------
+// Example #1 ------------------------------------------------------------
 
 $meta_boxes['leftColumn'] = array(
     'id' => 'leftColumn',
@@ -26,7 +26,7 @@ $meta_boxes['leftColumn'] = array(
 );
 
 
-// Example #2 -----------------------------------
+// Example #2 ------------------------------------------------------------
 
 $meta_boxes['rightColumn'] = array(
     'id' => 'rightColumn',
@@ -48,7 +48,7 @@ $meta_boxes['rightColumn'] = array(
 );
 
 
-// Example #3 -----------------------------------
+// Example #3 ------------------------------------------------------------
 
 $meta_boxes['blocks_section'] = array(
     'id'         => $prefix . 'blocks_section',
@@ -130,3 +130,42 @@ $meta_boxes['blocks_section'] = array(
         ),
     ),
 );
+
+
+// WYSIWYG Options Arrays ------------------------------------------------
+
+$wysiwygMinimal = array(
+    'wpautop' => false,
+    'media_buttons' => false,
+    'textarea_rows' => get_option('default_post_edit_rows', 5),
+    'tabindex' => '',
+    'editor_css' => '',
+    'editor_class' => '',
+    'teeny' => false,
+    'dfw' => false,
+    'tinymce' => false,
+    'quicktags' => false
+);
+$wysiwygFull = array(
+    'wpautop' => true,
+    'media_buttons' => true,
+    'textarea_rows' => get_option('default_post_edit_rows', 10),
+    'tabindex' => '',
+    'editor_css' => '',
+    'editor_class' => '',
+    'teeny' => false,
+    'dfw' => false,
+    'tinymce' => true,
+    'quicktags' => true
+);
+
+
+// Remove feature support for specific custom page template --------------
+
+$templates['blocks-page'] = array(
+    'page_file' => 'page-blocks.php',
+    'remove_support' => array( 'editor', 'comments', 'custom-fields', 'discussion', 'author', 'thumbnail' )
+);
+
+
+
