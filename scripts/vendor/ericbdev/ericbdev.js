@@ -3,21 +3,6 @@
 /** Adapted from Eric B. Dev - Simple Grid Wordpress :: https://github.com/ericbdev/simpleGridWordPress **/
 
 
-// INITS -----------------------------------------------------------------
-function init_accordion(element) {
-    $(element).on("click", function (e) {
-        e.preventDefault();
-        accordion($(this));
-    });
-}
-
-function init_anchor_scroll(element) {
-    $(element).on("click", 'a[href*=#]:not([href=#])', function (e) {
-        anchorScroll(this, location, e);
-    });
-}
-
-
 // FUNCTIONS -------------------------------------------------------------
 function pageScroll(_tag) {
     if (typeof $(_tag) !== 'undefined') {

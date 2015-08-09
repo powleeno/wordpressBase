@@ -1,3 +1,18 @@
+function init_accordion(element) {
+    /** Simple Grid Wordpress :: https://github.com/ericbdev/simpleGridWordPress **/
+    $(element).on("click", function (e) {
+        e.preventDefault();
+        accordion($(this));
+    });
+}
+
+function init_anchor_scroll(element) {
+    /** Simple Grid Wordpress :: https://github.com/ericbdev/simpleGridWordPress **/
+    $(element).on("click", 'a[href*=#]:not([href=#])', function (e) {
+        anchorScroll(this, location, e);
+    });
+}
+
 function init_fancybox(element) {
 	/** Fancybox 2 :: http://fancyapps.com/fancybox/#docs **/
     $(element).fancybox({
