@@ -4,6 +4,16 @@ require_once 'includes/base.php';
 
 // HELPERS ---------------------------------------------------------------
 
+
+function set_session_variables() {
+
+    // if( !isset($_SESSION['map_locations']) ) {
+    //     $_SESSION['map_locations'] = get_map_locations();
+    // }
+
+}
+
+
 /** Favicon generator online tool :: http://www.favicon-generator.org/ **/
 function set_favicons($path)
 {
@@ -25,6 +35,7 @@ function set_favicons($path)
     echo '<meta name="msapplication-TileImage" content="'.$path.'ms-icon-144x144.png">';
     echo '<meta name="theme-color" content="#ffffff">';
 }
+
 
 class Walker_Foundation_Topbar extends Walker_Nav_Menu {
     function start_lvl(&$output, $depth = 0) {

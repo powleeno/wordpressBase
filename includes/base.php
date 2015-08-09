@@ -39,6 +39,11 @@ add_action('after_setup_theme', 'features_after_setup_theme');
 
 function features_init()
 {
+    // Variables session start
+    if( !session_id() ) {
+        session_start();
+    }
+
     // Custom Meta Boxes
     if (!class_exists('CMB2_Bootstrap_208')) {
         require_once('vendor/custom-meta-boxes/init.php');
@@ -90,6 +95,22 @@ function features_wp_enqueue_scripts()
 
 }
 add_action('wp_enqueue_scripts', 'features_wp_enqueue_scripts');
+
+
+function features_wp_login()
+{
+    // Variables session end
+    session_destroy();
+}
+add_action('wp_logout', 'features_wp_login');
+
+
+function features_wp_logout()
+{
+    // Variables session end
+    session_destroy();
+}
+add_action('wp_logout', 'features_wp_logout');
 
 
 // Disable auto updates
