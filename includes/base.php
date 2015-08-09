@@ -14,25 +14,25 @@ function features_after_setup_theme()
     // Menus
     register_nav_menus(
         array(
-            'header-menu' => __('Header Menu'),
-            'footer-menu' => __('Footer Menu'),
-            'mobile-menu' => __('Mobile Menu'),
+            'header-menu' => __('Header Menu', 'menus'),
+            'footer-menu' => __('Footer Menu', 'menus'),
+            'mobile-menu' => __('Mobile Menu', 'menus'),
         )
     );
 
     // Thumbnails
     add_theme_support('post-thumbnails');
-//    Image Size Names: left out for lack of any actual use
-//    add_image_size('300x300', 300, 300, true);
-//    add_image_size('450x450', 450, 450, true);
-//    add_filter('image_size_names_choose', 'image_size_names');
-//    function image_size_names($sizes)
-//    {
-//        return array_merge($sizes, array(
-//            '300x300' => __('Thumbnail Medium'),
-//            '450x450' => __('Thumbnail Large'),
-//        ));
-//    }
+    // Image Size Names: left out for lack of any actual use
+    // add_image_size('300x300', 300, 300, true);
+    // add_image_size('450x450', 450, 450, true);
+    // add_filter('image_size_names_choose', 'image_size_names');
+    // function image_size_names($sizes)
+    // {
+    //     return array_merge($sizes, array(
+    //         '300x300' => __('Thumbnail Medium', 'thumbnails'),
+    //         '450x450' => __('Thumbnail Large', 'thumbnails'),
+    //     ));
+    // }
 }
 add_action('after_setup_theme', 'features_after_setup_theme');
 
@@ -92,3 +92,8 @@ function features_wp_enqueue_scripts()
 add_action('wp_enqueue_scripts', 'features_wp_enqueue_scripts');
 
 
+// Disable auto updates
+add_filter( 'auto_update_plugin', '__return_false' );
+add_filter( 'auto_update_theme', '__return_false' );
+add_filter( 'auto_update_core', '__return_false' );
+add_filter( 'automatic_updater_disabled', '__return_true' );

@@ -4,11 +4,11 @@
 /** Custom Meta Boxes 2 :: https://github.com/WebDevStudios/CMB2 **/
 
 
-// Example #1 ------------------------------------------------------------
+// Example #1 -----------------------------------
 
 $meta_boxes['leftColumn'] = array(
     'id' => 'leftColumn',
-    'title' => 'Left Column',
+    'title' => __( 'Left Column', 'custom metaboxes' ),
     'object_types' => array('subjects', ),
     // 'show_on'       => array( 'key' => 'page-template', 'value' => $pagesTwoColumns ),
     'context' => 'normal',
@@ -16,7 +16,7 @@ $meta_boxes['leftColumn'] = array(
     'show_names' => false,
     'fields' => array(
         array(
-            'name' => 'Left Column',
+            'name' => __( 'Left Column', 'custom metaboxes' ),
             'id' => $prefix . 'left_column',
             'sanitization_cb' => false,
             'type' => 'wysiwyg',
@@ -26,11 +26,11 @@ $meta_boxes['leftColumn'] = array(
 );
 
 
-// Example #2 ------------------------------------------------------------
+// Example #2 -----------------------------------
 
 $meta_boxes['rightColumn'] = array(
     'id' => 'rightColumn',
-    'title' => 'Right Column',
+    'title' => __( 'Right Column', 'custom metaboxes' ),
     'object_types' => array('subjects', ),
     // 'show_on'       => array( 'key' => 'page-template', 'value' => $pagesTwoColumns ),
     'context' => 'normal',
@@ -38,7 +38,7 @@ $meta_boxes['rightColumn'] = array(
     'show_names' => false,
     'fields' => array(
         array(
-            'name' => 'Right Column',
+            'name' => __( 'Right Column', 'custom metaboxes' ),
             'id' => $prefix . 'right_column',
             'sanitization_cb' => false,
             'type' => 'wysiwyg',
@@ -48,7 +48,7 @@ $meta_boxes['rightColumn'] = array(
 );
 
 
-// Example #3 ------------------------------------------------------------
+// Example #3 -----------------------------------
 
 $meta_boxes['blocks_section'] = array(
     'id'         => $prefix . 'blocks_section',
@@ -94,7 +94,7 @@ $meta_boxes['blocks_section'] = array(
                     ),
                 ),
                 array(
-                    'name' => __( 'Image' ),
+                    'name' => __( 'Image', 'custom metaboxes' ),
                     'id' => $prefix . 'block_image',
                     'type' => 'file',
                     'description' => __( 'Only available with "Boxed" layout.', 'custom metaboxes' ),
@@ -112,14 +112,14 @@ $meta_boxes['blocks_section'] = array(
                     ),
                 ),
                 array(
-                    'name' => __( 'Main Column' ),
+                    'name' => __( 'Main Column', 'custom metaboxes' ),
                     'id' => $prefix . 'block_main_column',
                     'sanitization_cb' => false,
                     'type' => 'wysiwyg',
                     'options' => $wysiwygFull
                 ),
                 array(
-                    'name' => __( 'Secondary Column' ),
+                    'name' => __( 'Secondary Column', 'custom metaboxes' ),
                     'id' => $prefix . 'block_secondary_column',
                     'description' => __( 'Only available with "Split Width" layout.', 'custom metaboxes' ),
                     'sanitization_cb' => false,
