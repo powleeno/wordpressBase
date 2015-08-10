@@ -1,5 +1,5 @@
 
-<!--
+    <!--
         <footer>
             <div class="row">
                 <div class="column small-12">
@@ -9,6 +9,11 @@
 		</footer>
     -->
 
-		<?php wp_footer(); ?>
+        <script>
+            // Encodes locations information to create markers for Google Map
+            // var locations_array = <?php echo json_encode( $_SESSION['map_locations'] ); ?>;
+        </script>
+
+        <?php wp_footer(); ?>
 	</body>
 </html>

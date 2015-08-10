@@ -4,17 +4,20 @@ require_once 'includes/base.php';
 
 // HELPERS ---------------------------------------------------------------
 
-
-function set_session_variables() {
-
+/**
+ * Sets session variables for use across pages
+ */
+function set_session_variables()
+{
     // if( !isset($_SESSION['map_locations']) ) {
     //     $_SESSION['map_locations'] = get_map_locations();
     // }
-
 }
 
-
-/** Favicon generator online tool :: http://www.favicon-generator.org/ **/
+/**
+ * Sets favicons; place files in $path
+ * Favicon generator online tool :: http://www.favicon-generator.org/
+ */
 function set_favicons($path)
 {
     echo '<link rel="apple-touch-icon" sizes="57x57" href="'.$path.'apple-icon-57x57.png">';
@@ -36,12 +39,48 @@ function set_favicons($path)
     echo '<meta name="theme-color" content="#ffffff">';
 }
 
-
-class Walker_Foundation_Topbar extends Walker_Nav_Menu {
-    function start_lvl(&$output, $depth = 0) {
+/**
+ * Extends Walker to build menus with Foundation Topbar
+ */
+class Walker_Foundation_Topbar extends Walker_Nav_Menu
+{
+    function start_lvl(&$output, $depth = 0)
+    {
         $output .= "<ul class=\"dropdown\">";
 
     }
+}
+
+/**
+ * Retrieves locations post type information for passing to Google Map
+ */
+function get_map_locations()
+{
+    $prefix = get_prefix();
+    $args = array(
+        'post_type' => 'locations',
+        'posts_per_page' => -1,
+        'orderby' => 'menu',
+        'order'   => 'ASC',
+    );
+    $locations = new WP_Query( $args );
+    $locations_array = array();
+    if ( $locations->have_posts() ) {
+        while ( $locations->have_posts() ) {
+            $locations->the_post();
+            $location_name = get_the_title();
+            $location_address = get_post_meta($locations->post->ID, $prefix.'address');
+            $location_information = get_post_meta($locations->post->ID, $prefix.'information');
+            $location = array(
+                'name' => $location_name,
+                'address' => $location_address[0],
+                'information' => apply_filters('the_content', $location_information[0]),
+            );
+            array_push($locations_array, $location);
+        }
+    }
+    wp_reset_query();
+    return $locations_array;
 }
 
 

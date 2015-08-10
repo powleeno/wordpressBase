@@ -132,6 +132,36 @@ $meta_boxes['blocks_section'] = array(
 );
 
 
+// Example #4 -----------------------------------
+
+$meta_boxes['locations'] = array(
+    'id' => 'locations',
+    'title' => __( 'Location', 'custom metaboxes' ),
+    'object_types' => array('locations', ),
+    // 'show_on'       => array( 'key' => 'post', 'value' => 'locations' ),
+    'context' => 'normal',
+    'priority' => 'high',
+    'show_names' => true,
+    'fields' => array(
+        array(
+            'name' => __( 'Address', 'custom metaboxes' ),
+            'id' => $prefix . 'address',
+            'desc' => __( '', 'custom metaboxes' ),
+            'sanitization_cb' => false,
+            'type' => 'text',
+        ),
+        array(
+            'name' => __( 'Information' ),
+            'id' => $prefix . 'information',
+            'desc' => __( '', 'custom metaboxes' ),
+            'sanitization_cb' => false,
+            'type' => 'wysiwyg',
+            'options' => $wysiwygFull
+        ),
+    )
+);
+
+
 // WYSIWYG Options Arrays ------------------------------------------------
 
 $wysiwygMinimal = array(

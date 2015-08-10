@@ -98,6 +98,18 @@ function load_scripts()
         'set_in_footer' => true
     );
 
+    /** Google Maps JavaScript API :: https://developers.google.com/maps/documentation/javascript/ **/
+    $scripts['google_js_api'] = array(
+        'active' => true,
+        'deregister_first' => false,
+        'handler' => 'google_js_api',
+        'cdn' => 'http://maps.googleapis.com/maps/api/js', // make sure the protocol is 'http' and not 'https'
+        'local' => $scripts_path . 'vendor/google/google-maps-api.js',
+        'dependencies' => false,
+        'version' => '3.0.0',
+        'set_in_footer' => true
+    );
+
     /** Lazy Load :: https://github.com/tuupola/jquery_lazyload **/
     $scripts['lazyload'] = array(
         'active' => false,
@@ -201,6 +213,16 @@ function load_scripts()
                 'handler' => 'base_functions',
                 'cdn' => '',
                 'local' => $scripts_path . 'base/functions.js',
+                'dependencies' => false,
+                'version' => '1.0',
+                'set_in_footer' => true
+            ),
+            array(
+                'active' => true,
+                'deregister_first' => false,
+                'handler' => 'base_google_map',
+                'cdn' => '',
+                'local' => $scripts_path . 'base/google-map.js',
                 'dependencies' => false,
                 'version' => '1.0',
                 'set_in_footer' => true

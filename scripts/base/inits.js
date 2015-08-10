@@ -29,6 +29,15 @@ function init_foundation(element) {
 	$(element).foundation();
 }
 
+function init_google_map(element) {
+    google_map({
+        element: element,
+        center_latitude: 45.5050,
+        center_longitude: -73.5567,
+        zoom: 12
+    });
+}
+
 function init_lazyload(element) {
 	/** Lazy Load :: http://www.appelsiini.net/projects/lazyload **/
 	$(element).lazyload();
