@@ -68,9 +68,31 @@ add_action('init', 'features_init');
 
 function features_get_header()
 {
-	// Remove Admin-Bar
-	add_filter( 'show_admin_bar', '__return_false' );
-	remove_action('wp_head', '_admin_bar_bump_cb');
+    // Remove Admin-Bar
+    add_filter( 'show_admin_bar', '__return_false' );
+    remove_action('wp_head', '_admin_bar_bump_cb');
+
+    // Remove Wordpress version
+    remove_action('wp_head', 'wp_generator');
+
+    // Remove link to the Windows Live Writer manifest file
+    remove_action('wp_head', 'wlwmanifest_link');
+    // Remove link to the Really Simple Discovery service endpoint, EditURI link
+    remove_action('wp_head', 'rsd_link');
+    // Remove the links to the general feeds: Post and Comment Feed
+    remove_action('wp_head', 'feed_links');
+    // Remove the links to the extra feeds such as category feeds
+    remove_action('wp_head', 'feed_links_extra');
+    // Remove index link
+    remove_action('wp_head', 'index_rel_link');
+    // Remove prev link
+    remove_action('wp_head', 'parent_post_rel_link');
+    // Remove start link
+    remove_action('wp_head', 'start_post_rel_link');
+    // Remove relational links for the posts adjacent to the current post.
+    remove_action('wp_head', 'adjacent_posts_rel_link');
+    // Remove shortlink
+    remove_action('wp_head', 'wp_shortlink_wp_head');
 }
 add_action('get_header', 'features_get_header');
 
