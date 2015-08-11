@@ -1,13 +1,13 @@
 
-    <!--
+        <!--
         <footer>
             <div class="row">
                 <div class="column small-12">
                     <h5>Footer</h5>
                 </div>
             </div>
-		</footer>
-    -->
+        </footer>
+        -->
 
         <script>
             // Encodes locations information to create markers for Google Map

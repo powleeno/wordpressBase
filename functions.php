@@ -1,8 +1,11 @@
 <?php
 
+
 require_once 'includes/base.php';
 
+
 // HELPERS ---------------------------------------------------------------
+
 
 /**
  * Sets session variables for use across pages
@@ -13,6 +16,7 @@ function set_session_variables()
     //     $_SESSION['map_locations'] = get_map_locations();
     // }
 }
+
 
 /**
  * Sets favicons; place files in $path
@@ -39,6 +43,7 @@ function set_favicons($path)
     echo '<meta name="theme-color" content="#ffffff">';
 }
 
+
 /**
  * Extends Walker to build menus with Foundation Topbar
  */
@@ -50,6 +55,7 @@ class Walker_Foundation_Topbar extends Walker_Nav_Menu
 
     }
 }
+
 
 /**
  * Retrieves locations post type information for passing to Google Map
@@ -85,11 +91,4 @@ function get_map_locations()
 
 
 // THEME -----------------------------------------------------------------
-
-
-
-
-
-
-
 
