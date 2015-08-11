@@ -24,9 +24,14 @@
 
 .table {
   display: table;
-  text-align: center;
   .table-cell {
     display: table-cell;
     vertical-align: middle;
   }
+}
+
+ul.reset-list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
 }

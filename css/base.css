@@ -1028,8 +1028,10 @@ th.hide-for-touch { display: table-cell !important; }
 
 .square { width: 100%; max-width: 100%; height: auto; }
 
-.table { display: table; text-align: center; }
+.table { display: table; }
 .table .table-cell { display: table-cell; vertical-align: middle; }
+
+ul.reset-list { list-style-type: none; margin: 0; padding: 0; }
 
 /*
 .top-bar {
