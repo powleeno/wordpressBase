@@ -13,7 +13,7 @@ require_once 'includes/base.php';
 function base_set_session_variables()
 {
     // if( !isset($_SESSION['map_locations']) ) {
-    //     $_SESSION['map_locations'] = get_map_locations();
+    //     $_SESSION['map_locations'] = base_get_map_locations();
     // }
 }
 
