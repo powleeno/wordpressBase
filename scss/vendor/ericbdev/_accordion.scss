@@ -3,11 +3,11 @@
 
 // Note: this file makes extensive use of Foundation's settings file! Include after Foundation! //
 
-.accordion {
+.ericbdev_accordion {
   margin-bottom: $column-gutter/2;
   float: left;
   width: 100%;
-  .accordion-select {
+  .ericbdev_accordion-select {
     font-size: $h5-font-size;
     font-weight: $font-weight-normal;
     background: $primary-color;
@@ -24,7 +24,7 @@
       height: 100%;
       right: $column-gutter/2;
       content: '';
-      background: $accordion-icon-open no-repeat center center;
+      background: $ericbdev_accordion-icon-open no-repeat center center;
       background-size: contain;
       background-origin: content-box;
       //padding: $column-gutter/4 0;
@@ -35,19 +35,19 @@
     }
     &.active {
       &:before {
-        background: $accordion-icon-close no-repeat center center;
+        background: $ericbdev_accordion-icon-close no-repeat center center;
         background-size: contain;
         @include transition(all, ease, $animation-duration);
       }
     }
-    &.accordion-select-child {
+    &.ericbdev_accordion-select-child {
       background: $primary-color;
     }
-    &.accordion-select-grandchild {
+    &.ericbdev_accordion-select-grandchild {
       background: $primary-color;
     }
   }
-  .accordion-content {
+  .ericbdev_accordion-content {
     background: $white;
     float: left;
     font-size: $paragraph-font-size;
@@ -55,21 +55,21 @@
     padding: $column-gutter/2;
     p {
       margin-bottom: $column-gutter/2;
-      + .accordion {
+      + .ericbdev_accordion {
         margin-top: $column-gutter/2;
       }
     }
-    &.accordion-content-child {
+    &.ericbdev_accordion-content-child {
       background: $white;
     }
-    &.accordion-content-grandchild {
+    &.ericbdev_accordion-content-grandchild {
       background: $primary-color;
     }
   }
 }
 
 a {
-  &.accordion-link {
+  &.ericbdev_accordion-link {
     font-size: $h5-font-size;
     font-weight: $font-weight-normal;
     background: $primary-color;
@@ -87,7 +87,7 @@ a {
       height: 100%;
       right: $column-gutter/4;
       content: '';
-      background: $accordion-icon-close no-repeat center center;
+      background: $ericbdev_accordion-icon-close no-repeat center center;
       background-size: contain;
       background-origin: content-box;
       padding: $column-gutter/4 0;
