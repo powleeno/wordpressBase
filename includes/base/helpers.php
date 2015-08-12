@@ -1,7 +1,7 @@
 <?php
 
-function get_prefix()
+function base_fields_prefix()
 {
-    $prefix = '_base_';
-    return  $prefix;
+    $fields_prefix = '_base_';
+    return  $fields_prefix;
 }

@@ -10,7 +10,7 @@ require_once 'includes/base.php';
 /**
  * Sets session variables for use across pages
  */
-function set_session_variables()
+function base_set_session_variables()
 {
     // if( !isset($_SESSION['map_locations']) ) {
     //     $_SESSION['map_locations'] = get_map_locations();
@@ -22,7 +22,7 @@ function set_session_variables()
  * Sets favicons; place files in $path
  * Favicon generator online tool :: http://www.favicon-generator.org/
  */
-function set_favicons($path)
+function base_set_favicons($path)
 {
     echo '<link rel="apple-touch-icon" sizes="57x57" href="'.$path.'apple-icon-57x57.png">';
     echo '<link rel="apple-touch-icon" sizes="60x60" href="'.$path.'apple-icon-60x60.png">';
@@ -60,9 +60,9 @@ class Walker_Foundation_Topbar extends Walker_Nav_Menu
 /**
  * Retrieves locations post type information for passing to Google Map
  */
-function get_map_locations()
+function base_get_map_locations()
 {
-    $prefix = get_prefix();
+    $fields_prefix = base_fields_prefix();
     $args = array(
         'post_type' => 'locations',
         'posts_per_page' => -1,
@@ -75,8 +75,8 @@ function get_map_locations()
         while ( $locations->have_posts() ) {
             $locations->the_post();
             $location_name = get_the_title();
-            $location_address = get_post_meta($locations->post->ID, $prefix.'address');
-            $location_information = get_post_meta($locations->post->ID, $prefix.'information');
+            $location_address = get_post_meta($locations->post->ID, $fields_prefix.'address');
+            $location_information = get_post_meta($locations->post->ID, $fields_prefix.'information');
             $location = array(
                 'name' => $location_name,
                 'address' => $location_address[0],

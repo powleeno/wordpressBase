@@ -4,7 +4,7 @@
 /** WP Custom Post Type Class :: https://github.com/jjgrainger/wp-custom-post-type-class/ **/
 
 
-function set_custom_post_types()
+function base_set_custom_post_types()
 {
     $post_types = array();
 

@@ -1,6 +1,6 @@
 <?php
 
-function fancybox_gallery( $atts, $content=null ){
+function base_fancybox_gallery_shortcode( $atts, $content=null ){
     $parameters = shortcode_atts( array(
         'small' => '',
         'medium' => '',
@@ -38,11 +38,11 @@ function fancybox_gallery( $atts, $content=null ){
     $return_html .= '</ul>';
     return $return_html;
 }
-add_shortcode( 'fancy_gallery', 'fancybox_gallery' );
+add_shortcode( 'fancy_gallery', 'base_fancybox_gallery_shortcode' );
 
 
 
-/** Taken from Eric B. Dev - Simple Grid Wordpress :: https://github.com/ericbdev/simpleGridWordPress
+/** Adapted from Eric B. Dev - Simple Grid Wordpress :: https://github.com/ericbdev/simpleGridWordPress
  *
  * Instructions:
  * [email]foo@bar.com[/email]
@@ -50,7 +50,7 @@ add_shortcode( 'fancy_gallery', 'fancybox_gallery' );
  * [email email='foo@bar.com' data-update='false']<foo>Bar html -- this doesnt get touched by js </foo>[/email]
  *
  **/
-function emailCode($atts, $content = null)
+function ericbdev_email_shortcode($atts, $content = null)
 {
     extract(shortcode_atts(array('email' => '', 'class'=> '', 'update_text' => true), $atts));
     $classes = "js-replacer-text $class";
@@ -69,9 +69,9 @@ function emailCode($atts, $content = null)
     if($update_text !== true ):
         $returnContent .= $outputContent;
     else:
-        $returnContent .= __('Please enable JavaScript', theme_domain());
+        $returnContent .= __('Please enable JavaScript', 'email shortcode');
     endif;
     $returnContent .="</a>";
     return $returnContent;
 }
-add_shortcode('email', 'emailCode');
+add_shortcode('email', 'ericbdev_email_shortcode');

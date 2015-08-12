@@ -1,4 +1,4 @@
-.absolute-stretch {
+.base_absolute-stretch {
   position: absolute;
   top: 0;
   left: 0;
@@ -6,31 +6,31 @@
   bottom: 0;
 }
 
-.background-image {
+.base_background-image {
   background-size: cover;
   background-position: 50%;
 }
 
-.full-width {
+.base_full-width {
   max-width: 100%;
   width: 100%;
 }
 
-.square {
+.base_square {
   width: 100%;
   max-width: 100%;
   height: auto;
 }
 
-.table {
+.base_table {
   display: table;
-  .table-cell {
+  .base_table-cell {
     display: table-cell;
     vertical-align: middle;
   }
 }
 
-ul.reset-list {
+ul.base_reset-list {
   list-style-type: none;
   margin: 0;
   padding: 0;

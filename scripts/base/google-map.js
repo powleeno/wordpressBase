@@ -177,7 +177,7 @@ var map_options = {
  * This way information can be passed to infowindow
  */
 
-function geo_code_callback(map, map_bounds, information) {
+function base_geo_code_callback(map, map_bounds, information) {
     var geo_code = function (results, status) {
         if (status == google.maps.GeocoderStatus.OK) {
 
@@ -230,7 +230,7 @@ function geo_code_callback(map, map_bounds, information) {
  * Receives: DOM element, fallback zoom and map center
  */
 
-function google_map(args) {
+function base_google_map(args) {
 
     var map_canvas = document.getElementById(args.element);
     if (map_canvas) {
@@ -253,7 +253,7 @@ function google_map(args) {
                 var map_geocoder = new google.maps.Geocoder();
                 map_geocoder.geocode(
                     {'address': locations_array[i].address},
-                    geo_code_callback(map, map_bounds, locations_array[i].information)
+                    base_geo_code_callback(map, map_bounds, locations_array[i].information)
                 );
 
             }

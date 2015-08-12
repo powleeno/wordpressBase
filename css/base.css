@@ -1020,18 +1020,18 @@ th.hide-for-touch { display: table-cell !important; }
   td.show-for-print { display: table-cell !important; }
   th.show-for-print { display: table-cell !important; } }
 @media not print { .show-for-print { display: none !important; } }
-.absolute-stretch { position: absolute; top: 0; left: 0; right: 0; bottom: 0; }
+.base_absolute-stretch { position: absolute; top: 0; left: 0; right: 0; bottom: 0; }
 
-.background-image { background-size: cover; background-position: 50%; }
+.base_background-image { background-size: cover; background-position: 50%; }
 
-.full-width { max-width: 100%; width: 100%; }
+.base_full-width { max-width: 100%; width: 100%; }
 
-.square { width: 100%; max-width: 100%; height: auto; }
+.base_square { width: 100%; max-width: 100%; height: auto; }
 
-.table { display: table; }
-.table .table-cell { display: table-cell; vertical-align: middle; }
+.base_table { display: table; }
+.base_table .base_table-cell { display: table-cell; vertical-align: middle; }
 
-ul.reset-list { list-style-type: none; margin: 0; padding: 0; }
+ul.base_reset-list { list-style-type: none; margin: 0; padding: 0; }
 
 /*
 .top-bar {

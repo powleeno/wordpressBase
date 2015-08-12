@@ -1,4 +1,4 @@
-function stretch_object() {
+function base_stretch_object() {
 
     $('.str-obj').each(function () {
 
@@ -30,21 +30,21 @@ function stretch_object() {
 
 
         var str_obj_width, str_obj_margin_left;
-        if (str_obj.hasClass('top')) {
+        if (str_obj.hasClass('str-top')) {
 
             // Set str_obj width and margin -------------------------------------------
 
-            if (str_obj.hasClass('left')) {
+            if (str_obj.hasClass('str-left')) {
                 str_obj_width = str_con.offset().left + str_con.innerWidth();
                 str_obj_margin_left = 0 - str_con.offset().left - str_obj.position().left;
-            } else if (str_obj.hasClass('right')) {
+            } else if (str_obj.hasClass('str-right')) {
                 str_obj_width = $(window).width() - str_con.offset().left;
                 str_obj_margin_left = 0 - str_obj.position().left;
             }
             str_obj.outerWidth(str_obj_width);
             str_obj.css('margin-left', str_obj_margin_left);
 
-        } else if (str_obj.hasClass('box')) {
+        } else if (str_obj.hasClass('str-box')) {
 
             str_obj_width = str_con.innerWidth();
             str_obj.outerWidth(str_obj_width);

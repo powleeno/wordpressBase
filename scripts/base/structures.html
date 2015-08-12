@@ -20,13 +20,13 @@
         Object :: .str-obj
             this has it's width stretched and is positioned according to classes assigned;
             it receives the following classes:
-                .box :
+                .str-box :
                     with this, .str-obj gets stretched to match .str-con (as in a box);
-                .top :
+                .str-top :
                     with this, .str-obj gets stretched to the edge of the window;
-                    with .top, either .left or .right must be assigned to .str-obj; they regulate it's float;
+                    with .str-top, either .str-left or .str-right must be assigned to .str-obj; they regulate it's float;
                     -->
-        <div class="str-obj top right"></div>
+        <div class="str-obj str-top str-right"></div>
 
         <div>More content can go here if intended.</div>
     </div>
@@ -40,7 +40,7 @@
 <div>
     <div class="str-ref">Your content here.</div>
     <div class="str-con">
-        <div class="str-obj top left" style="background-image: url('path/to/image')"></div>
+        <div class="str-obj str-top str-left" style="background-image: url('path/to/image')"></div>
         <div>More content can go here if intended.</div>
     </div>
 </div>
@@ -50,6 +50,6 @@
 <div>
     <div class="str-ref">Your content here.</div>
     <div class="str-con">
-        <div class="str-obj box" style="background-image: url('path/to/image')"></div>
+        <div class="str-obj str-box" style="background-image: url('path/to/image')"></div>
     </div>
 </div>

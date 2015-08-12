@@ -1,7 +1,7 @@
 <?php
 
 
-function load_scripts()
+function base_load_scripts()
 {
     $scripts = array();
     $scripts_path = get_template_directory_uri() . '/scripts/';
@@ -242,14 +242,14 @@ function load_scripts()
         'set_in_footer' => true
     );
 
-    $script_handlers = register_scripts($scripts);
+    $script_handlers = base_register_scripts($scripts);
     foreach ($script_handlers as $script_handler) {
         wp_enqueue_script($script_handler);
     }
 
 }
 
-function register_scripts($scripts) {
+function base_register_scripts($scripts) {
     $script_handlers = array();
     if ($scripts) {
         foreach ($scripts as $script) {
@@ -268,7 +268,7 @@ function register_scripts($scripts) {
                 } else {
                     continue;
                 }
-                $deps = register_scripts($script['dependencies']);
+                $deps = base_register_scripts($script['dependencies']);
                 wp_register_script( $script['handler'], $src, $deps, $script['version'], $script['set_in_footer'] );
             }
         }

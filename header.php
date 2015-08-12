@@ -17,10 +17,10 @@
 
     // Sets favicons; place files in $path
     $favicon_path = get_template_directory_uri().'/images/favicon/';
-    set_favicons($favicon_path);
+    base_set_favicons($favicon_path);
 
     // Sets session variables for use across pages
-    set_session_variables();
+    base_set_session_variables();
 
     wp_head();
     ?>

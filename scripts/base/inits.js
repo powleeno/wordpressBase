@@ -1,15 +1,15 @@
-function init_accordion(element) {
+function init_ericbdev_accordion(element) {
     /** Simple Grid Wordpress :: https://github.com/ericbdev/simpleGridWordPress **/
     $(element).on("click", function (e) {
         e.preventDefault();
-        accordion($(this));
+        ericbdev_accordion($(this));
     });
 }
 
-function init_anchor_scroll(element) {
+function init_ericbdev_anchor_scroll(element) {
     /** Simple Grid Wordpress :: https://github.com/ericbdev/simpleGridWordPress **/
     $(element).on("click", 'a[href*=#]:not([href=#])', function (e) {
-        anchorScroll(this, location, e);
+        ericbdev_anchor_scroll(this, location, e);
     });
 }
 
@@ -29,8 +29,8 @@ function init_foundation(element) {
 	$(element).foundation();
 }
 
-function init_google_map(element) {
-    google_map({
+function init_base_google_map(element) {
+    base_google_map({
         element: element,
         center_latitude: 45.5050,
         center_longitude: -73.5567,

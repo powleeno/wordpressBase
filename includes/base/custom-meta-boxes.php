@@ -7,7 +7,7 @@
 function set_custom_meta_boxes(array $meta_boxes)
 {
     // Start with an underscore to hide fields from custom fields list
-    $prefix = get_prefix();
+    $fields_prefix = base_fields_prefix();
 
     /*
      *
@@ -21,7 +21,7 @@ function set_custom_meta_boxes(array $meta_boxes)
 
 
 // Remove feature support for specific custom page template
-function remove_templates_support()
+function base_remove_templates_support()
 {
     $templates = array();
 
