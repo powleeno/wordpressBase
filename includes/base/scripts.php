@@ -100,7 +100,7 @@ function base_load_scripts()
 
     /** Google Maps JavaScript API :: https://developers.google.com/maps/documentation/javascript/ **/
     $scripts['google_js_api'] = array(
-        'active' => true,
+        'active' => false,
         'deregister_first' => false,
         'handler' => 'google_js_api',
         'cdn' => 'http://maps.googleapis.com/maps/api/js', // make sure the protocol is 'http' and not 'https'
@@ -218,7 +218,7 @@ function base_load_scripts()
                 'set_in_footer' => true
             ),
             array(
-                'active' => true,
+                'active' => false,
                 'deregister_first' => false,
                 'handler' => 'base_google_map',
                 'cdn' => '',
