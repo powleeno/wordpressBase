@@ -1,7 +1,6 @@
 // Foundation by ZURB
 // foundation.zurb.com
 // Licensed under MIT Open Source
-
 @import 'global';
 
 //
@@ -32,111 +31,115 @@ $tooltip-pip-size: 5px !default;
 $tooltip-max-width: 300px !default;
 
 @include exports("tooltip") {
-  @if $include-html-tooltip-classes {
+	@if $include-html-tooltip-classes {
 
-    /* Tooltips */
-    .has-tip {
-      border-bottom: $has-tip-border-bottom;
-      color: $has-tip-font-color;
-      cursor: $has-tip-cursor-type;
-      font-weight: $has-tip-font-weight;
+		/* Tooltips */
+		.has-tip {
+			border-bottom: $has-tip-border-bottom;
+			color: $has-tip-font-color;
+			cursor: $has-tip-cursor-type;
+			font-weight: $has-tip-font-weight;
 
-      &:hover,
-      &:focus {
-        border-bottom: $has-tip-border-bottom-hover;
-        color: $has-tip-font-color-hover;
-      }
+			&:hover,
+			&:focus {
+				border-bottom: $has-tip-border-bottom-hover;
+				color: $has-tip-font-color-hover;
+			}
 
-      &.tip-left,
-      &.tip-right { float: none !important; }
-    }
+			&.tip-left,
+			&.tip-right {
+				float: none !important;
+			}
+		}
 
-    .tooltip {
-      background: $tooltip-bg;
-      color: $tooltip-font-color;
-      display: none;
-      font-size: $tooltip-font-size;
-      font-weight: $tooltip-font-weight;
-      line-height: $tooltip-line-height;
-      max-width: $tooltip-max-width;
-      padding: $tooltip-padding;
-      position: absolute;
-      width: 100%;
-      z-index: 1006;
-      #{$default-float}: 50%;
+		.tooltip {
+			background: $tooltip-bg;
+			color: $tooltip-font-color;
+			display: none;
+			font-size: $tooltip-font-size;
+			font-weight: $tooltip-font-weight;
+			line-height: $tooltip-line-height;
+			max-width: $tooltip-max-width;
+			padding: $tooltip-padding;
+			position: absolute;
+			width: 100%;
+			z-index: 1006;
+			#{$default-float}: 50%;
 
-      > .nub {
-        border-color: transparent transparent $tooltip-bg transparent;
-        border: solid $tooltip-pip-size;
-        display: block;
-        height: 0;
-        pointer-events: none;
-        position: absolute;
-        top: -($tooltip-pip-size * 2);
-        width: 0;
-        #{$default-float}: $tooltip-pip-size;
+			> .nub {
+				border-color: transparent transparent $tooltip-bg transparent;
+				border: solid $tooltip-pip-size;
+				display: block;
+				height: 0;
+				pointer-events: none;
+				position: absolute;
+				top: -($tooltip-pip-size * 2);
+				width: 0;
+				#{$default-float}: $tooltip-pip-size;
 
-        &.rtl {
-          left: auto;
-          #{$opposite-direction}: $tooltip-pip-size;
-        }
-      }
+				&.rtl {
+					left: auto;
+					#{$opposite-direction}: $tooltip-pip-size;
+				}
+			}
 
-      &.radius {
-        @include radius($tooltip-radius);
-      }
-      &.round {
-        @include radius($tooltip-rounded);
-        > .nub {
-          left: 2rem;
-        }
-      }
+			&.radius {
+				@include radius($tooltip-radius);
+			}
+			&.round {
+				@include radius($tooltip-rounded);
+				> .nub {
+					left: 2rem;
+				}
+			}
 
-      &.opened {
-        border-bottom: $has-tip-border-bottom-hover !important;
-        color: $has-tip-font-color-hover !important;
-      }
-    }
+			&.opened {
+				border-bottom: $has-tip-border-bottom-hover !important;
+				color: $has-tip-font-color-hover !important;
+			}
+		}
 
-    .tap-to-close {
-      color: $tooltip-close-font-color;
-      display: block;
-      font-size: $tooltip-close-font-size;
-      font-weight: $tooltip-close-font-weight;
-    }
+		.tap-to-close {
+			color: $tooltip-close-font-color;
+			display: block;
+			font-size: $tooltip-close-font-size;
+			font-weight: $tooltip-close-font-weight;
+		}
 
-    @media #{$small} {
-      .tooltip {
-        > .nub {
-          border-color: transparent transparent $tooltip-bg transparent;
-          top: -($tooltip-pip-size * 2);
-        }
-        &.tip-top>.nub {
-          border-color: $tooltip-bg transparent transparent transparent;
-          bottom: -($tooltip-pip-size * 2);
-          top: auto;
-        }
+		@media #{$small} {
+			.tooltip {
+				> .nub {
+					border-color: transparent transparent $tooltip-bg transparent;
+					top: -($tooltip-pip-size * 2);
+				}
+				&.tip-top > .nub {
+					border-color: $tooltip-bg transparent transparent transparent;
+					bottom: -($tooltip-pip-size * 2);
+					top: auto;
+				}
 
-        &.tip-left,
-        &.tip-right { float: none !important; }
+				&.tip-left,
+				&.tip-right {
+					float: none !important;
+				}
 
-        &.tip-left>.nub {
-          border-color: transparent transparent transparent $tooltip-bg;
-          left: auto;
-          margin-top: -$tooltip-pip-size;
-          right: -($tooltip-pip-size * 2);
-          top: 50%;
-        }
-        &.tip-right>.nub {
-          border-color: transparent $tooltip-bg transparent transparent;
-          left: -($tooltip-pip-size * 2);
-          margin-top: -$tooltip-pip-size;
-          right: auto;
-          top: 50%;
-        }
+				&.tip-left > .nub {
+					border-color: transparent transparent transparent $tooltip-bg;
+					left: auto;
+					margin-top: -$tooltip-pip-size;
+					right: -($tooltip-pip-size * 2);
+					top: 50%;
+				}
+				&.tip-right > .nub {
+					border-color: transparent $tooltip-bg transparent transparent;
+					left: -($tooltip-pip-size * 2);
+					margin-top: -$tooltip-pip-size;
+					right: auto;
+					top: 50%;
+				}
 
-      }
-    }
+			}
+		}
 
-  }
+	}
 }

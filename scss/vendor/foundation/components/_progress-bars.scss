@@ -1,7 +1,6 @@
 // Foundation by ZURB
 // foundation.zurb.com
 // Licensed under MIT Open Source
-
 @import 'global';
 
 //
@@ -33,47 +32,58 @@ $progress-meter-alert-color: $alert-color !default;
 //
 // We use this to set up the progress bar container
 @mixin progress-container {
-  background-color: $progress-bar-color;
-  border: $progress-bar-border-size $progress-bar-border-style $progress-bar-border-color;
-  height: $progress-bar-height;
-  margin-bottom: $progress-bar-margin-bottom;
-  padding: $progress-bar-pad;
+	background-color: $progress-bar-color;
+	border: $progress-bar-border-size $progress-bar-border-style $progress-bar-border-color;
+	height: $progress-bar-height;
+	margin-bottom: $progress-bar-margin-bottom;
+	padding: $progress-bar-pad;
 }
 
 // @mixins
 //
 // $bg - Default: $progress-meter-color || $primary-color
-@mixin progress-meter($bg:$progress-meter-color) {
-  background: $bg;
-  display: block;
-  height: 100%;
+@mixin progress-meter($bg: $progress-meter-color) {
+	background: $bg;
+	display: block;
+	height: 100%;
 }
 
-
 @include exports("progress-bar") {
-  @if $include-html-media-classes {
+	@if $include-html-media-classes {
 
-    /* Progress Bar */
-    .progress {
-      @include progress-container;
+		/* Progress Bar */
+		.progress {
+			@include progress-container;
 
-      // Meter
-      .meter {
-        @include progress-meter;
-      }
-      &.secondary .meter { @include progress-meter($bg:$progress-meter-secondary-color); }
-      &.success .meter { @include progress-meter($bg:$progress-meter-success-color); }
-      &.alert .meter { @include progress-meter($bg:$progress-meter-alert-color); }
+			// Meter
+			.meter {
+				@include progress-meter;
+			}
+			&.secondary .meter {
+				@include progress-meter($bg: $progress-meter-secondary-color);
+			}
+			&.success .meter {
+				@include progress-meter($bg: $progress-meter-success-color);
+			}
+			&.alert .meter {
+				@include progress-meter($bg: $progress-meter-alert-color);
+			}
 
-      &.radius { @include radius($progress-bar-border-radius);
-        .meter { @include radius($progress-bar-border-radius - 1); }
-      }
+			&.radius {
+				@include radius($progress-bar-border-radius);
+				.meter {
+					@include radius($progress-bar-border-radius - 1);
+				}
+			}
 
-      &.round { @include radius(1000px);
-        .meter { @include radius(999px); }
-      }
+			&.round {
+				@include radius(1000px);
+				.meter {
+					@include radius(999px);
+				}
+			}
 
-    }
+		}
 
-  }
+	}
 }

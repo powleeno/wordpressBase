@@ -15,7 +15,8 @@
  * @package   CMB2
  * @author    WebDevStudios
  */
-class CMB2_Options {
+class CMB2_Options
+{
 	/**
 	 * Array of all CMB2_Option instances
 	 * @var   array
@@ -23,13 +24,14 @@ class CMB2_Options {
 	 */
 	protected static $option_sets = array();
 
-	public static function get( $option_key ) {
+	public static function get($option_key)
+	{
 
-		if ( empty( self::$option_sets ) || empty( self::$option_sets[ $option_key ] ) ) {
-			self::$option_sets[ $option_key ] = new CMB2_Option( $option_key );
+		if (empty(self::$option_sets) || empty(self::$option_sets[$option_key])) {
+			self::$option_sets[$option_key] = new CMB2_Option($option_key);
 		}
 
-		return self::$option_sets[ $option_key ];
+		return self::$option_sets[$option_key];
 	}
 }
 
@@ -40,7 +42,8 @@ class CMB2_Options {
  * @package   CMB2
  * @author    WebDevStudios
  */
-class CMB2_Option {
+class CMB2_Option
+{
 
 	/**
 	 * Options array
@@ -60,8 +63,9 @@ class CMB2_Option {
 	 *                           Leave empty for temporary data store.
 	 * @since 2.0.0
 	 */
-	public function __construct( $option_key = '' ) {
-		$this->key = ! empty( $option_key ) ? $option_key : '';
+	public function __construct($option_key = '')
+	{
+		$this->key = !empty($option_key) ? $option_key : '';
 	}
 
 	/**
@@ -69,8 +73,9 @@ class CMB2_Option {
 	 * @since  2.0.0
 	 * @return bool  Delete success or failure
 	 */
-	public function delete_option() {
-		$deleted = $this->key ? delete_option( $this->key ) : true;
+	public function delete_option()
+	{
+		$deleted = $this->key ? delete_option($this->key) : true;
 		$this->options = $deleted ? array() : $this->options;
 		return $this->options;
 	}
@@ -78,18 +83,19 @@ class CMB2_Option {
 	/**
 	 * Removes an option from an option array
 	 * @since  1.0.1
-	 * @param  string  $field_id Option array field key
+	 * @param  string $field_id Option array field key
 	 * @return array             Modified options
 	 */
-	public function remove( $field_id, $resave = false ) {
+	public function remove($field_id, $resave = false)
+	{
 
 		$this->get_options();
 
-		if ( isset( $this->options[ $field_id ] ) ) {
-			unset( $this->options[ $field_id ] );
+		if (isset($this->options[$field_id])) {
+			unset($this->options[$field_id]);
 		}
 
-		if ( $resave ) {
+		if ($resave) {
 			$this->set();
 		}
 
@@ -99,17 +105,18 @@ class CMB2_Option {
 	/**
 	 * Retrieves an option from an option array
 	 * @since  1.0.1
-	 * @param  string  $field_id Option array field key
-	 * @param  mixed   $default  Fallback value for the option
+	 * @param  string $field_id Option array field key
+	 * @param  mixed $default Fallback value for the option
 	 * @return array             Requested field or default
 	 */
-	public function get( $field_id, $default = false ) {
+	public function get($field_id, $default = false)
+	{
 		$opts = $this->get_options();
 
-		if ( 'all' == $field_id ) {
+		if ('all' == $field_id) {
 			return $opts;
-		} elseif ( array_key_exists( $field_id, $opts ) ) {
-			return false !== $opts[ $field_id ] ? $opts[ $field_id ] : $default;
+		} elseif (array_key_exists($field_id, $opts)) {
+			return false !== $opts[$field_id] ? $opts[$field_id] : $default;
 		}
 
 		return $default;
@@ -118,27 +125,28 @@ class CMB2_Option {
 	/**
 	 * Updates Option data
 	 * @since  1.0.1
-	 * @param  string  $field_id   Option array field key
-	 * @param  mixed   $value      Value to update data with
-	 * @param  bool    $resave     Whether to re-save the data
-	 * @param  bool    $single     Whether data should not be an array
+	 * @param  string $field_id Option array field key
+	 * @param  mixed $value Value to update data with
+	 * @param  bool $resave Whether to re-save the data
+	 * @param  bool $single Whether data should not be an array
 	 * @return boolean             Return status of update
 	 */
-	public function update( $field_id, $value = '', $resave = false, $single = true ) {
+	public function update($field_id, $value = '', $resave = false, $single = true)
+	{
 		$this->get_options();
 
-		if ( true !== $field_id ) {
+		if (true !== $field_id) {
 
-			if ( ! $single ) {
+			if (!$single) {
 				// If multiple, add to array
-				$this->options[ $field_id ][] = $value;
+				$this->options[$field_id][] = $value;
 			} else {
-				$this->options[ $field_id ] = $value;
+				$this->options[$field_id] = $value;
 			}
 
 		}
 
-		if ( $resave || true === $field_id ) {
+		if ($resave || true === $field_id) {
 			return $this->set();
 		}
 
@@ -155,48 +163,50 @@ class CMB2_Option {
 	 * @param  array $options Optional options to override
 	 * @return bool           Success/Failure
 	 */
-	public function set( $options = array() ) {
-		$this->options = ! empty( $options ) || empty( $options ) && empty( $this->key )
+	public function set($options = array())
+	{
+		$this->options = !empty($options) || empty($options) && empty($this->key)
 			? $options
 			: $this->options;
 
-		if ( empty( $this->key ) ) {
+		if (empty($this->key)) {
 			return false;
 		}
 
-		$test_save = apply_filters( "cmb2_override_option_save_{$this->key}", 'cmb2_no_override_option_save', $this->options, $this );
+		$test_save = apply_filters("cmb2_override_option_save_{$this->key}", 'cmb2_no_override_option_save', $this->options, $this);
 
-		if ( 'cmb2_no_override_option_save' !== $test_save ) {
+		if ('cmb2_no_override_option_save' !== $test_save) {
 			return $test_save;
 		}
 
 		// If no override, update the option
-		return update_option( $this->key, $this->options );
+		return update_option($this->key, $this->options);
 	}
 
 	/**
 	 * Retrieve option value based on name of option.
 	 * @uses apply_filters() Calls 'cmb2_override_option_get_{$this->key}' hook to allow
-	 * 	overwriting the option value to be retrieved.
+	 *    overwriting the option value to be retrieved.
 	 *
 	 * @since  1.0.1
 	 * @param  mixed $default Optional. Default value to return if the option does not exist.
 	 * @return mixed          Value set for the option.
 	 */
-	public function get_options( $default = null ) {
-		if ( empty( $this->options ) && ! empty( $this->key ) ) {
+	public function get_options($default = null)
+	{
+		if (empty($this->options) && !empty($this->key)) {
 
-			$test_get = apply_filters( "cmb2_override_option_get_{$this->key}", 'cmb2_no_override_option_get', $default, $this );
+			$test_get = apply_filters("cmb2_override_option_get_{$this->key}", 'cmb2_no_override_option_get', $default, $this);
 
-			if ( 'cmb2_no_override_option_get' !== $test_get ) {
+			if ('cmb2_no_override_option_get' !== $test_get) {
 				$this->options = $test_get;
 			} else {
 				// If no override, get the option
-				$this->options = get_option( $this->key, $default );
+				$this->options = get_option($this->key, $default);
 			}
 		}
 
-		return (array) $this->options;
+		return (array)$this->options;
 	}
 
 }

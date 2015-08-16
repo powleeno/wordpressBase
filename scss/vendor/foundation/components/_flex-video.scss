@@ -1,7 +1,6 @@
 // Foundation by ZURB
 // foundation.zurb.com
 // Licensed under MIT Open Source
-
 @import 'global';
 
 //
@@ -22,30 +21,36 @@ $flex-video-widescreen-padding-bottom: 56.34% !default;
 //
 
 @mixin flex-video-container {
-  height: 0;
-  margin-bottom: $flex-video-margin-bottom;
-  overflow: hidden;
-  padding-bottom: $flex-video-padding-bottom;
-  padding-top: $flex-video-padding-top;
-  position: relative;
+	height: 0;
+	margin-bottom: $flex-video-margin-bottom;
+	overflow: hidden;
+	padding-bottom: $flex-video-padding-bottom;
+	padding-top: $flex-video-padding-top;
+	position: relative;
 
-  &.widescreen { padding-bottom: $flex-video-widescreen-padding-bottom; }
-  &.vimeo { padding-top: 0; }
+	&.widescreen {
+		padding-bottom: $flex-video-widescreen-padding-bottom;
+	}
+	&.vimeo {
+		padding-top: 0;
+	}
 
-  iframe,
-  object,
-  embed,
-  video {
-    height: 100%;
-    position: absolute;
-    top: 0;
-    width: 100%;
-    #{$default-float}: 0;
-  }
+	iframe,
+	object,
+	embed,
+	video {
+		height: 100%;
+		position: absolute;
+		top: 0;
+		width: 100%;
+		#{$default-float}: 0;
+	}
 }
 
 @include exports("flex-video") {
-  @if $include-html-media-classes {
-    .flex-video { @include flex-video-container; }
-  }
+	@if $include-html-media-classes {
+		.flex-video {
+			@include flex-video-container;
+		}
+	}
 }

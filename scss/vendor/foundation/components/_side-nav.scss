@@ -1,7 +1,6 @@
 // Foundation by ZURB
 // foundation.zurb.com
 // Licensed under MIT Open Source
-
 @import 'global';
 
 //
@@ -42,11 +41,9 @@ $side-nav-divider-size: 1px !default;
 $side-nav-divider-style: solid !default;
 $side-nav-divider-color: scale-color($white, $lightness: -10%) !default;
 
-
 //
 // @mixins
 //
-
 
 // We use this to style the side-nav
 //
@@ -54,67 +51,68 @@ $side-nav-divider-color: scale-color($white, $lightness: -10%) !default;
 // $font-size - Font size of nav items. Default: $side-nav-font-size.
 // $link-color - Color of navigation links. Default: $side-nav-link-color.
 // $link-color-hover - Color of navigation links when hovered. Default: $side-nav-link-color-hover.
-@mixin side-nav(
-  $divider-color:$side-nav-divider-color,
-  $font-size:$side-nav-font-size,
-  $link-color:$side-nav-link-color,
-  $link-color-active:$side-nav-link-color-active,
-  $link-color-hover:$side-nav-link-color-hover,
-  $link-bg-hover:$side-nav-link-bg-hover) {
-  display: block;
-  font-family: $side-nav-font-family;
-  list-style-position: $side-nav-list-position;
-  list-style-type: $side-nav-list-type;
-  margin: 0;
-  padding: $side-nav-padding;
+@mixin side-nav($divider-color: $side-nav-divider-color,
+$font-size: $side-nav-font-size,
+$link-color: $side-nav-link-color,
+$link-color-active: $side-nav-link-color-active,
+$link-color-hover: $side-nav-link-color-hover,
+$link-bg-hover: $side-nav-link-bg-hover) {
+	display: block;
+	font-family: $side-nav-font-family;
+	list-style-position: $side-nav-list-position;
+	list-style-type: $side-nav-list-type;
+	margin: 0;
+	padding: $side-nav-padding;
 
-  li {
-    font-size: $font-size;
-    font-weight: $side-nav-font-weight;
-    margin: $side-nav-list-margin;
+	li {
+		font-size: $font-size;
+		font-weight: $side-nav-font-weight;
+		margin: $side-nav-list-margin;
 
-    a:not(.button) {
-      color: $link-color;
-      display: block;
-      margin: $side-nav-link-margin;
-      padding: $side-nav-link-padding;
-      &:hover,
-      &:focus {
-        background: $link-bg-hover;
-        color: $link-color-hover;
-      }
-      &:active {
-        color: $link-color-active;
-      }
-    }
+		a:not(.button) {
+			color: $link-color;
+			display: block;
+			margin: $side-nav-link-margin;
+			padding: $side-nav-link-padding;
+			&:hover,
+			&:focus {
+				background: $link-bg-hover;
+				color: $link-color-hover;
+			}
+			&:active {
+				color: $link-color-active;
+			}
+		}
 
-    &.active > a:first-child:not(.button) {
-      color: $side-nav-link-color-active;
-      font-family: $side-nav-font-family-active;
-      font-weight: $side-nav-font-weight-active;
-    }
+		&.active > a:first-child:not(.button) {
+			color: $side-nav-link-color-active;
+			font-family: $side-nav-font-family-active;
+			font-weight: $side-nav-font-weight-active;
+		}
 
-    &.divider {
-      border-top: $side-nav-divider-size $side-nav-divider-style;
-      height: 0;
-      list-style: none;
-      padding: 0;
-      border-top-color: $divider-color;
-    }
+		&.divider {
+			border-top: $side-nav-divider-size $side-nav-divider-style;
+			height: 0;
+			list-style: none;
+			padding: 0;
+			border-top-color: $divider-color;
+		}
 
-    &.heading {
-      color: $side-nav-heading-color;
-      font: {
-        size: $side-nav-heading-font-size;
-        weight: $side-nav-heading-font-weight;
-      }
-      text-transform: $side-nav-heading-text-transform;
-    }
-  }
+		&.heading {
+			color: $side-nav-heading-color;
+			font: {
+				size: $side-nav-heading-font-size;
+				weight: $side-nav-heading-font-weight;
+			}
+			text-transform: $side-nav-heading-text-transform;
+		}
+	}
 }
 
 @include exports("side-nav") {
-  @if $include-html-nav-classes {
-    .side-nav {@include side-nav;}
-  }
+	@if $include-html-nav-classes {
+		.side-nav {
+			@include side-nav;
+		}
+	}
 }

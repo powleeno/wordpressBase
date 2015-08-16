@@ -1,7 +1,7 @@
-jQuery(document).ready(function ($){
+jQuery(document).ready(function ($) {
 
-    // INITS ------------------------------------
-    init_foundation(document);
+	// INITS ------------------------------------
+	init_foundation(document);
 
 
 });
@@ -9,11 +9,9 @@ jQuery(document).ready(function ($){
 jQuery(window).load(function ($) {
 
 
-
 });
 
 jQuery(window).resize(function ($) {
-
 
 
 });

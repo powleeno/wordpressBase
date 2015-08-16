@@ -6,18 +6,18 @@
 global $post;
 
 $children = get_pages(
-    array(
-        'child_of' => $post->ID,
-        'sort_order' => 'ASC',
-        'sort_column' => 'menu_order'
-    )
+	array(
+		'child_of' => $post->ID,
+		'sort_order' => 'ASC',
+		'sort_column' => 'menu_order'
+	)
 );
 
 if ($children) {
-    $permalink = get_permalink($children[0]->ID);
-    wp_redirect($permalink, 301);
-    exit();
+	$permalink = get_permalink($children[0]->ID);
+	wp_redirect($permalink, 301);
+	exit();
 } else {
-    wp_redirect(home_url(), 301);
-    exit();
+	wp_redirect(home_url(), 301);
+	exit();
 }

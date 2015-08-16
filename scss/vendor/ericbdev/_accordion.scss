@@ -1,100 +1,99 @@
-
 // Adapted from Eric B. Dev - Simple Grid Wordpress :: https://github.com/ericbdev/simpleGridWordPress //
 
 // Note: this file makes extensive use of Foundation's settings file! Include after Foundation! //
 
 .ericbdev_accordion {
-  margin-bottom: $column-gutter/2;
-  float: left;
-  width: 100%;
-  .ericbdev_accordion-select {
-    font-size: $h5-font-size;
-    font-weight: $font-weight-normal;
-    background: $primary-color;
-    color: $white;
-    width: 100%;
-    float: left;
-    line-height: normal;
-    padding: $column-gutter/2 $column-gutter*2 $column-gutter/2 $column-gutter/2;
-    position: relative;
-    text-transform: uppercase;
-    &:before {
-      position: absolute;
-      top: 0;
-      height: 100%;
-      right: $column-gutter/2;
-      content: '';
-      background: $ericbdev_accordion-icon-open no-repeat center center;
-      background-size: contain;
-      background-origin: content-box;
-      //padding: $column-gutter/4 0;
-      width: $column-gutter;
-      float: right;
-      display: inline-block;
-      @include transition(all, ease, $animation-duration);
-    }
-    &.active {
-      &:before {
-        background: $ericbdev_accordion-icon-close no-repeat center center;
-        background-size: contain;
-        @include transition(all, ease, $animation-duration);
-      }
-    }
-    &.ericbdev_accordion-select-child {
-      background: $primary-color;
-    }
-    &.ericbdev_accordion-select-grandchild {
-      background: $primary-color;
-    }
-  }
-  .ericbdev_accordion-content {
-    background: $white;
-    float: left;
-    font-size: $paragraph-font-size;
-    width: 100%;
-    padding: $column-gutter/2;
-    p {
-      margin-bottom: $column-gutter/2;
-      + .ericbdev_accordion {
-        margin-top: $column-gutter/2;
-      }
-    }
-    &.ericbdev_accordion-content-child {
-      background: $white;
-    }
-    &.ericbdev_accordion-content-grandchild {
-      background: $primary-color;
-    }
-  }
+	margin-bottom: $column-gutter/2;
+	float: left;
+	width: 100%;
+	.ericbdev_accordion-select {
+		font-size: $h5-font-size;
+		font-weight: $font-weight-normal;
+		background: $primary-color;
+		color: $white;
+		width: 100%;
+		float: left;
+		line-height: normal;
+		padding: $column-gutter/2 $column-gutter*2 $column-gutter/2 $column-gutter/2;
+		position: relative;
+		text-transform: uppercase;
+		&:before {
+			position: absolute;
+			top: 0;
+			height: 100%;
+			right: $column-gutter/2;
+			content: '';
+			background: $ericbdev_accordion-icon-open no-repeat center center;
+			background-size: contain;
+			background-origin: content-box;
+			//padding: $column-gutter/4 0;
+			width: $column-gutter;
+			float: right;
+			display: inline-block;
+			@include transition(all, ease, $animation-duration);
+		}
+		&.active {
+			&:before {
+				background: $ericbdev_accordion-icon-close no-repeat center center;
+				background-size: contain;
+				@include transition(all, ease, $animation-duration);
+			}
+		}
+		&.ericbdev_accordion-select-child {
+			background: $primary-color;
+		}
+		&.ericbdev_accordion-select-grandchild {
+			background: $primary-color;
+		}
+	}
+	.ericbdev_accordion-content {
+		background: $white;
+		float: left;
+		font-size: $paragraph-font-size;
+		width: 100%;
+		padding: $column-gutter/2;
+		p {
+			margin-bottom: $column-gutter/2;
+			+ .ericbdev_accordion {
+				margin-top: $column-gutter/2;
+			}
+		}
+		&.ericbdev_accordion-content-child {
+			background: $white;
+		}
+		&.ericbdev_accordion-content-grandchild {
+			background: $primary-color;
+		}
+	}
 }
 
 a {
-  &.ericbdev_accordion-link {
-    font-size: $h5-font-size;
-    font-weight: $font-weight-normal;
-    background: $primary-color;
-    color: $white;
-    width: 100%;
-    float: left;
-    line-height: normal;
-    padding: $column-gutter/4 $column-gutter $column-gutter/4 $column-gutter/3;
-    position: relative;
-    text-transform: uppercase;
-    margin-bottom: $column-gutter/4;
-    &:before {
-      position: absolute;
-      top: 0;
-      height: 100%;
-      right: $column-gutter/4;
-      content: '';
-      background: $ericbdev_accordion-icon-close no-repeat center center;
-      background-size: contain;
-      background-origin: content-box;
-      padding: $column-gutter/4 0;
-      width: 22px;
-      float: right;
-      display: inline-block;
-      @include transition(all, ease, $animation-duration);
-    }
-  }
+	&.ericbdev_accordion-link {
+		font-size: $h5-font-size;
+		font-weight: $font-weight-normal;
+		background: $primary-color;
+		color: $white;
+		width: 100%;
+		float: left;
+		line-height: normal;
+		padding: $column-gutter/4 $column-gutter $column-gutter/4 $column-gutter/3;
+		position: relative;
+		text-transform: uppercase;
+		margin-bottom: $column-gutter/4;
+		&:before {
+			position: absolute;
+			top: 0;
+			height: 100%;
+			right: $column-gutter/4;
+			content: '';
+			background: $ericbdev_accordion-icon-close no-repeat center center;
+			background-size: contain;
+			background-origin: content-box;
+			padding: $column-gutter/4 0;
+			width: 22px;
+			float: right;
+			display: inline-block;
+			@include transition(all, ease, $animation-duration);
+		}
+	}
 }

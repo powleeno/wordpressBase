@@ -1,7 +1,6 @@
 // Foundation by ZURB
 // foundation.zurb.com
 // Licensed under MIT Open Source
-
 @import 'global';
 
 //
@@ -31,7 +30,6 @@ $switch-paddle-transition-speed: .15s !default;
 $switch-paddle-transition-ease: ease-out !default;
 $switch-active-color: $primary-color !default;
 
-
 //
 // @mixins
 //
@@ -40,80 +38,83 @@ $switch-active-color: $primary-color !default;
 //
 // $transition-speed - Time in ms for switch to toggle. Default: $switch-paddle-transition-speed.
 // $transition-ease - Easing function to use for animation (i.e. ease-out). Default: $switch-paddle-transition-ease.
-@mixin switch-base(
-  $transition-speed:$switch-paddle-transition-speed,
-  $transition-ease:$switch-paddle-transition-ease) {
+@mixin switch-base($transition-speed: $switch-paddle-transition-speed,
+$transition-ease: $switch-paddle-transition-ease) {
 
-  border: none;
-  margin-bottom: $switch-bottom-margin;
-  outline: 0;
-  padding: 0;
-  position: relative;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
+	border: none;
+	margin-bottom: $switch-bottom-margin;
+	outline: 0;
+	padding: 0;
+	position: relative;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
 
-  // Default label styles for type and transition
-  label {
-    background: $switch-bg;
-    color: transparent;
-    cursor: pointer;
-    display: block;
-    margin-bottom: ($switch-height-med / 2);
-    position: relative;
-    text-indent: 100%;
-    width: $switch-height-med * 2; height: $switch-height-med;
+	// Default label styles for type and transition
+	label {
+		background: $switch-bg;
+		color: transparent;
+		cursor: pointer;
+		display: block;
+		margin-bottom: ($switch-height-med / 2);
+		position: relative;
+		text-indent: 100%;
+		width: $switch-height-med * 2;
+		height: $switch-height-med;
 
-    // Transition for the switch label to follow paddle
-    @include single-transition(left, $transition-speed, $transition-ease);
-  }
+		// Transition for the switch label to follow paddle
+		@include single-transition(left, $transition-speed, $transition-ease);
+	}
 
-  // So that we don't need to recreate the form with any JS, we use the
-  // existing checkbox or radio button, but we cleverly position and hide it.
-  input {
-    left: 10px;
-    opacity: 0;
-    padding:0;
-    position: absolute;
-    top: 9px;
+	// So that we don't need to recreate the form with any JS, we use the
+	// existing checkbox or radio button, but we cleverly position and hide it.
+	input {
+		left: 10px;
+		opacity: 0;
+		padding: 0;
+		position: absolute;
+		top: 9px;
 
-    & + label { margin-left: 0; margin-right: 0; }
-  }
+		& + label {
+			margin-left: 0;
+			margin-right: 0;
+		}
+	}
 
-  // The paddle for the switch is created from an after psuedoclass
-  // content element. This is sized and positioned, and reacts to
-  // the state of the input.
+	// The paddle for the switch is created from an after psuedoclass
+	// content element. This is sized and positioned, and reacts to
+	// the state of the input.
 
-  label:after {
-    background: $switch-paddle-bg;
-    content: "";
-    display: block;
-    height: $switch-height-med - .5rem;
-    left: .25rem;
-    position: absolute;
-    top: .25rem;
-    width: $switch-height-med - .5rem;
+	label:after {
+		background: $switch-paddle-bg;
+		content: "";
+		display: block;
+		height: $switch-height-med - .5rem;
+		left: .25rem;
+		position: absolute;
+		top: .25rem;
+		width: $switch-height-med - .5rem;
 
-    -webkit-transition: left $transition-speed $transition-ease;
-    -moz-transition: left $transition-speed $transition-ease;
-    -o-transition: translate3d(0,0,0);
-    transition: left $transition-speed $transition-ease;
+		-webkit-transition: left $transition-speed $transition-ease;
+		-moz-transition: left $transition-speed $transition-ease;
+		-o-transition: translate3d(0, 0, 0);
+		transition: left $transition-speed $transition-ease;
 
-    -webkit-transform: translate3d(0,0,0);
-    -moz-transform: translate3d(0,0,0);
-    -ms-transform: translate3d(0,0,0);
-    -o-transform: translate3d(0,0,0);
-    transform: translate3d(0,0,0);
-  }
+		-webkit-transform: translate3d(0, 0, 0);
+		-moz-transform: translate3d(0, 0, 0);
+		-ms-transform: translate3d(0, 0, 0);
+		-o-transform: translate3d(0, 0, 0);
+		transform: translate3d(0, 0, 0);
+	}
 
-  input:checked + label {
-    background: $switch-active-color;
-  }
+	input:checked + label {
+		background: $switch-active-color;
+	}
 
-  input:checked + label:after {
-    left: $switch-height-med + .25rem;
-  }
+	input:checked + label:after {
+		left: $switch-height-med + .25rem;
+	}
 }
 
 // We use this mixin to create the size styles for switches.
@@ -123,19 +124,19 @@ $switch-active-color: $primary-color !default;
 // $line-height - Line height of switch. Default: 2.3rem.
 @mixin switch-size($height: $switch-height-med) {
 
-  label {
-    height: $height;
-    width: $height * 2;
-  }
+	label {
+		height: $height;
+		width: $height * 2;
+	}
 
-  label:after {
-    height: $height - .5rem;
-    width: $height - .5rem;
-  }
+	label:after {
+		height: $height - .5rem;
+		width: $height - .5rem;
+	}
 
-  input:checked + label:after {
-    left: $height + .25rem;
-  }
+	input:checked + label:after {
+		left: $height + .25rem;
+	}
 
 }
 
@@ -146,45 +147,43 @@ $switch-active-color: $primary-color !default;
 // $negative-color - Background color of negative side of switch. Default: $switch-negative-color.
 // $radius - Radius to apply to switch. Default: false.
 // $base-style - Apply base styles? Default: true.
-@mixin switch-style(
-  $paddle-bg:$switch-paddle-bg,
-  $active-color:$switch-active-color,
-  $radius:false,
-  $base-style:true) {
+@mixin switch-style($paddle-bg: $switch-paddle-bg,
+$active-color: $switch-active-color,
+$radius: false,
+$base-style: true) {
 
-  @if $base-style {
+	@if $base-style {
 
-    label {
-      color: transparent;
-      background: $switch-bg;
-    }
+		label {
+			color: transparent;
+			background: $switch-bg;
+		}
 
-    label:after {
-      background: $paddle-bg;
-    }
+		label:after {
+			background: $paddle-bg;
+		}
 
-    input:checked + label {
-      background: $active-color;
-    }
-  }
+		input:checked + label {
+			background: $active-color;
+		}
+	}
 
-  // Setting up the radius for switches
-  @if $radius == true {
-    label {
-      border-radius: 2rem;
-    }
-    label:after {
-      border-radius: 2rem;
-    }
-  }
-  @else if $radius {
-    label {
-      border-radius: $radius;
-    }
-    label:after {
-      border-radius: $radius;
-    }
-  }
+	// Setting up the radius for switches
+	@if $radius == true {
+		label {
+			border-radius: 2rem;
+		}
+		label:after {
+			border-radius: 2rem;
+		}
+	} @else if $radius {
+		label {
+			border-radius: $radius;
+		}
+		label:after {
+			border-radius: $radius;
+		}
+	}
 
 }
 
@@ -197,45 +196,59 @@ $switch-active-color: $primary-color !default;
 // $active-color - Background color of an active switch. Default: $switch-active-color.
 // $radius - Radius to apply to switch. Default: false.
 // $base-style - Apply base styles? Default: true.
-@mixin switch(
-  $transition-speed: $switch-paddle-transition-speed,
-  $transition-ease: $switch-paddle-transition-ease,
-  $height: $switch-height-med,
-  $paddle-bg: $switch-paddle-bg,
-  $active-color: $switch-active-color,
-  $radius:false,
-  $base-style:true) {
-    @include switch-base($transition-speed, $transition-ease);
-    @include switch-size($height);
-    @include switch-style($paddle-bg, $active-color, $radius, $base-style);
+@mixin switch($transition-speed: $switch-paddle-transition-speed,
+$transition-ease: $switch-paddle-transition-ease,
+$height: $switch-height-med,
+$paddle-bg: $switch-paddle-bg,
+$active-color: $switch-active-color,
+$radius: false,
+$base-style: true) {
+	@include switch-base($transition-speed, $transition-ease);
+	@include switch-size($height);
+	@include switch-style($paddle-bg, $active-color, $radius, $base-style);
 }
 
 @include exports("switch") {
-  @if $include-html-form-classes {
-      .switch {
-        @include switch;
+	@if $include-html-form-classes {
+		.switch {
+			@include switch;
 
-        // Large radio switches
-        &.large { @include switch-size($switch-height-lrg); }
+			// Large radio switches
+			&.large {
+				@include switch-size($switch-height-lrg);
+			}
 
-        // Small radio switches
-        &.small { @include switch-size($switch-height-sml); }
+			// Small radio switches
+			&.small {
+				@include switch-size($switch-height-sml);
+			}
 
-        // Tiny radio switches
-        &.tiny { @include switch-size($switch-height-tny); }
+			// Tiny radio switches
+			&.tiny {
+				@include switch-size($switch-height-tny);
+			}
 
-        // Add a radius to the switch
-        &.radius {
-          label { @include radius(4px); }
-          label:after { @include radius(3px); }
-        }
+			// Add a radius to the switch
+			&.radius {
+				label {
+					@include radius(4px);
+				}
+				label:after {
+					@include radius(3px);
+				}
+			}
 
-        // Make the switch completely round, like a pill
-        &.round { @include radius(1000px);
-          label { @include radius(2rem); }
-          label:after { @include radius(2rem); }
-        }
+			// Make the switch completely round, like a pill
+			&.round {
+				@include radius(1000px);
+				label {
+					@include radius(2rem);
+				}
+				label:after {
+					@include radius(2rem);
+				}
+			}
 
-      }
-  }
+		}
+	}
 }

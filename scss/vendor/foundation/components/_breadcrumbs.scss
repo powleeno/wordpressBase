@@ -1,7 +1,6 @@
 // Foundation by ZURB
 // foundation.zurb.com
 // Licensed under MIT Open Source
-
 @import 'global';
 
 //
@@ -41,91 +40,97 @@ $crumb-slash: "/" !default;
 
 // We use this mixin to create a container around our breadcrumbs
 @mixin crumb-container {
-  border-style: $crumb-border-style;
-  border-width: $crumb-border-size;
-  display: block;
-  list-style: none;
-  margin-#{$default-float}: 0;
-  overflow: hidden;
-  padding: $crumb-padding;
+	border-style: $crumb-border-style;
+	border-width: $crumb-border-size;
+	display: block;
+	list-style: none;
+	margin-#{$default-float}: 0;
+	overflow: hidden;
+	padding: $crumb-padding;
 
-  // We control which background color and border come through.
-  background-color: $crumb-bg;
-  border-color: $crumb-border-color;
+	// We control which background color and border come through.
+	background-color: $crumb-bg;
+	border-color: $crumb-border-color;
 }
 
 // We use this mixin to create breadcrumb styles from list items.
 @mixin crumbs {
 
-  // A normal state will make the links look and act like clickable breadcrumbs.
-  color: $crumb-font-color;
-  float: $default-float;
-  font-size: $crumb-font-size;
-  line-height: $crumb-font-size;
-  margin: 0;
-  text-transform: $crumb-font-transform;
+	// A normal state will make the links look and act like clickable breadcrumbs.
+	color: $crumb-font-color;
+	float: $default-float;
+	font-size: $crumb-font-size;
+	line-height: $crumb-font-size;
+	margin: 0;
+	text-transform: $crumb-font-transform;
 
-  &:hover a, &:focus a { text-decoration: $crumb-link-decor; }
+	&:hover a, &:focus a {
+		text-decoration: $crumb-link-decor;
+	}
 
-  a {
-    color: $crumb-font-color;
-  }
+	a {
+		color: $crumb-font-color;
+	}
 
-  // Current is for the link of the current page
-  &.current {
-    color: $crumb-font-color-current;
-    cursor: $cursor-default-value;
-    a {
-      color: $crumb-font-color-current;
-      cursor: $cursor-default-value;
-    }
+	// Current is for the link of the current page
+	&.current {
+		color: $crumb-font-color-current;
+		cursor: $cursor-default-value;
+		a {
+			color: $crumb-font-color-current;
+			cursor: $cursor-default-value;
+		}
 
-    &:hover, &:hover a,
-    &:focus, &:focus a { text-decoration: none; }
-  }
+		&:hover, &:hover a,
+		&:focus, &:focus a {
+			text-decoration: none;
+		}
+	}
 
-  // Unavailable removed color and link styles so it looks inactive.
-  &.unavailable {
-    color: $crumb-font-color-unavailable;
-    a { color: $crumb-font-color-unavailable; }
+	// Unavailable removed color and link styles so it looks inactive.
+	&.unavailable {
+		color: $crumb-font-color-unavailable;
+		a {
+			color: $crumb-font-color-unavailable;
+		}
 
-    &:hover,
-    &:hover a,
-    &:focus,
-    a:focus {
-      color: $crumb-font-color-unavailable;
-      cursor: $cursor-disabled-value;
-      text-decoration: none;
-    }
-  }
+		&:hover,
+		&:hover a,
+		&:focus,
+		a:focus {
+			color: $crumb-font-color-unavailable;
+			cursor: $cursor-disabled-value;
+			text-decoration: none;
+		}
+	}
 
-  &:before {
-    color: $crumb-slash-color;
-    content: "#{$crumb-slash}";
-    margin: 0 $crumb-side-padding;
-    position: relative;
-    top: 1px;
-  }
+	&:before {
+		color: $crumb-slash-color;
+		content: "#{$crumb-slash}";
+		margin: 0 $crumb-side-padding;
+		position: relative;
+		top: 1px;
+	}
 
-  &:first-child:before {
-    content: " ";
-    margin: 0;
-  }
+	&:first-child:before {
+		content: " ";
+		margin: 0;
+	}
 }
 
 @include exports("breadcrumbs") {
-  @if $include-html-nav-classes {
-    .breadcrumbs {
-      @include crumb-container;
-      @include radius($crumb-radius);
+	@if $include-html-nav-classes {
+		.breadcrumbs {
+			@include crumb-container;
+			@include radius($crumb-radius);
 
-      > * {
-        @include crumbs;
-      }
-    }
-    /* Accessibility - hides the forward slash */
-    [aria-label="breadcrumbs"] [aria-hidden="true"]:after {
-      content: "/";
-    }
-  }
+			> * {
+				@include crumbs;
+			}
+		}
+		/* Accessibility - hides the forward slash */
+		[aria-label="breadcrumbs"] [aria-hidden="true"]:after {
+			content: "/";
+		}
+	}
 }

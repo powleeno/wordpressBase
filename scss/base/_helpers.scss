@@ -1,37 +1,37 @@
 .base_absolute-stretch {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
 }
 
 .base_background-image {
-  background-size: cover;
-  background-position: 50%;
+	background-size: cover;
+	background-position: 50%;
 }
 
 .base_full-width {
-  max-width: 100%;
-  width: 100%;
+	max-width: 100%;
+	width: 100%;
 }
 
 .base_square {
-  width: 100%;
-  max-width: 100%;
-  height: auto;
+	width: 100%;
+	max-width: 100%;
+	height: auto;
 }
 
 .base_table {
-  display: table;
-  .base_table-cell {
-    display: table-cell;
-    vertical-align: middle;
-  }
+	display: table;
+	.base_table-cell {
+		display: table-cell;
+		vertical-align: middle;
+	}
 }
 
 ul.base_reset-list {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
 }
