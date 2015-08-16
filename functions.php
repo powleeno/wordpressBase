@@ -19,6 +19,25 @@ function base_set_session_variables()
 
 
 /**
+ * Extends Walker to build menus with Foundation Topbar
+ */
+class Walker_Foundation_Topbar extends Walker_Nav_Menu
+{
+	function start_lvl(&$output, $depth = 0)
+	{
+		$output .= "<ul class=\"dropdown\">";
+
+	}
+}
+
+
+/**
+ * WPML support functions
+ */
+require_once 'includes/base/wpml-support.php';
+
+
+/**
  * Sets favicons; place files in $path
  * Favicon generator online tool :: http://www.favicon-generator.org/
  */
@@ -44,17 +63,7 @@ function base_set_favicons($path)
 }
 
 
-/**
- * Extends Walker to build menus with Foundation Topbar
- */
-class Walker_Foundation_Topbar extends Walker_Nav_Menu
-{
-	function start_lvl(&$output, $depth = 0)
-	{
-		$output .= "<ul class=\"dropdown\">";
-
-	}
-}
+// THEME -----------------------------------------------------------------
 
 
 /**
@@ -89,6 +98,4 @@ function base_get_map_locations()
 	return $locations_array;
 }
 
-
-// THEME -----------------------------------------------------------------
 
