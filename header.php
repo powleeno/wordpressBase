@@ -46,7 +46,7 @@
 					'theme_location' => 'header-menu',
 					'container' => '',
 					'items_wrap' => '%3$s',
-					'walker' => new Walker_Foundation_Topbar()
+					'walker' => new Base_Foundation_Topbar_Walker()
 				);
 				wp_nav_menu($defaults);
 				?>

@@ -21,7 +21,7 @@ function base_set_session_variables()
 /**
  * Extends Walker to build menus with Foundation Topbar
  */
-class Walker_Foundation_Topbar extends Walker_Nav_Menu
+class Base_Foundation_Topbar_Walker extends Walker_Nav_Menu
 {
 	function start_lvl(&$output, $depth = 0)
 	{
