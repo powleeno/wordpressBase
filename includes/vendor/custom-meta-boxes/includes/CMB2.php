@@ -120,7 +120,7 @@ class CMB2
 	{
 
 		if (empty($meta_box['id'])) {
-			wp_die(__('Metabox configuration is required to have an ID parameter', 'cmb2'));
+			wp_die(__('Metabox configuration is required to have an ID parameter', 'custom metaboxes'));
 		}
 
 		$this->meta_box = wp_parse_args($meta_box, $this->mb_defaults);
@@ -329,7 +329,7 @@ class CMB2
 		}
 
 		echo '
-			<div class="cmbhandle" title="', __('Click to toggle', 'cmb2'), '"><br></div>
+			<div class="cmbhandle" title="', __('Click to toggle', 'custom metaboxes'), '"><br></div>
 			<h3 class="cmb-group-title cmbhandle-title"><span>', $field_group->replace_hash($field_group->options('group_title')), '</span></h3>
 
 			<div class="inside cmb-td cmb-nested cmb-field-list">';

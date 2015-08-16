@@ -70,7 +70,7 @@ function ericbdev_email_shortcode($atts, $content = null)
 	if ($update_text !== true):
 		$returnContent .= $outputContent;
 	else:
-		$returnContent .= __('Please enable JavaScript', 'email shortcode');
+		$returnContent .= __('Please enable JavaScript', 'shortcodes');
 	endif;
 	$returnContent .= "</a>";
 	return $returnContent;
