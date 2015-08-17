@@ -151,7 +151,7 @@ $meta_boxes['locations'] = array(
 			'type' => 'text',
 		),
 		array(
-			'name' => __('Information'),
+			'name' => __('Information', 'custom metaboxes'),
 			'id' => $fields_prefix . 'information',
 			'desc' => __('', 'custom metaboxes'),
 			'sanitization_cb' => false,
