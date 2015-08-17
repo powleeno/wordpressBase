@@ -5,6 +5,10 @@
 require_once 'base/helpers.php';
 
 
+// WPML support functions
+require_once 'base/wpml-support.php';
+
+
 // Shortcodes
 require_once 'base/shortcodes.php';
 

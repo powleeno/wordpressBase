@@ -32,12 +32,6 @@ class Base_Foundation_Topbar_Walker extends Walker_Nav_Menu
 
 
 /**
- * WPML support functions
- */
-require_once 'includes/base/wpml-support.php';
-
-
-/**
  * Sets favicons; place files in $path
  * Favicon generator online tool :: http://www.favicon-generator.org/
  */
