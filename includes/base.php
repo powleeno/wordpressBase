@@ -24,7 +24,7 @@ function base_after_setup_theme_hook()
 		)
 	);
 
-	// Register Custom Navigation Walker
+	// Custom Navigation Walker
 	if (!class_exists('top_bar_walker')) {
 		require_once('vendor/top-bar-walker/top_bar_walker.php');
 	}
