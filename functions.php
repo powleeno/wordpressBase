@@ -1,15 +1,14 @@
 <?php
 
 
+// SETUP -----------------------------------------------------------------
+
 require_once 'includes/base.php';
 
 
 // HELPERS ---------------------------------------------------------------
 
-
-/**
- * Sets session variables for use across pages
- */
+// Sets session variables for use across pages
 function base_set_session_variables()
 {
 	// if( !isset($_SESSION['map_locations']) ) {
@@ -17,24 +16,8 @@ function base_set_session_variables()
 	// }
 }
 
-
-/**
- * Extends Walker to build menus with Foundation Topbar
- */
-class Base_Foundation_Topbar_Walker extends Walker_Nav_Menu
-{
-	function start_lvl(&$output, $depth = 0)
-	{
-		$output .= "<ul class=\"dropdown\">";
-
-	}
-}
-
-
-/**
- * Sets favicons; place files in $path
- * Favicon generator online tool :: http://www.favicon-generator.org/
- */
+// Sets favicons; place files in $path
+// Favicon generator online tool :: http://www.favicon-generator.org
 function base_set_favicons($path)
 {
 	echo '<link rel="apple-touch-icon" sizes="57x57" href="' . $path . 'apple-icon-57x57.png">';
@@ -59,10 +42,7 @@ function base_set_favicons($path)
 
 // THEME -----------------------------------------------------------------
 
-
-/**
- * Retrieves locations post type information for passing to Google Map
- */
+// Retrieves locations post type information for passing to Google Map
 function base_get_map_locations()
 {
 	$fields_prefix = base_fields_prefix();

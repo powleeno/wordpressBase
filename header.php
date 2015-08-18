@@ -39,7 +39,6 @@
 			</li>
 		</ul>
 		<section class="top-bar-section">
-			<!-- Do not forget to add class 'has-dropdown' to menu element in back-end! -->
 			<ul class="left">
 				<?php
 				wp_nav_menu(
@@ -47,13 +46,13 @@
 						'theme_location' => 'header-menu',
 						'container' => '',
 						'items_wrap' => '%3$s',
-						'walker' => new Base_Foundation_Topbar_Walker()
+						'walker' => new top_bar_walker()
 					)
 				);
 				?>
 			</ul>
 			<ul class="right">
-				<?php base_wpml_topbar_links(); ?>
+				<?php base_wpml_topbar_links(); ?>s
 			</ul>
 		</section>
 	</nav>

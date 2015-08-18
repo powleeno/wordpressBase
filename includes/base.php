@@ -24,6 +24,11 @@ function base_after_setup_theme_hook()
 		)
 	);
 
+	// Register Custom Navigation Walker
+	if (!class_exists('top_bar_walker')) {
+		require_once('vendor/top-bar-walker/top_bar_walker.php');
+	}
+
 	// Thumbnails
 	add_theme_support('post-thumbnails');
 	// Image Size Names: left out for lack of any actual use
