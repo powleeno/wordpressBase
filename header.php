@@ -42,13 +42,14 @@
 			<!-- Do not forget to add class 'has-dropdown' to menu element in back-end! -->
 			<ul class="left">
 				<?php
-				$defaults = array(
-					'theme_location' => 'header-menu',
-					'container' => '',
-					'items_wrap' => '%3$s',
-					'walker' => new Base_Foundation_Topbar_Walker()
+				wp_nav_menu(
+					array(
+						'theme_location' => 'header-menu',
+						'container' => '',
+						'items_wrap' => '%3$s',
+						'walker' => new Base_Foundation_Topbar_Walker()
+					)
 				);
-				wp_nav_menu($defaults);
 				?>
 			</ul>
 			<ul class="right">
