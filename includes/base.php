@@ -49,7 +49,7 @@ add_action('after_setup_theme', 'base_after_setup_theme_hook');
 
 function base_init_hook()
 {
-	// Variables session start
+	// Session variables start
 	if (!session_id()) {
 		session_start();
 	}
