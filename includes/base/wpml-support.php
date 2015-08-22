@@ -52,3 +52,13 @@ function base_wpml_rectify_code($code)
 			return $code;
 	}
 }
+
+function base_wpml_home_page_url()
+{
+	if (function_exists('icl_get_home_url')) {
+		$home_url = icl_get_home_url();
+	} else {
+		$home_url = get_site_url();
+	}
+	return $home_url;
+}
