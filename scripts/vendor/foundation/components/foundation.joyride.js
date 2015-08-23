@@ -1,5 +1,6 @@
 ;
-(function ($, window, document, undefined) {
+(function ($, window, document, undefined)
+{
 	'use strict';
 
 	var Modernizr = Modernizr || false;
@@ -38,15 +39,20 @@
 				left: ['right', 'top', 'bottom'],
 				right: ['left', 'top', 'bottom']
 			},
-			post_ride_callback: function () {
+			post_ride_callback: function ()
+			{
 			},    // A method to call once the tour closes (canceled or complete)
-			post_step_callback: function () {
+			post_step_callback: function ()
+			{
 			},    // A method to call after each step
-			pre_step_callback: function () {
+			pre_step_callback: function ()
+			{
 			},    // A method to call before each step
-			pre_ride_callback: function () {
+			pre_ride_callback: function ()
+			{
 			},    // A method to call before the tour starts (passed index, tip, and cloned exposed element)
-			post_expose_callback: function () {
+			post_expose_callback: function ()
+			{
 			},    // A method to call after an element has been exposed
 			template: { // HTML segments for tip layout
 				link: '<a href="#close" class="joyride-close-tip">&times;</a>',
@@ -62,7 +68,8 @@
 			expose_add_class: '' // One or more space-separated class names to be added to exposed element
 		},
 
-		init: function (scope, method, options) {
+		init: function (scope, method, options)
+		{
 			Foundation.inherit(this, 'throttle random_str');
 
 			this.settings = this.settings || $.extend({}, this.defaults, (options || method));
@@ -70,7 +77,8 @@
 			this.bindings(method, options)
 		},
 
-		go_next: function () {
+		go_next: function ()
+		{
 			if (this.settings.$li.next().length < 1) {
 				this.end();
 			} else if (this.settings.timer > 0) {
@@ -84,7 +92,8 @@
 			}
 		},
 
-		go_prev: function () {
+		go_prev: function ()
+		{
 			if (this.settings.$li.prev().length < 1) {
 				// Do nothing if there are no prev element
 			} else if (this.settings.timer > 0) {
@@ -98,26 +107,31 @@
 			}
 		},
 
-		events: function () {
+		events: function ()
+		{
 			var self = this;
 
 			$(this.scope)
 				.off('.joyride')
-				.on('click.fndtn.joyride', '.joyride-next-tip, .joyride-modal-bg', function (e) {
+				.on('click.fndtn.joyride', '.joyride-next-tip, .joyride-modal-bg', function (e)
+				{
 					e.preventDefault();
 					this.go_next()
 				}.bind(this))
-				.on('click.fndtn.joyride', '.joyride-prev-tip', function (e) {
+				.on('click.fndtn.joyride', '.joyride-prev-tip', function (e)
+				{
 					e.preventDefault();
 					this.go_prev();
 				}.bind(this))
 
-				.on('click.fndtn.joyride', '.joyride-close-tip', function (e) {
+				.on('click.fndtn.joyride', '.joyride-close-tip', function (e)
+				{
 					e.preventDefault();
 					this.end(this.settings.abort_on_close);
 				}.bind(this))
 
-				.on('keyup.fndtn.joyride', function (e) {
+				.on('keyup.fndtn.joyride', function (e)
+				{
 					// Don't do anything if keystrokes are disabled
 					// or if the joyride is not being shown
 					if (!this.settings.keyboard || !this.settings.riding) {
@@ -141,12 +155,14 @@
 
 			$(window)
 				.off('.joyride')
-				.on('resize.fndtn.joyride', self.throttle(function () {
+				.on('resize.fndtn.joyride', self.throttle(function ()
+				{
 					if ($('[' + self.attr_name() + ']').length > 0 && self.settings.$next_tip && self.settings.riding) {
 						if (self.settings.exposed.length > 0) {
 							var $els = $(self.settings.exposed);
 
-							$els.each(function () {
+							$els.each(function ()
+							{
 								var $this = $(this);
 								self.un_expose($this);
 								self.expose($this);
@@ -162,7 +178,8 @@
 				}, 100));
 		},
 
-		start: function () {
+		start: function ()
+		{
 			var self = this,
 				$this = $('[' + this.attr_name() + ']', this.scope),
 				integer_settings = ['timer', 'scrollSpeed', 'startOffset', 'tipAnimationFadeSpeed', 'cookieExpires'],
@@ -194,7 +211,8 @@
 
 			// generate the tips and insert into dom.
 			if (!this.settings.cookie_monster || this.settings.cookie_monster && !$.cookie(this.settings.cookie_name)) {
-				this.settings.$tip_content.each(function (index) {
+				this.settings.$tip_content.each(function (index)
+				{
 					var $this = $(this);
 					this.settings = $.extend({}, self.defaults, self.data_options($this));
 
@@ -217,12 +235,14 @@
 			}
 		},
 
-		resume: function () {
+		resume: function ()
+		{
 			this.set_li();
 			this.show();
 		},
 
-		tip_template: function (opts) {
+		tip_template: function (opts)
+		{
 			var $blank, content;
 
 			opts.tip_class = opts.tip_class || '';
@@ -241,7 +261,8 @@
 			return $blank[0];
 		},
 
-		timer_instance: function (index) {
+		timer_instance: function (index)
+		{
 			var txt;
 
 			if ((index === 0 && this.settings.start_timer_on_click && this.settings.timer > 0) || this.settings.timer === 0) {
@@ -252,7 +273,8 @@
 			return txt;
 		},
 
-		button_text: function (txt) {
+		button_text: function (txt)
+		{
 			if (this.settings.tip_settings.next_button) {
 				txt = $.trim(txt) || 'Next';
 				txt = $(this.settings.template.button).append(txt)[0].outerHTML;
@@ -262,7 +284,8 @@
 			return txt;
 		},
 
-		prev_button_text: function (txt, idx) {
+		prev_button_text: function (txt, idx)
+		{
 			if (this.settings.tip_settings.prev_button) {
 				txt = $.trim(txt) || 'Previous';
 
@@ -278,7 +301,8 @@
 			return txt;
 		},
 
-		create: function (opts) {
+		create: function (opts)
+		{
 			this.settings.tip_settings = $.extend({}, this.settings, this.data_options(opts.$li));
 			var buttonText = opts.$li.attr(this.add_namespace('data-button')) || opts.$li.attr(this.add_namespace('data-text')),
 				prevButtonText = opts.$li.attr(this.add_namespace('data-button-prev')) || opts.$li.attr(this.add_namespace('data-prev-text')),
@@ -294,7 +318,8 @@
 			$(this.settings.tip_container).append($tip_content);
 		},
 
-		show: function (init, is_prev) {
+		show: function (init, is_prev)
+		{
 			var $timer = null;
 
 			// are we paused?
@@ -356,7 +381,8 @@
 
 							this.settings.$next_tip.show();
 
-							setTimeout(function () {
+							setTimeout(function ()
+							{
 								$timer.animate({
 									width: $timer.parent().width()
 								}, this.settings.timer, 'linear');
@@ -377,7 +403,8 @@
 								.fadeIn(this.settings.tip_animation_fade_speed)
 								.show();
 
-							setTimeout(function () {
+							setTimeout(function ()
+							{
 								$timer.animate({
 									width: $timer.parent().width()
 								}, this.settings.timer, 'linear');
@@ -408,11 +435,13 @@
 
 		},
 
-		is_phone: function () {
+		is_phone: function ()
+		{
 			return matchMedia(Foundation.media_queries.small).matches && !matchMedia(Foundation.media_queries.medium).matches;
 		},
 
-		hide: function () {
+		hide: function ()
+		{
 			if (this.settings.modal && this.settings.expose) {
 				this.un_expose();
 			}
@@ -423,7 +452,8 @@
 
 			// Prevent scroll bouncing...wait to remove from layout
 			this.settings.$current_tip.css('visibility', 'hidden');
-			setTimeout($.proxy(function () {
+			setTimeout($.proxy(function ()
+			{
 				this.hide();
 				this.css('visibility', 'visible');
 			}, this.settings.$current_tip), 0);
@@ -431,7 +461,8 @@
 				this.settings.$current_tip);
 		},
 
-		set_li: function (init, is_prev) {
+		set_li: function (init, is_prev)
+		{
 			if (init) {
 				this.settings.$li = this.settings.$tip_content.eq(this.settings.start_offset);
 				this.set_next_tip();
@@ -448,15 +479,18 @@
 			this.set_target();
 		},
 
-		set_next_tip: function () {
+		set_next_tip: function ()
+		{
 			this.settings.$next_tip = $('.joyride-tip-guide').eq(this.settings.$li.index());
 			this.settings.$next_tip.data('closed', '');
 		},
 
-		set_target: function () {
+		set_target: function ()
+		{
 			var cl = this.settings.$li.attr(this.add_namespace('data-class')),
 				id = this.settings.$li.attr(this.add_namespace('data-id')),
-				$sel = function () {
+				$sel = function ()
+				{
 					if (id) {
 						return $(document.getElementById(id));
 					} else if (cl) {
@@ -469,7 +503,8 @@
 			this.settings.$target = $sel();
 		},
 
-		scroll_to: function () {
+		scroll_to: function ()
+		{
 			var window_half, tipOffset;
 
 			window_half = $(window).height() / 2;
@@ -482,17 +517,20 @@
 			}
 		},
 
-		paused: function () {
+		paused: function ()
+		{
 			return ($.inArray((this.settings.$li.index() + 1), this.settings.pause_after) === -1);
 		},
 
-		restart: function () {
+		restart: function ()
+		{
 			this.hide();
 			this.settings.$li = undefined;
 			this.show('init');
 		},
 
-		pos_default: function (init) {
+		pos_default: function (init)
+		{
 			var $nub = this.settings.$next_tip.find('.joyride-nub'),
 				nub_width = Math.ceil($nub.outerWidth() / 2),
 				nub_height = Math.ceil($nub.outerHeight() / 2),
@@ -586,7 +624,8 @@
 
 		},
 
-		pos_phone: function (init) {
+		pos_phone: function (init)
+		{
 			var tip_height = this.settings.$next_tip.outerHeight(),
 				tip_offset = this.settings.$next_tip.offset(),
 				target_height = this.settings.$target.outerHeight(),
@@ -628,14 +667,16 @@
 			}
 		},
 
-		pos_modal: function ($nub) {
+		pos_modal: function ($nub)
+		{
 			this.center();
 			$nub.hide();
 
 			this.show_modal();
 		},
 
-		show_modal: function () {
+		show_modal: function ()
+		{
 			if (!this.settings.$next_tip.data('closed')) {
 				var joyridemodalbg = $('.joyride-modal-bg');
 				if (joyridemodalbg.length < 1) {
@@ -651,7 +692,8 @@
 			}
 		},
 
-		expose: function () {
+		expose: function ()
+		{
 			var expose,
 				exposeCover,
 				el,
@@ -721,7 +763,8 @@
 			this.add_exposed(el);
 		},
 
-		un_expose: function () {
+		un_expose: function ()
+		{
 			var exposeId,
 				el,
 				expose,
@@ -782,7 +825,8 @@
 			this.remove_exposed(el);
 		},
 
-		add_exposed: function (el) {
+		add_exposed: function (el)
+		{
 			this.settings.exposed = this.settings.exposed || [];
 			if (el instanceof $ || typeof el === 'object') {
 				this.settings.exposed.push(el[0]);
@@ -791,7 +835,8 @@
 			}
 		},
 
-		remove_exposed: function (el) {
+		remove_exposed: function (el)
+		{
 			var search, i;
 			if (el instanceof $) {
 				search = el[0]
@@ -810,7 +855,8 @@
 			}
 		},
 
-		center: function () {
+		center: function ()
+		{
 			var $w = $(window);
 
 			this.settings.$next_tip.css({
@@ -821,23 +867,28 @@
 			return true;
 		},
 
-		bottom: function () {
+		bottom: function ()
+		{
 			return /bottom/i.test(this.settings.tip_settings.tip_location);
 		},
 
-		top: function () {
+		top: function ()
+		{
 			return /top/i.test(this.settings.tip_settings.tip_location);
 		},
 
-		right: function () {
+		right: function ()
+		{
 			return /right/i.test(this.settings.tip_settings.tip_location);
 		},
 
-		left: function () {
+		left: function ()
+		{
 			return /left/i.test(this.settings.tip_settings.tip_location);
 		},
 
-		corners: function (el) {
+		corners: function (el)
+		{
 			var w = $(window),
 				window_half = w.height() / 2,
 			//using this to calculate since scroll may not have finished yet.
@@ -867,7 +918,8 @@
 			];
 		},
 
-		visible: function (hidden_corners) {
+		visible: function (hidden_corners)
+		{
 			var i = hidden_corners.length;
 
 			while (i--) {
@@ -879,7 +931,8 @@
 			return true;
 		},
 
-		nub_position: function (nub, pos, def) {
+		nub_position: function (nub, pos, def)
+		{
 			if (pos === 'auto') {
 				nub.addClass(def);
 			} else {
@@ -887,9 +940,11 @@
 			}
 		},
 
-		startTimer: function () {
+		startTimer: function ()
+		{
 			if (this.settings.$li.length) {
-				this.settings.automate = setTimeout(function () {
+				this.settings.automate = setTimeout(function ()
+				{
 					this.hide();
 					this.show();
 					this.startTimer();
@@ -899,7 +954,8 @@
 			}
 		},
 
-		end: function (abort) {
+		end: function (abort)
+		{
 			if (this.settings.cookie_monster) {
 				$.cookie(this.settings.cookie_name, 'ridden', {
 					expires: this.settings.cookie_expires,
@@ -932,7 +988,8 @@
 			$('.joyride-tip-guide').remove();
 		},
 
-		off: function () {
+		off: function ()
+		{
 			$(this.scope).off('.joyride');
 			$(window).off('.joyride');
 			$('.joyride-close-tip, .joyride-next-tip, .joyride-modal-bg').off('.joyride');
@@ -941,7 +998,8 @@
 			this.settings = {};
 		},
 
-		reflow: function () {
+		reflow: function ()
+		{
 		}
 	};
 }(jQuery, window, window.document));

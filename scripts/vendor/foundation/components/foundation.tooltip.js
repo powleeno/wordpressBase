@@ -1,5 +1,6 @@
 ;
-(function ($, window, document, undefined) {
+(function ($, window, document, undefined)
+{
 	'use strict';
 
 	Foundation.libs.tooltip = {
@@ -15,7 +16,8 @@
 			disable_for_touch: false,
 			hover_delay: 200,
 			show_on: 'all',
-			tip_template: function (selector, content) {
+			tip_template: function (selector, content)
+			{
 				return '<span data-selector="' + selector + '" id="' + selector + '" class="'
 					+ Foundation.libs.tooltip.settings.tooltip_class.substring(1)
 					+ '" role="tooltip">' + content + '<span class="nub"></span></span>';
@@ -24,12 +26,14 @@
 
 		cache: {},
 
-		init: function (scope, method, options) {
+		init: function (scope, method, options)
+		{
 			Foundation.inherit(this, 'random_str');
 			this.bindings(method, options);
 		},
 
-		should_show: function (target, tip) {
+		should_show: function (target, tip)
+		{
 			var settings = $.extend({}, this.settings, this.data_options(target));
 
 			if (settings.show_on === 'all') {
@@ -44,21 +48,25 @@
 			return false;
 		},
 
-		medium: function () {
+		medium: function ()
+		{
 			return matchMedia(Foundation.media_queries['medium']).matches;
 		},
 
-		large: function () {
+		large: function ()
+		{
 			return matchMedia(Foundation.media_queries['large']).matches;
 		},
 
-		events: function (instance) {
+		events: function (instance)
+		{
 			var self = this,
 				S = self.S;
 
 			self.create(this.S(instance));
 
-			function _startShow(elt, $this, immediate) {
+			function _startShow(elt, $this, immediate)
+			{
 				if (elt.timer) {
 					return;
 				}
@@ -67,14 +75,16 @@
 					elt.timer = null;
 					self.showTip($this);
 				} else {
-					elt.timer = setTimeout(function () {
+					elt.timer = setTimeout(function ()
+					{
 						elt.timer = null;
 						self.showTip($this);
 					}.bind(elt), self.settings.hover_delay);
 				}
 			}
 
-			function _startHide(elt, $this) {
+			function _startHide(elt, $this)
+			{
 				if (elt.timer) {
 					clearTimeout(elt.timer);
 					elt.timer = null;
@@ -86,7 +96,8 @@
 			$(this.scope)
 				.off('.tooltip')
 				.on('mouseenter.fndtn.tooltip mouseleave.fndtn.tooltip touchstart.fndtn.tooltip MSPointerDown.fndtn.tooltip',
-				'[' + this.attr_name() + ']', function (e) {
+				'[' + this.attr_name() + ']', function (e)
+				{
 					var $this = S(this),
 						settings = $.extend({}, self.settings, self.data_options($this)),
 						is_touch = false;
@@ -128,7 +139,8 @@
 						}
 					}
 				})
-				.on('mouseleave.fndtn.tooltip touchstart.fndtn.tooltip MSPointerDown.fndtn.tooltip', '[' + this.attr_name() + '].open', function (e) {
+				.on('mouseleave.fndtn.tooltip touchstart.fndtn.tooltip MSPointerDown.fndtn.tooltip', '[' + this.attr_name() + '].open', function (e)
+				{
 					if (/mouse/i.test(e.type) && self.ie_touch(e)) {
 						return false;
 					}
@@ -141,17 +153,20 @@
 						_startHide(this, $(this));
 					}
 				})
-				.on('DOMNodeRemoved DOMAttrModified', '[' + this.attr_name() + ']:not(a)', function (e) {
+				.on('DOMNodeRemoved DOMAttrModified', '[' + this.attr_name() + ']:not(a)', function (e)
+				{
 					_startHide(this, S(this));
 				});
 		},
 
-		ie_touch: function (e) {
+		ie_touch: function (e)
+		{
 			// How do I distinguish between IE11 and Windows Phone 8?????
 			return false;
 		},
 
-		showTip: function ($target) {
+		showTip: function ($target)
+		{
 			var $tip = this.getTip($target);
 			if (this.should_show($target, $tip)) {
 				return this.show($target);
@@ -159,7 +174,8 @@
 			return;
 		},
 
-		getTip: function ($target) {
+		getTip: function ($target)
+		{
 			var selector = this.selector($target),
 				settings = $.extend({}, this.settings, this.data_options($target)),
 				tip = null;
@@ -171,7 +187,8 @@
 			return (typeof tip === 'object') ? tip : false;
 		},
 
-		selector: function ($target) {
+		selector: function ($target)
+		{
 			var dataSelector = $target.attr(this.attr_name()) || $target.attr('data-selector');
 
 			if (typeof dataSelector != 'string') {
@@ -184,7 +201,8 @@
 			return dataSelector;
 		},
 
-		create: function ($target) {
+		create: function ($target)
+		{
 			var self = this,
 				settings = $.extend({}, this.settings, this.data_options($target)),
 				tip_template = this.settings.tip_template;
@@ -200,7 +218,8 @@
 
 			if (Modernizr.touch) {
 				$tip.append('<span class="tap-to-close">' + settings.touch_close_text + '</span>');
-				$tip.on('touchstart.fndtn.tooltip MSPointerDown.fndtn.tooltip', function (e) {
+				$tip.on('touchstart.fndtn.tooltip MSPointerDown.fndtn.tooltip', function (e)
+				{
 					self.hide($target);
 				});
 			}
@@ -208,7 +227,8 @@
 			$target.removeAttr('title').attr('title', '');
 		},
 
-		reposition: function (target, tip, classes) {
+		reposition: function (target, tip, classes)
+		{
 			var width, nub, nubHeight, nubWidth, column, objPos;
 
 			tip.css('visibility', 'hidden').show();
@@ -224,7 +244,8 @@
 				tip.css({'width': (width) ? width : 'auto'});
 			}
 
-			objPos = function (obj, top, right, bottom, left, width) {
+			objPos = function (obj, top, right, bottom, left, width)
+			{
 				return obj.css({
 					'top': (top) ? top : 'auto',
 					'bottom': (bottom) ? bottom : 'auto',
@@ -273,15 +294,18 @@
 			tip.css('visibility', 'visible').hide();
 		},
 
-		small: function () {
+		small: function ()
+		{
 			return matchMedia(Foundation.media_queries.small).matches && !matchMedia(Foundation.media_queries.medium).matches;
 		},
 
-		inheritable_classes: function ($target) {
+		inheritable_classes: function ($target)
+		{
 			var settings = $.extend({}, this.settings, this.data_options($target)),
 				inheritables = ['tip-top', 'tip-left', 'tip-bottom', 'tip-right', 'radius', 'round'].concat(settings.additional_inheritable_classes),
 				classes = $target.attr('class'),
-				filtered = classes ? $.map(classes.split(' '), function (el, i) {
+				filtered = classes ? $.map(classes.split(' '), function (el, i)
+				{
 					if ($.inArray(el, inheritables) !== -1) {
 						return el;
 					}
@@ -290,14 +314,16 @@
 			return $.trim(filtered);
 		},
 
-		convert_to_touch: function ($target) {
+		convert_to_touch: function ($target)
+		{
 			var self = this,
 				$tip = self.getTip($target),
 				settings = $.extend({}, self.settings, self.data_options($target));
 
 			if ($tip.find('.tap-to-close').length === 0) {
 				$tip.append('<span class="tap-to-close">' + settings.touch_close_text + '</span>');
-				$tip.on('click.fndtn.tooltip.tapclose touchstart.fndtn.tooltip.tapclose MSPointerDown.fndtn.tooltip.tapclose', function (e) {
+				$tip.on('click.fndtn.tooltip.tapclose touchstart.fndtn.tooltip.tapclose MSPointerDown.fndtn.tooltip.tapclose', function (e)
+				{
 					self.hide($target);
 				});
 			}
@@ -305,7 +331,8 @@
 			$target.data('tooltip-open-event-type', 'touch');
 		},
 
-		show: function ($target) {
+		show: function ($target)
+		{
 			var $tip = this.getTip($target);
 
 			if ($target.data('tooltip-open-event-type') == 'touch') {
@@ -317,24 +344,29 @@
 			$tip.fadeIn(150);
 		},
 
-		hide: function ($target) {
+		hide: function ($target)
+		{
 			var $tip = this.getTip($target);
-			$tip.fadeOut(150, function () {
+			$tip.fadeOut(150, function ()
+			{
 				$tip.find('.tap-to-close').remove();
 				$tip.off('click.fndtn.tooltip.tapclose MSPointerDown.fndtn.tapclose');
 				$target.removeClass('open');
 			});
 		},
 
-		off: function () {
+		off: function ()
+		{
 			var self = this;
 			this.S(this.scope).off('.fndtn.tooltip');
-			this.S(this.settings.tooltip_class).each(function (i) {
+			this.S(this.settings.tooltip_class).each(function (i)
+			{
 				$('[' + self.attr_name() + ']').eq(i).attr('title', $(this).text());
 			}).remove();
 		},
 
-		reflow: function () {
+		reflow: function ()
+		{
 		}
 	};
 }(jQuery, window, window.document));

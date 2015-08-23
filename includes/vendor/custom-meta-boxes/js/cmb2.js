@@ -8,7 +8,8 @@
 /**
  * Custom jQuery for Custom Metaboxes and Fields
  */
-window.CMB2 = (function (window, document, $, undefined) {
+window.CMB2 = (function (window, document, $, undefined)
+{
 	'use strict';
 
 	// localization strings
@@ -32,11 +33,13 @@ window.CMB2 = (function (window, document, $, undefined) {
 	};
 
 	// Because it's a more efficient way of getting an element by id.
-	var $id = function (selector) {
+	var $id = function (selector)
+	{
 		return $(document.getElementById(selector));
 	};
 
-	cmb.metabox = function () {
+	cmb.metabox = function ()
+	{
 		if (cmb.$metabox) {
 			return cmb.$metabox;
 		}
@@ -44,7 +47,8 @@ window.CMB2 = (function (window, document, $, undefined) {
 		return cmb.$metabox;
 	};
 
-	cmb.init = function () {
+	cmb.init = function ()
+	{
 
 		cmb.log('CMB2 localized data', l10n);
 		var $metabox = cmb.metabox();
@@ -65,7 +69,8 @@ window.CMB2 = (function (window, document, $, undefined) {
 		cmb.makeListSortable();
 
 		$metabox
-			.on('change', '.cmb2_upload_file', function () {
+			.on('change', '.cmb2_upload_file', function ()
+			{
 				cmb.formfield = $(this).attr('id');
 				$id(cmb.formfield + '_id').val('');
 			})
@@ -87,7 +92,8 @@ window.CMB2 = (function (window, document, $, undefined) {
 
 		if ($repeatGroup.length) {
 			$repeatGroup
-				.filter('.sortable').each(function () {
+				.filter('.sortable').each(function ()
+				{
 					// Add sorting arrows
 					$(this).find('.button.cmb-remove-group-row').before('<a class="button cmb-shift-rows move-up alignleft" href="#"><span class="' + l10n.up_arrow_class + '"></span></a> <a class="button cmb-shift-rows move-down alignleft" href="#"><span class="' + l10n.down_arrow_class + '"></span></a>');
 				})
@@ -102,12 +108,15 @@ window.CMB2 = (function (window, document, $, undefined) {
 
 	};
 
-	cmb.resetTitlesAndIterator = function () {
+	cmb.resetTitlesAndIterator = function ()
+	{
 		// Loop repeatable group tables
-		$('.cmb-repeatable-group').each(function () {
+		$('.cmb-repeatable-group').each(function ()
+		{
 			var $table = $(this);
 			// Loop repeatable group table rows
-			$table.find('.cmb-repeatable-grouping').each(function (rowindex) {
+			$table.find('.cmb-repeatable-grouping').each(function (rowindex)
+			{
 				var $row = $(this);
 				// Reset rows iterator
 				$row.data('iterator', rowindex);
@@ -117,12 +126,14 @@ window.CMB2 = (function (window, document, $, undefined) {
 		});
 	};
 
-	cmb.toggleHandle = function (evt) {
+	cmb.toggleHandle = function (evt)
+	{
 		evt.preventDefault();
 		$(document).trigger('postbox-toggled', $(this).parent('.postbox').toggleClass('closed'));
 	};
 
-	cmb.toggleCheckBoxes = function (evt) {
+	cmb.toggleCheckBoxes = function (evt)
+	{
 		evt.preventDefault();
 		var $self = $(this);
 		var $multicheck = $self.closest('.cmb-td').find('input[type=checkbox]');
@@ -140,7 +151,8 @@ window.CMB2 = (function (window, document, $, undefined) {
 		}
 	};
 
-	cmb.handleMedia = function (evt) {
+	cmb.handleMedia = function (evt)
+	{
 		evt.preventDefault();
 
 		var $el = $(this);
@@ -151,7 +163,8 @@ window.CMB2 = (function (window, document, $, undefined) {
 		cmb._handleMedia($el.prev('input.cmb2-upload-file').attr('id'), $el.hasClass('cmb2-upload-list'));
 	};
 
-	cmb.handleFileClick = function (evt) {
+	cmb.handleFileClick = function (evt)
+	{
 		evt.preventDefault();
 
 		var $el = $(this);
@@ -164,7 +177,8 @@ window.CMB2 = (function (window, document, $, undefined) {
 		}
 	};
 
-	cmb._handleMedia = function (formfield, isList) {
+	cmb._handleMedia = function (formfield, isList)
+	{
 		if (!wp) {
 			return;
 		}
@@ -192,7 +206,8 @@ window.CMB2 = (function (window, document, $, undefined) {
 			multiple: isList ? true : false
 		});
 
-		cmb.mediaHandlers.list = function (selection, returnIt) {
+		cmb.mediaHandlers.list = function (selection, returnIt)
+		{
 			// Get all of our selected files
 			attachment = selection.toJSON();
 
@@ -203,7 +218,8 @@ window.CMB2 = (function (window, document, $, undefined) {
 			var fileGroup = [];
 
 			// Loop through each attachment
-			$(attachment).each(function () {
+			$(attachment).each(function ()
+			{
 				if (this.type && this.type === 'image') {
 					var width = previewSize[0] ? previewSize[0] : 50;
 					var height = previewSize[1] ? previewSize[1] : 50;
@@ -229,7 +245,8 @@ window.CMB2 = (function (window, document, $, undefined) {
 
 			if (!returnIt) {
 				// Append each item from our fileGroup array to .cmb2-media-status
-				$(fileGroup).each(function () {
+				$(fileGroup).each(function ()
+				{
 					$formfield.siblings('.cmb2-media-status').slideDown().append(this);
 				});
 			} else {
@@ -237,7 +254,8 @@ window.CMB2 = (function (window, document, $, undefined) {
 			}
 
 		};
-		cmb.mediaHandlers.single = function (selection) {
+		cmb.mediaHandlers.single = function (selection)
+		{
 			// Only get one file from the uploader
 			attachment = selection.first().toJSON();
 
@@ -257,7 +275,8 @@ window.CMB2 = (function (window, document, $, undefined) {
 			$formfield.siblings('.cmb2-media-status').slideDown().html(uploadStatus);
 		};
 
-		cmb.mediaHandlers.selectFile = function () {
+		cmb.mediaHandlers.selectFile = function ()
+		{
 			var selection = cmb.file_frames[cmb.formfield].state().get('selection');
 			var type = isList ? 'list' : 'single';
 
@@ -269,7 +288,8 @@ window.CMB2 = (function (window, document, $, undefined) {
 			cmb.mediaHandlers[type](selection);
 		};
 
-		cmb.mediaHandlers.openModal = function () {
+		cmb.mediaHandlers.openModal = function ()
+		{
 			var selection = cmb.file_frames[cmb.formfield].state().get('selection');
 
 			if (!cmb.attach_id) {
@@ -290,7 +310,8 @@ window.CMB2 = (function (window, document, $, undefined) {
 		cmb.file_frames[cmb.formfield].open();
 	};
 
-	cmb.handleRemoveMedia = function (evt) {
+	cmb.handleRemoveMedia = function (evt)
+	{
 		evt.preventDefault();
 		var $self = $(this);
 		if ($self.is('.cmb-attach-list .cmb2-remove-file-button')) {
@@ -307,7 +328,8 @@ window.CMB2 = (function (window, document, $, undefined) {
 		return false;
 	};
 
-	cmb.cleanRow = function ($row, prevNum, group) {
+	cmb.cleanRow = function ($row, prevNum, group)
+	{
 
 		var $inputs = $row.find('input:not([type="button"]), select, textarea, label');
 		var $other = $row.find('[id]').not('input:not([type="button"]), select, textarea, label');
@@ -317,7 +339,8 @@ window.CMB2 = (function (window, document, $, undefined) {
 
 			// Update all elements w/ an ID
 			if ($other.length) {
-				$other.each(function () {
+				$other.each(function ()
+				{
 					var $_this = $(this);
 					var oldID = $_this.attr('id');
 					var newID = oldID.replace('_' + prevNum, '_' + cmb.idNumber);
@@ -340,7 +363,8 @@ window.CMB2 = (function (window, document, $, undefined) {
 			$row.find('h3.cmb-group-title').text($row.data('title').replace('{#}', ( cmb.idNumber + 1 )));
 		}
 
-		$inputs.each(function () {
+		$inputs.each(function ()
+		{
 			var $newInput = $(this);
 			var isEditor = $newInput.hasClass('wp-editor-area');
 			var oldFor = $newInput.attr('for');
@@ -401,14 +425,16 @@ window.CMB2 = (function (window, document, $, undefined) {
 		return cmb;
 	};
 
-	cmb.newRowHousekeeping = function ($row) {
+	cmb.newRowHousekeeping = function ($row)
+	{
 
 		var $colorPicker = $row.find('.wp-picker-container');
 		var $list = $row.find('.cmb2-media-status');
 
 		if ($colorPicker.length) {
 			// Need to clean-up colorpicker before appending
-			$colorPicker.each(function () {
+			$colorPicker.each(function ()
+			{
 				var $td = $(this).parent();
 				$td.html($td.find('input[type="text"].cmb2-colorpicker').attr('style', ''));
 			});
@@ -422,7 +448,8 @@ window.CMB2 = (function (window, document, $, undefined) {
 		return cmb;
 	};
 
-	cmb.afterRowInsert = function ($row) {
+	cmb.afterRowInsert = function ($row)
+	{
 		var _prop;
 
 		// Need to re-init wp_editor instances
@@ -462,7 +489,8 @@ window.CMB2 = (function (window, document, $, undefined) {
 		cmb.initPickers($row.find('input[type="text"].cmb2-timepicker'), $row.find('input[type="text"].cmb2-datepicker'), $row.find('input[type="text"].cmb2-colorpicker'));
 	};
 
-	cmb.updateNameAttr = function () {
+	cmb.updateNameAttr = function ()
+	{
 
 		var $this = $(this);
 		var name = $this.attr('name'); // get current name
@@ -483,11 +511,13 @@ window.CMB2 = (function (window, document, $, undefined) {
 
 	};
 
-	cmb.emptyValue = function (evt, row) {
+	cmb.emptyValue = function (evt, row)
+	{
 		$('input:not([type="button"]), textarea', row).val('');
 	};
 
-	cmb.addGroupRow = function (evt) {
+	cmb.addGroupRow = function (evt)
+	{
 		evt.preventDefault();
 
 		var $self = $(this);
@@ -518,7 +548,8 @@ window.CMB2 = (function (window, document, $, undefined) {
 		$table.trigger('cmb2_add_row', $newRow);
 	};
 
-	cmb.addAjaxRow = function (evt) {
+	cmb.addAjaxRow = function (evt)
+	{
 		evt.preventDefault();
 
 		var $self = $(this);
@@ -541,7 +572,8 @@ window.CMB2 = (function (window, document, $, undefined) {
 
 	};
 
-	cmb.removeGroupRow = function (evt) {
+	cmb.removeGroupRow = function (evt)
+	{
 		evt.preventDefault();
 
 		var $self = $(this);
@@ -569,7 +601,8 @@ window.CMB2 = (function (window, document, $, undefined) {
 
 	};
 
-	cmb.removeAjaxRow = function (evt) {
+	cmb.removeAjaxRow = function (evt)
+	{
 		evt.preventDefault();
 
 		var $self = $(this);
@@ -597,7 +630,8 @@ window.CMB2 = (function (window, document, $, undefined) {
 		}
 	};
 
-	cmb.shiftRows = function (evt) {
+	cmb.shiftRows = function (evt)
+	{
 
 		evt.preventDefault();
 
@@ -617,7 +651,8 @@ window.CMB2 = (function (window, document, $, undefined) {
 
 		var inputVals = [];
 		// Loop this items fields
-		$parent.find(cmb.repeatEls).each(function () {
+		$parent.find(cmb.repeatEls).each(function ()
+		{
 			var $element = $(this);
 			var val;
 			if ($element.hasClass('cmb2-media-status')) {
@@ -634,7 +669,8 @@ window.CMB2 = (function (window, document, $, undefined) {
 			inputVals.push({val: val, $: $element});
 		});
 		// And swap them all
-		$goto.find(cmb.repeatEls).each(function (index) {
+		$goto.find(cmb.repeatEls).each(function (index)
+		{
 			var $element = $(this);
 			var val;
 
@@ -666,7 +702,8 @@ window.CMB2 = (function (window, document, $, undefined) {
 		$self.trigger('cmb2_shift_rows_complete', $self);
 	};
 
-	cmb.initPickers = function ($timePickers, $datePickers, $colorPickers) {
+	cmb.initPickers = function ($timePickers, $datePickers, $colorPickers)
+	{
 		// Initialize timepicker
 		cmb.initTimePickers($timePickers);
 
@@ -677,7 +714,8 @@ window.CMB2 = (function (window, document, $, undefined) {
 		cmb.initColorPickers($colorPickers);
 	};
 
-	cmb.initTimePickers = function ($selector) {
+	cmb.initTimePickers = function ($selector)
+	{
 		if (!$selector.length) {
 			return;
 		}
@@ -686,7 +724,8 @@ window.CMB2 = (function (window, document, $, undefined) {
 		$selector.timepicker(cmb.defaults.time_picker);
 	};
 
-	cmb.initDatePickers = function ($selector) {
+	cmb.initDatePickers = function ($selector)
+	{
 		if (!$selector.length) {
 			return;
 		}
@@ -695,7 +734,8 @@ window.CMB2 = (function (window, document, $, undefined) {
 		$selector.datepicker(cmb.defaults.date_picker);
 	};
 
-	cmb.initColorPickers = function ($selector) {
+	cmb.initColorPickers = function ($selector)
+	{
 		if (!$selector.length) {
 			return;
 		}
@@ -704,39 +744,48 @@ window.CMB2 = (function (window, document, $, undefined) {
 			$selector.wpColorPicker(cmb.defaults.color_picker);
 
 		} else {
-			$selector.each(function (i) {
+			$selector.each(function (i)
+			{
 				$(this).after('<div id="picker-' + i + '" style="z-index: 1000; background: #EEE; border: 1px solid #CCC; position: absolute; display: block;"></div>');
 				$id('picker-' + i).hide().farbtastic($(this));
 			})
-				.focus(function () {
+				.focus(function ()
+				{
 					$(this).next().show();
 				})
-				.blur(function () {
+				.blur(function ()
+				{
 					$(this).next().hide();
 				});
 		}
 	};
 
-	cmb.makeListSortable = function () {
+	cmb.makeListSortable = function ()
+	{
 		var $filelist = cmb.metabox().find('.cmb2-media-status.cmb-attach-list');
 		if ($filelist.length) {
 			$filelist.sortable({cursor: 'move'}).disableSelection();
 		}
 	};
 
-	cmb.maybeOembed = function (evt) {
+	cmb.maybeOembed = function (evt)
+	{
 		var $self = $(this);
 		var type = evt.type;
 
 		var m = {
-			focusout: function () {
-				setTimeout(function () {
+			focusout: function ()
+			{
+				setTimeout(function ()
+				{
 					// if it's been 2 seconds, hide our spinner
 					cmb.spinner('.postbox .cmb2-metabox', true);
 				}, 2000);
 			},
-			keyup: function () {
-				var betw = function (min, max) {
+			keyup: function ()
+			{
+				var betw = function (min, max)
+				{
 					return ( evt.which <= max && evt.which >= min );
 				};
 				// Only Ajax on normal keystrokes
@@ -745,9 +794,11 @@ window.CMB2 = (function (window, document, $, undefined) {
 					cmb.doAjax($self, evt);
 				}
 			},
-			paste: function () {
+			paste: function ()
+			{
 				// paste event is fired before the value is filled, so wait a bit
-				setTimeout(function () {
+				setTimeout(function ()
+				{
 					cmb.doAjax($self);
 				}, 100);
 			}
@@ -759,8 +810,10 @@ window.CMB2 = (function (window, document, $, undefined) {
 	/**
 	 * Resize oEmbed videos to fit in their respective metaboxes
 	 */
-	cmb.resizeoEmbeds = function () {
-		cmb.metabox().each(function () {
+	cmb.resizeoEmbeds = function ()
+	{
+		cmb.metabox().each(function ()
+		{
 			var $self = $(this);
 			var $tableWrap = $self.parents('.inside');
 			var isSide = $self.parents('.inner-sidebar').length || $self.parents('#side-sortables').length;
@@ -793,7 +846,8 @@ window.CMB2 = (function (window, document, $, undefined) {
 				return true; // continue
 			}
 
-			$children.each(function () {
+			$children.each(function ()
+			{
 				var $self = $(this);
 				var iwidth = $self.width();
 				var iheight = $self.height();
@@ -815,13 +869,15 @@ window.CMB2 = (function (window, document, $, undefined) {
 	 * Safely log things if query var is set
 	 * @since  1.0.0
 	 */
-	cmb.log = function () {
+	cmb.log = function ()
+	{
 		if (l10n.script_debug && console && typeof console.log === 'function') {
 			console.log.apply(console, arguments);
 		}
 	};
 
-	cmb.spinner = function ($context, hide) {
+	cmb.spinner = function ($context, hide)
+	{
 		if (hide) {
 			$('.cmb-spinner', $context).hide();
 		}
@@ -831,7 +887,8 @@ window.CMB2 = (function (window, document, $, undefined) {
 	};
 
 	// function for running our ajax
-	cmb.doAjax = function ($obj) {
+	cmb.doAjax = function ($obj)
+	{
 		// get typed value
 		var oembed_url = $obj.val();
 		// only proceed if the field contains more than 6 characters
@@ -854,7 +911,8 @@ window.CMB2 = (function (window, document, $, undefined) {
 		// clear out previous results
 		$embed_wrap.html('');
 		// and run our ajax function
-		setTimeout(function () {
+		setTimeout(function ()
+		{
 			// if they haven't typed in 500 ms
 			if ($('.cmb2-oembed:focus').val() !== oembed_url) {
 				return;
@@ -872,7 +930,8 @@ window.CMB2 = (function (window, document, $, undefined) {
 					'object_type': $obj.data('objecttype'),
 					'cmb2_ajax_nonce': l10n.ajax_nonce
 				},
-				success: function (response) {
+				success: function (response)
+				{
 					cmb.log(response);
 					// hide our spinner
 					cmb.spinner($context, true);

@@ -1,5 +1,6 @@
 ;
-(function ($, window, document, undefined) {
+(function ($, window, document, undefined)
+{
 	'use strict';
 
 	Foundation.libs.topbar = {
@@ -20,7 +21,8 @@
 			dropdown_autoclose: true
 		},
 
-		init: function (section, method, options) {
+		init: function (section, method, options)
+		{
 			Foundation.inherit(this, 'add_custom_rule register_media throttle');
 			var self = this;
 
@@ -28,7 +30,8 @@
 
 			this.bindings(method, options);
 
-			self.S('[' + this.attr_name() + ']', this.scope).each(function () {
+			self.S('[' + this.attr_name() + ']', this.scope).each(function ()
+			{
 				var topbar = $(this),
 					settings = topbar.data(self.attr_name(true) + '-init'),
 					section = self.S('section, .top-bar-section', this);
@@ -63,7 +66,8 @@
 
 		},
 
-		is_sticky: function (topbar, topbarContainer, settings) {
+		is_sticky: function (topbar, topbarContainer, settings)
+		{
 			var sticky = topbarContainer.hasClass(settings.sticky_class);
 			var smallMatch = matchMedia(Foundation.media_queries.small).matches;
 			var medMatch = matchMedia(Foundation.media_queries.medium).matches;
@@ -91,7 +95,8 @@
 			return false;
 		},
 
-		toggle: function (toggleEl) {
+		toggle: function (toggleEl)
+		{
 			var self = this,
 				topbar;
 
@@ -161,17 +166,20 @@
 
 		timer: null,
 
-		events: function (bar) {
+		events: function (bar)
+		{
 			var self = this,
 				S = this.S;
 
 			S(this.scope)
 				.off('.topbar')
-				.on('click.fndtn.topbar', '[' + this.attr_name() + '] .toggle-topbar', function (e) {
+				.on('click.fndtn.topbar', '[' + this.attr_name() + '] .toggle-topbar', function (e)
+				{
 					e.preventDefault();
 					self.toggle(this);
 				})
-				.on('click.fndtn.topbar contextmenu.fndtn.topbar', '.top-bar .top-bar-section li a[href^="#"],[' + this.attr_name() + '] .top-bar-section li a[href^="#"]', function (e) {
+				.on('click.fndtn.topbar contextmenu.fndtn.topbar', '.top-bar .top-bar-section li a[href^="#"],[' + this.attr_name() + '] .top-bar-section li a[href^="#"]', function (e)
+				{
 					var li = $(this).closest('li'),
 						topbar = li.closest('[' + self.attr_name() + ']'),
 						settings = topbar.data(self.attr_name(true) + '-init');
@@ -185,7 +193,8 @@
 					}
 
 				})
-				.on('click.fndtn.topbar', '[' + this.attr_name() + '] li.has-dropdown', function (e) {
+				.on('click.fndtn.topbar', '[' + this.attr_name() + '] li.has-dropdown', function (e)
+				{
 					var li = S(this),
 						target = S(e.target),
 						topbar = li.closest('[' + self.attr_name() + ']'),
@@ -224,7 +233,8 @@
 						}
 					}
 				})
-				.on('click.fndtn.topbar', '[' + this.attr_name() + '] .has-dropdown>a', function (e) {
+				.on('click.fndtn.topbar', '[' + this.attr_name() + '] .has-dropdown>a', function (e)
+				{
 					if (self.breakpoint()) {
 
 						e.preventDefault();
@@ -250,14 +260,17 @@
 					}
 				});
 
-			S(window).off('.topbar').on('resize.fndtn.topbar', self.throttle(function () {
+			S(window).off('.topbar').on('resize.fndtn.topbar', self.throttle(function ()
+			{
 				self.resize.call(self);
-			}, 50)).trigger('resize.fndtn.topbar').load(function () {
+			}, 50)).trigger('resize.fndtn.topbar').load(function ()
+			{
 				// Ensure that the offset is calculated after all of the pages resources have loaded
 				S(this).trigger('resize.fndtn.topbar');
 			});
 
-			S('body').off('.topbar').on('click.fndtn.topbar', function (e) {
+			S('body').off('.topbar').on('click.fndtn.topbar', function (e)
+			{
 				var parent = S(e.target).closest('li').closest('li.hover');
 
 				if (parent.length > 0) {
@@ -268,7 +281,8 @@
 			});
 
 			// Go up a level on Click
-			S(this.scope).on('click.fndtn.topbar', '[' + this.attr_name() + '] .has-dropdown .back', function (e) {
+			S(this.scope).on('click.fndtn.topbar', '[' + this.attr_name() + '] .has-dropdown .back', function (e)
+			{
 				e.preventDefault();
 
 				var $this = S(this),
@@ -294,24 +308,29 @@
 					topbar.css('height', $previousLevelUl.outerHeight(true) + topbar.data('height'));
 				}
 
-				setTimeout(function () {
+				setTimeout(function ()
+				{
 					$movedLi.removeClass('moved');
 				}, 300);
 			});
 
 			// Show dropdown menus when their items are focused
 			S(this.scope).find('.dropdown a')
-				.focus(function () {
+				.focus(function ()
+				{
 					$(this).parents('.has-dropdown').addClass('hover');
 				})
-				.blur(function () {
+				.blur(function ()
+				{
 					$(this).parents('.has-dropdown').removeClass('hover');
 				});
 		},
 
-		resize: function () {
+		resize: function ()
+		{
 			var self = this;
-			self.S('[' + this.attr_name() + ']').each(function () {
+			self.S('[' + this.attr_name() + ']').each(function ()
+			{
 				var topbar = self.S(this),
 					settings = topbar.data(self.attr_name(true) + '-init');
 
@@ -352,23 +371,28 @@
 			});
 		},
 
-		breakpoint: function () {
+		breakpoint: function ()
+		{
 			return !matchMedia(Foundation.media_queries['topbar']).matches;
 		},
 
-		small: function () {
+		small: function ()
+		{
 			return matchMedia(Foundation.media_queries['small']).matches;
 		},
 
-		medium: function () {
+		medium: function ()
+		{
 			return matchMedia(Foundation.media_queries['medium']).matches;
 		},
 
-		large: function () {
+		large: function ()
+		{
 			return matchMedia(Foundation.media_queries['large']).matches;
 		},
 
-		assemble: function (topbar) {
+		assemble: function (topbar)
+		{
 			var self = this,
 				settings = topbar.data(this.attr_name(true) + '-init'),
 				section = self.S('section, .top-bar-section', topbar);
@@ -376,7 +400,8 @@
 			// Pull element out of the DOM for manipulation
 			section.detach();
 
-			self.S('.has-dropdown>a', section).each(function () {
+			self.S('.has-dropdown>a', section).each(function ()
+			{
 				var $link = self.S(this),
 					$dropdown = $link.siblings('.dropdown'),
 					url = $link.attr('href'),
@@ -409,30 +434,36 @@
 			this.assembled(topbar);
 		},
 
-		assembled: function (topbar) {
+		assembled: function (topbar)
+		{
 			topbar.data(this.attr_name(true), $.extend({}, topbar.data(this.attr_name(true)), {assembled: true}));
 		},
 
-		height: function (ul) {
+		height: function (ul)
+		{
 			var total = 0,
 				self = this;
 
-			$('> li', ul).each(function () {
+			$('> li', ul).each(function ()
+			{
 				total += self.S(this).outerHeight(true);
 			});
 
 			return total;
 		},
 
-		sticky: function () {
+		sticky: function ()
+		{
 			var self = this;
 
-			this.S(window).on('scroll', function () {
+			this.S(window).on('scroll', function ()
+			{
 				self.update_sticky_positioning();
 			});
 		},
 
-		update_sticky_positioning: function () {
+		update_sticky_positioning: function ()
+		{
 			var klass = '.' + this.settings.sticky_class,
 				$window = this.S(window),
 				self = this;
@@ -455,12 +486,14 @@
 			}
 		},
 
-		off: function () {
+		off: function ()
+		{
 			this.S(this.scope).off('.fndtn.topbar');
 			this.S(window).off('.fndtn.topbar');
 		},
 
-		reflow: function () {
+		reflow: function ()
+		{
 		}
 	};
 }(jQuery, window, window.document));

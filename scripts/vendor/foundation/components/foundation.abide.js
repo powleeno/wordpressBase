@@ -1,5 +1,6 @@
 ;
-(function ($, window, document, undefined) {
+(function ($, window, document, undefined)
+{
 	'use strict';
 
 	Foundation.libs.abide = {
@@ -48,7 +49,8 @@
 				color: /^#?([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$/
 			},
 			validators: {
-				equalTo: function (el, required, parent) {
+				equalTo: function (el, required, parent)
+				{
 					var from = document.getElementById(el.getAttribute(this.add_namespace('data-equalto'))).value,
 						to = el.value,
 						valid = (from === to);
@@ -60,20 +62,24 @@
 
 		timer: null,
 
-		init: function (scope, method, options) {
+		init: function (scope, method, options)
+		{
 			this.bindings(method, options);
 		},
 
-		events: function (scope) {
+		events: function (scope)
+		{
 			var self = this,
 				form = self.S(scope).attr('novalidate', 'novalidate'),
 				settings = form.data(this.attr_name(true) + '-init') || {};
 
 			this.invalid_attr = this.add_namespace('data-invalid');
 
-			function validate(originalSelf, e) {
+			function validate(originalSelf, e)
+			{
 				clearTimeout(self.timer);
-				self.timer = setTimeout(function () {
+				self.timer = setTimeout(function ()
+				{
 					self.validate([originalSelf], e);
 				}.bind(originalSelf), settings.timeout);
 			}
@@ -81,21 +87,25 @@
 
 			form
 				.off('.abide')
-				.on('submit.fndtn.abide', function (e) {
+				.on('submit.fndtn.abide', function (e)
+				{
 					var is_ajax = /ajax/i.test(self.S(this).attr(self.attr_name()));
 					return self.validate(self.S(this).find('input, textarea, select').not(":hidden, [data-abide-ignore]").get(), e, is_ajax);
 				})
-				.on('validate.fndtn.abide', function (e) {
+				.on('validate.fndtn.abide', function (e)
+				{
 					if (settings.validate_on === 'manual') {
 						self.validate([e.target], e);
 					}
 				})
-				.on('reset', function (e) {
+				.on('reset', function (e)
+				{
 					return self.reset($(this), e);
 				})
 				.find('input, textarea, select').not(":hidden, [data-abide-ignore]")
 				.off('.abide')
-				.on('blur.fndtn.abide change.fndtn.abide', function (e) {
+				.on('blur.fndtn.abide change.fndtn.abide', function (e)
+				{
 					// old settings fallback
 					// will be deprecated with F6 release
 					if (settings.validate_on_blur && settings.validate_on_blur === true) {
@@ -106,7 +116,8 @@
 						validate(this, e);
 					}
 				})
-				.on('keydown.fndtn.abide', function (e) {
+				.on('keydown.fndtn.abide', function (e)
+				{
 					// old settings fallback
 					// will be deprecated with F6 release
 					if (settings.live_validate && settings.live_validate === true && e.which != 9) {
@@ -120,7 +131,8 @@
 						validate(this, e);
 					}
 				})
-				.on('focus', function (e) {
+				.on('focus', function (e)
+				{
 					if (navigator.userAgent.match(/iPad|iPhone|Android|BlackBerry|Windows Phone|webOS/i)) {
 						$('html, body').animate({
 							scrollTop: $(e.target).offset().top
@@ -129,7 +141,8 @@
 				});
 		},
 
-		reset: function (form, e) {
+		reset: function (form, e)
+		{
 			var self = this;
 			form.removeAttr(self.invalid_attr);
 
@@ -138,7 +151,8 @@
 			$(':input', form).not(':button, :submit, :reset, :hidden, [data-abide-ignore]').val('').removeAttr(self.invalid_attr);
 		},
 
-		validate: function (els, e, is_ajax) {
+		validate: function (els, e, is_ajax)
+		{
 			var validations = this.parse_patterns(els),
 				validation_count = validations.length,
 				form = this.S(els[0]).closest('form'),
@@ -169,7 +183,8 @@
 			return true;
 		},
 
-		parse_patterns: function (els) {
+		parse_patterns: function (els)
+		{
 			var i = els.length,
 				el_patterns = [];
 
@@ -180,7 +195,8 @@
 			return this.check_validation_and_apply_styles(el_patterns);
 		},
 
-		pattern: function (el) {
+		pattern: function (el)
+		{
 			var type = el.getAttribute('type'),
 				required = typeof el.getAttribute('required') === 'string';
 
@@ -202,7 +218,8 @@
 		},
 
 		// TODO: Break this up into smaller methods, getting hard to read.
-		check_validation_and_apply_styles: function (el_patterns) {
+		check_validation_and_apply_styles: function (el_patterns)
+		{
 			var i = el_patterns.length,
 				validations = [],
 				form = this.S(el_patterns[0][0]).closest('[data-' + this.attr_name(true) + ']'),
@@ -271,7 +288,8 @@
 						el_validations.push(false);
 					}
 
-					el_validations = [el_validations.every(function (valid) {
+					el_validations = [el_validations.every(function (valid)
+					{
 						return valid;
 					})];
 					if (el_validations[0]) {
@@ -307,7 +325,8 @@
 			return validations;
 		},
 
-		valid_checkbox: function (el, required) {
+		valid_checkbox: function (el, required)
+		{
 			var el = this.S(el),
 				valid = (el.is(':checked') || !required || el.get(0).getAttribute('disabled'));
 
@@ -322,7 +341,8 @@
 			return valid;
 		},
 
-		valid_radio: function (el, required) {
+		valid_radio: function (el, required)
+		{
 			var name = el.getAttribute('name'),
 				group = this.S(el).closest('[data-' + this.attr_name(true) + ']').find("[name='" + name + "']"),
 				count = group.length,
@@ -359,7 +379,8 @@
 			return valid;
 		},
 
-		valid_equal: function (el, required, parent) {
+		valid_equal: function (el, required, parent)
+		{
 			var from = document.getElementById(el.getAttribute(this.add_namespace('data-equalto'))).value,
 				to = el.value,
 				valid = (from === to);
@@ -381,7 +402,8 @@
 			return valid;
 		},
 
-		valid_oneof: function (el, required, parent, doNotValidateOthers) {
+		valid_oneof: function (el, required, parent, doNotValidateOthers)
+		{
 			var el = this.S(el),
 				others = this.S('[' + this.add_namespace('data-oneof') + ']'),
 				valid = others.filter(':checked').length > 0;
@@ -394,7 +416,8 @@
 
 			if (!doNotValidateOthers) {
 				var _this = this;
-				others.each(function () {
+				others.each(function ()
+				{
 					_this.valid_oneof.call(_this, this, null, null, true);
 				});
 			}
@@ -402,10 +425,12 @@
 			return valid;
 		},
 
-		reflow: function (scope, options) {
+		reflow: function (scope, options)
+		{
 			var self = this,
 				form = self.S('[' + this.attr_name() + ']').attr('novalidate', 'novalidate');
-			self.S(form).each(function (idx, el) {
+			self.S(form).each(function (idx, el)
+			{
 				self.events(el);
 			});
 		}

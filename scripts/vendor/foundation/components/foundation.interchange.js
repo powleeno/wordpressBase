@@ -1,5 +1,6 @@
 ;
-(function ($, window, document, undefined) {
+(function ($, window, document, undefined)
+{
 	'use strict';
 
 	Foundation.libs.interchange = {
@@ -37,7 +38,8 @@
 			},
 
 			directives: {
-				replace: function (el, path, trigger) {
+				replace: function (el, path, trigger)
+				{
 					// The trigger argument, if called within the directive, fires
 					// an event named after the directive on the element, passing
 					// any parameters along to the event that you pass to trigger.
@@ -73,7 +75,8 @@
 						return trigger(path);
 					}
 
-					return $.get(path, function (response) {
+					return $.get(path, function (response)
+					{
 						el.html(response);
 						el.data(self.data_attr + '-last-path', path);
 						trigger();
@@ -83,7 +86,8 @@
 			}
 		},
 
-		init: function (scope, method, options) {
+		init: function (scope, method, options)
+		{
 			Foundation.inherit(this, 'throttle random_str');
 
 			this.data_attr = this.set_data_attr();
@@ -92,7 +96,8 @@
 			this.reflow();
 		},
 
-		get_media_hash: function () {
+		get_media_hash: function ()
+		{
 			var mediaHash = '';
 			for (var queryName in this.settings.named_queries) {
 				mediaHash += matchMedia(this.settings.named_queries[queryName]).matches.toString();
@@ -100,12 +105,14 @@
 			return mediaHash;
 		},
 
-		events: function () {
+		events: function ()
+		{
 			var self = this, prevMediaHash;
 
 			$(window)
 				.off('.interchange')
-				.on('resize.fndtn.interchange', self.throttle(function () {
+				.on('resize.fndtn.interchange', self.throttle(function ()
+				{
 					var currMediaHash = self.get_media_hash();
 					if (currMediaHash !== prevMediaHash) {
 						self.resize();
@@ -116,7 +123,8 @@
 			return this;
 		},
 
-		resize: function () {
+		resize: function ()
+		{
 			var cache = this.cache;
 
 			if (!this.images_loaded || !this.nodes_loaded) {
@@ -129,14 +137,16 @@
 					var passed = this.results(uuid, cache[uuid]);
 					if (passed) {
 						this.settings.directives[passed
-							.scenario[1]].call(this, passed.el, passed.scenario[0], (function (passed) {
+							.scenario[1]].call(this, passed.el, passed.scenario[0], (function (passed)
+							{
 								if (arguments[0] instanceof Array) {
 									var args = arguments[0];
 								} else {
 									var args = Array.prototype.slice.call(arguments, 0);
 								}
 
-								return function () {
+								return function ()
+								{
 									passed.el.trigger(passed.scenario[1], args);
 								}
 							}(passed)));
@@ -146,7 +156,8 @@
 
 		},
 
-		results: function (uuid, scenarios) {
+		results: function (uuid, scenarios)
+		{
 			var count = scenarios.length;
 
 			if (count > 0) {
@@ -168,7 +179,8 @@
 			return false;
 		},
 
-		load: function (type, force_update) {
+		load: function (type, force_update)
+		{
 			if (typeof this['cached_' + type] === 'undefined' || force_update) {
 				this['update_' + type]();
 			}
@@ -176,7 +188,8 @@
 			return this['cached_' + type];
 		},
 
-		update_images: function () {
+		update_images: function ()
+		{
 			var images = this.S('img[' + this.data_attr + ']'),
 				count = images.length,
 				i = count,
@@ -206,7 +219,8 @@
 			return this;
 		},
 
-		update_nodes: function () {
+		update_nodes: function ()
+		{
 			var nodes = this.S('[' + this.data_attr + ']').not('img'),
 				count = nodes.length,
 				i = count,
@@ -233,7 +247,8 @@
 			return this;
 		},
 
-		enhance: function (type) {
+		enhance: function (type)
+		{
 			var i = this['cached_' + type].length;
 
 			while (i--) {
@@ -243,7 +258,8 @@
 			return $(window).trigger('resize.fndtn.interchange');
 		},
 
-		convert_directive: function (directive) {
+		convert_directive: function (directive)
+		{
 
 			var trimmed = this.trim(directive);
 
@@ -254,7 +270,8 @@
 			return 'replace';
 		},
 
-		parse_scenario: function (scenario) {
+		parse_scenario: function (scenario)
+		{
 			// This logic had to be made more complex since some users were using commas in the url path
 			// So we cannot simply just split on a comma
 
@@ -278,7 +295,8 @@
 			return [this.trim(path), this.convert_directive(directive), this.trim(media_query[1])];
 		},
 
-		object: function (el) {
+		object: function (el)
+		{
 			var raw_arr = this.parse_data_attr(el),
 				scenarios = [],
 				i = raw_arr.length;
@@ -299,7 +317,8 @@
 			return this.store(el, scenarios);
 		},
 
-		store: function (el, scenarios) {
+		store: function (el, scenarios)
+		{
 			var uuid = this.random_str(),
 				current_uuid = el.data(this.add_namespace('uuid', true));
 
@@ -311,7 +330,8 @@
 			return this.cache[uuid] = scenarios;
 		},
 
-		trim: function (str) {
+		trim: function (str)
+		{
 
 			if (typeof str === 'string') {
 				return $.trim(str);
@@ -320,7 +340,8 @@
 			return str;
 		},
 
-		set_data_attr: function (init) {
+		set_data_attr: function (init)
+		{
 			if (init) {
 				if (this.namespace.length > 0) {
 					return this.namespace + '-' + this.settings.load_attr;
@@ -336,7 +357,8 @@
 			return 'data-' + this.settings.load_attr;
 		},
 
-		parse_data_attr: function (el) {
+		parse_data_attr: function (el)
+		{
 			var raw = el.attr(this.attr_name()).split(/\[(.*?)\]/),
 				i = raw.length,
 				output = [];
@@ -350,7 +372,8 @@
 			return output;
 		},
 
-		reflow: function () {
+		reflow: function ()
+		{
 			this.load('images', true);
 			this.load('nodes', true);
 		}

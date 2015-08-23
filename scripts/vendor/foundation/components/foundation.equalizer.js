@@ -1,5 +1,6 @@
 ;
-(function ($, window, document, undefined) {
+(function ($, window, document, undefined)
+{
 	'use strict';
 
 	Foundation.libs.equalizer = {
@@ -15,19 +16,23 @@
 			act_on_hidden_el: false
 		},
 
-		init: function (scope, method, options) {
+		init: function (scope, method, options)
+		{
 			Foundation.inherit(this, 'image_loaded');
 			this.bindings(method, options);
 			this.reflow();
 		},
 
-		events: function () {
-			this.S(window).off('.equalizer').on('resize.fndtn.equalizer', function (e) {
+		events: function ()
+		{
+			this.S(window).off('.equalizer').on('resize.fndtn.equalizer', function (e)
+			{
 				this.reflow();
 			}.bind(this));
 		},
 
-		equalize: function (equalizer) {
+		equalize: function (equalizer)
+		{
 			var isStacked = false,
 				group = equalizer.data('equalizer'),
 				settings = equalizer.data(this.attr_name(true) + '-init') || this.settings,
@@ -51,7 +56,8 @@
 
 			if (settings.equalize_on_stack === false) {
 				firstTopOffset = vals.first().offset().top;
-				vals.each(function () {
+				vals.each(function ()
+				{
 					if ($(this).offset().top !== firstTopOffset) {
 						isStacked = true;
 						return false;
@@ -62,7 +68,8 @@
 				}
 			}
 
-			var heights = vals.map(function () {
+			var heights = vals.map(function ()
+			{
 				return $(this).outerHeight(false)
 			}).get();
 
@@ -78,10 +85,12 @@
 			equalizer.trigger('after-height-change.fndtn.equalizer');
 		},
 
-		reflow: function () {
+		reflow: function ()
+		{
 			var self = this;
 
-			this.S('[' + this.attr_name() + ']', this.scope).each(function () {
+			this.S('[' + this.attr_name() + ']', this.scope).each(function ()
+			{
 				var $eq_target = $(this),
 					media_query = $eq_target.data('equalizer-mq'),
 					ignore_media_query = true;
@@ -93,7 +102,8 @@
 					}
 				}
 
-				self.image_loaded(self.S('img', this), function () {
+				self.image_loaded(self.S('img', this), function ()
+				{
 					if (ignore_media_query || Foundation.utils[media_query]()) {
 						self.equalize($eq_target)
 					} else {

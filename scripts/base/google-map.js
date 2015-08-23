@@ -175,8 +175,10 @@ var map_options = {
  * This way information can be passed to infowindow
  */
 
-function base_geo_code_callback(map, map_bounds, information) {
-	var geo_code = function (results, status) {
+function base_geo_code_callback(map, map_bounds, information)
+{
+	var geo_code = function (results, status)
+	{
 		if (status == google.maps.GeocoderStatus.OK) {
 
 			// Marker
@@ -191,11 +193,13 @@ function base_geo_code_callback(map, map_bounds, information) {
 				maxWidth: 200
 			});
 
-			google.maps.event.addListener(marker, 'click', function () {
+			google.maps.event.addListener(marker, 'click', function ()
+			{
 				infowindow.open(map, marker);
 			});
 
-			google.maps.event.addListener(map, 'click', function () {
+			google.maps.event.addListener(map, 'click', function ()
+			{
 				infowindow.close();
 			});
 
@@ -205,12 +209,14 @@ function base_geo_code_callback(map, map_bounds, information) {
 			map.fitBounds(map_bounds);
 
 			// Change map zoom asynchronously
-			var map_zoom_listener = google.maps.event.addListenerOnce(map, 'bounds_changed', function (event) {
+			var map_zoom_listener = google.maps.event.addListenerOnce(map, 'bounds_changed', function (event)
+			{
 				if (map.getZoom() > map_options.zoom) {
 					map.setZoom(map_options.zoom);
 				}
 			});
-			setTimeout(function () {
+			setTimeout(function ()
+			{
 				google.maps.event.removeListener(map_zoom_listener)
 			}, 2000);
 
@@ -227,8 +233,8 @@ function base_geo_code_callback(map, map_bounds, information) {
  * Receives: DOM element, fallback zoom and map center
  */
 
-function base_google_map(args) {
-
+function base_google_map(args)
+{
 	var map_canvas = document.getElementById(args.element);
 	if (map_canvas) {
 

@@ -1,5 +1,6 @@
 ;
-(function ($, window, document, undefined) {
+(function ($, window, document, undefined)
+{
 	'use strict';
 
 	Foundation.libs.reveal = {
@@ -18,13 +19,17 @@
 			multiple_opened: false,
 			bg_class: 'reveal-modal-bg',
 			root_element: 'body',
-			open: function () {
+			open: function ()
+			{
 			},
-			opened: function () {
+			opened: function ()
+			{
 			},
-			close: function () {
+			close: function ()
+			{
 			},
-			closed: function () {
+			closed: function ()
+			{
 			},
 			on_ajax_error: $.noop,
 			bg: $('.reveal-modal-bg'),
@@ -42,18 +47,21 @@
 			}
 		},
 
-		init: function (scope, method, options) {
+		init: function (scope, method, options)
+		{
 			$.extend(true, this.settings, method, options);
 			this.bindings(method, options);
 		},
 
-		events: function (scope) {
+		events: function (scope)
+		{
 			var self = this,
 				S = self.S;
 
 			S(this.scope)
 				.off('.reveal')
-				.on('click.fndtn.reveal', '[' + this.add_namespace('data-reveal-id') + ']:not([disabled])', function (e) {
+				.on('click.fndtn.reveal', '[' + this.add_namespace('data-reveal-id') + ']:not([disabled])', function (e)
+				{
 					e.preventDefault();
 
 					if (!self.locked) {
@@ -73,7 +81,8 @@
 				});
 
 			S(document)
-				.on('click.fndtn.reveal', this.close_targets(), function (e) {
+				.on('click.fndtn.reveal', this.close_targets(), function (e)
+				{
 					e.preventDefault();
 					if (!self.locked) {
 						var settings = S('[' + self.attr_name() + '].open').data(self.attr_name(true) + '-init') || self.settings,
@@ -116,11 +125,13 @@
 		},
 
 		// PATCH #3: turning on key up capture only when a reveal window is open
-		key_up_on: function (scope) {
+		key_up_on: function (scope)
+		{
 			var self = this;
 
 			// PATCH #1: fixing multiple keyup event trigger from single key press
-			self.S('body').off('keyup.fndtn.reveal').on('keyup.fndtn.reveal', function (event) {
+			self.S('body').off('keyup.fndtn.reveal').on('keyup.fndtn.reveal', function (event)
+			{
 				var open_modal = self.S('[' + self.attr_name() + '].open'),
 					settings = open_modal.data(self.attr_name(true) + '-init') || self.settings;
 				// PATCH #2: making sure that the close event can be called only while unlocked,
@@ -134,12 +145,14 @@
 		},
 
 		// PATCH #3: turning on key up capture only when a reveal window is open
-		key_up_off: function (scope) {
+		key_up_off: function (scope)
+		{
 			this.S('body').off('keyup.fndtn.reveal');
 			return true;
 		},
 
-		open: function (target, ajax_settings) {
+		open: function (target, ajax_settings)
+		{
 			var self = this,
 				modal;
 
@@ -177,7 +190,8 @@
 				this.key_up_on(modal);    // PATCH #3: turning on key up capture only when a reveal window is open
 
 				// Prevent namespace event from triggering twice
-				modal.on('open.fndtn.reveal', function (e) {
+				modal.on('open.fndtn.reveal', function (e)
+				{
 					if (e.namespace !== 'fndtn.reveal') return;
 				});
 
@@ -206,7 +220,8 @@
 				} else {
 					var old_success = typeof ajax_settings.success !== 'undefined' ? ajax_settings.success : null;
 					$.extend(ajax_settings, {
-						success: function (data, textStatus, jqXHR) {
+						success: function (data, textStatus, jqXHR)
+						{
 							if ($.isFunction(old_success)) {
 								var result = old_success(data, textStatus, jqXHR);
 								if (typeof result == 'string') {
@@ -247,7 +262,8 @@
 			self.S(window).trigger('resize');
 		},
 
-		close: function (modal) {
+		close: function (modal)
+		{
 			var modal = modal && modal.length ? modal : this.S(this.scope),
 				open_modals = this.S('[' + this.attr_name() + '].open'),
 				settings = modal.data(this.attr_name(true) + '-init') || this.settings,
@@ -276,7 +292,8 @@
 			}
 		},
 
-		close_targets: function () {
+		close_targets: function ()
+		{
 			var base = '.' + this.settings.dismiss_modal_class;
 
 			if (this.settings.close_on_background_click) {
@@ -286,7 +303,8 @@
 			return base;
 		},
 
-		toggle_bg: function (modal, state) {
+		toggle_bg: function (modal, state)
+		{
 			if (this.S('.' + this.settings.bg_class).length === 0) {
 				this.settings.bg = $('<div />', {'class': this.settings.bg_class})
 					.appendTo('body').hide();
@@ -302,7 +320,8 @@
 			}
 		},
 
-		show: function (el, css) {
+		show: function (el, css)
+		{
 			// is modal
 			if (css) {
 				var settings = el.data(this.attr_name(true) + '-init') || this.settings,
@@ -312,7 +331,8 @@
 				if (el.parent(root_element).length === 0) {
 					var placeholder = el.wrap('<div style="display: none;" />').parent();
 
-					el.on('closed.fndtn.reveal.wrapped', function () {
+					el.on('closed.fndtn.reveal.wrapped', function ()
+					{
 						el.detach().appendTo(placeholder);
 						el.unwrap().unbind('closed.fndtn.reveal.wrapped');
 					});
@@ -331,10 +351,12 @@
 						opacity: 1
 					};
 
-					return setTimeout(function () {
+					return setTimeout(function ()
+					{
 						return el
 							.css(css)
-							.animate(end_css, settings.animation_speed, 'linear', function () {
+							.animate(end_css, settings.animation_speed, 'linear', function ()
+							{
 								context.locked = false;
 								el.trigger('opened.fndtn.reveal');
 							})
@@ -346,10 +368,12 @@
 					css.top = $(window).scrollTop() + el.data('css-top') + 'px';
 					var end_css = {opacity: 1};
 
-					return setTimeout(function () {
+					return setTimeout(function ()
+					{
 						return el
 							.css(css)
-							.animate(end_css, settings.animation_speed, 'linear', function () {
+							.animate(end_css, settings.animation_speed, 'linear', function ()
+							{
 								context.locked = false;
 								el.trigger('opened.fndtn.reveal');
 							})
@@ -372,15 +396,18 @@
 			return el.show();
 		},
 
-		to_back: function (el) {
+		to_back: function (el)
+		{
 			el.addClass('toback');
 		},
 
-		to_front: function (el) {
+		to_front: function (el)
+		{
 			el.removeClass('toback');
 		},
 
-		hide: function (el, css) {
+		hide: function (el, css)
+		{
 			// is modal
 			if (css) {
 				var settings = el.data(this.attr_name(true) + '-init'),
@@ -397,9 +424,11 @@
 						opacity: 0
 					};
 
-					return setTimeout(function () {
+					return setTimeout(function ()
+					{
 						return el
-							.animate(end_css, settings.animation_speed, 'linear', function () {
+							.animate(end_css, settings.animation_speed, 'linear', function ()
+							{
 								context.locked = false;
 								el.css(css).trigger('closed.fndtn.reveal');
 							})
@@ -410,9 +439,11 @@
 				if (animData.fade) {
 					var end_css = {opacity: 0};
 
-					return setTimeout(function () {
+					return setTimeout(function ()
+					{
 						return el
-							.animate(end_css, settings.animation_speed, 'linear', function () {
+							.animate(end_css, settings.animation_speed, 'linear', function ()
+							{
 								context.locked = false;
 								el.css(css).trigger('closed.fndtn.reveal');
 							})
@@ -433,7 +464,8 @@
 			return el.hide();
 		},
 
-		close_video: function (e) {
+		close_video: function (e)
+		{
 			var video = $('.flex-video', e.target),
 				iframe = $('iframe', video);
 
@@ -444,7 +476,8 @@
 			}
 		},
 
-		open_video: function (e) {
+		open_video: function (e)
+		{
 			var video = $('.flex-video', e.target),
 				iframe = video.find('iframe');
 
@@ -461,7 +494,8 @@
 			}
 		},
 
-		data_attr: function (str) {
+		data_attr: function (str)
+		{
 			if (this.namespace.length > 0) {
 				return this.namespace + '-' + str;
 			}
@@ -469,7 +503,8 @@
 			return str;
 		},
 
-		cache_offset: function (modal) {
+		cache_offset: function (modal)
+		{
 			var offset = modal.show().height() + parseInt(modal.css('top'), 10) + modal.scrollY;
 
 			modal.hide();
@@ -477,11 +512,13 @@
 			return offset;
 		},
 
-		off: function () {
+		off: function ()
+		{
 			$(this.scope).off('.fndtn.reveal');
 		},
 
-		reflow: function () {
+		reflow: function ()
+		{
 		}
 	};
 
@@ -492,7 +529,8 @@
 	 * getAnimationData('foo')        // {animate: false, pop: false, fade: false}
 	 * getAnimationData(null)         // {animate: false, pop: false, fade: false}
 	 */
-	function getAnimationData(str) {
+	function getAnimationData(str)
+	{
 		var fade = /fade/i.test(str);
 		var pop = /pop/i.test(str);
 		return {

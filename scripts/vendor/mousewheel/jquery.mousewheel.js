@@ -6,7 +6,8 @@
  * http://jquery.org/license
  */
 
-(function (factory) {
+(function (factory)
+{
 	if (typeof define === 'function' && define.amd) {
 		// AMD. Register as an anonymous module.
 		define(['jquery'], factory);
@@ -17,7 +18,8 @@
 		// Browser globals
 		factory(jQuery);
 	}
-}(function ($) {
+}(function ($)
+{
 
 	var toFix = ['wheel', 'mousewheel', 'DOMMouseScroll', 'MozMousePixelScroll'],
 		toBind = ( 'onwheel' in document || document.documentMode >= 9 ) ?
@@ -34,7 +36,8 @@
 	var special = $.event.special.mousewheel = {
 		version: '3.1.12',
 
-		setup: function () {
+		setup: function ()
+		{
 			if (this.addEventListener) {
 				for (var i = toBind.length; i;) {
 					this.addEventListener(toBind[--i], handler, false);
@@ -47,7 +50,8 @@
 			$.data(this, 'mousewheel-page-height', special.getPageHeight(this));
 		},
 
-		teardown: function () {
+		teardown: function ()
+		{
 			if (this.removeEventListener) {
 				for (var i = toBind.length; i;) {
 					this.removeEventListener(toBind[--i], handler, false);
@@ -60,7 +64,8 @@
 			$.removeData(this, 'mousewheel-page-height');
 		},
 
-		getLineHeight: function (elem) {
+		getLineHeight: function (elem)
+		{
 			var $elem = $(elem),
 				$parent = $elem['offsetParent' in $.fn ? 'offsetParent' : 'parent']();
 			if (!$parent.length) {
@@ -69,7 +74,8 @@
 			return parseInt($parent.css('fontSize'), 10) || parseInt($elem.css('fontSize'), 10) || 16;
 		},
 
-		getPageHeight: function (elem) {
+		getPageHeight: function (elem)
+		{
 			return $(elem).height();
 		},
 
@@ -80,17 +86,20 @@
 	};
 
 	$.fn.extend({
-		mousewheel: function (fn) {
+		mousewheel: function (fn)
+		{
 			return fn ? this.bind('mousewheel', fn) : this.trigger('mousewheel');
 		},
 
-		unmousewheel: function (fn) {
+		unmousewheel: function (fn)
+		{
 			return this.unbind('mousewheel', fn);
 		}
 	});
 
 
-	function handler(event) {
+	function handler(event)
+	{
 		var orgEvent = event || window.event,
 			args = slice.call(arguments, 1),
 			delta = 0,
@@ -217,11 +226,13 @@
 		return ($.event.dispatch || $.event.handle).apply(this, args);
 	}
 
-	function nullLowestDelta() {
+	function nullLowestDelta()
+	{
 		lowestDelta = null;
 	}
 
-	function shouldAdjustOldDeltas(orgEvent, absDelta) {
+	function shouldAdjustOldDeltas(orgEvent, absDelta)
+	{
 		// If this is an older event and the delta is divisable by 120,
 		// then we are assuming that the browser is treating this as an
 		// older mouse wheel event and that we should divide the deltas

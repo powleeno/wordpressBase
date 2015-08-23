@@ -1,5 +1,6 @@
 ;
-(function ($, window, document, undefined) {
+(function ($, window, document, undefined)
+{
 	'use strict';
 
 	Foundation.libs.accordion = {
@@ -12,22 +13,26 @@
 			active_class: 'active',
 			multi_expand: false,
 			toggleable: true,
-			callback: function () {
+			callback: function ()
+			{
 			}
 		},
 
-		init: function (scope, method, options) {
+		init: function (scope, method, options)
+		{
 			this.bindings(method, options);
 		},
 
-		events: function (instance) {
+		events: function (instance)
+		{
 			var self = this;
 			var S = this.S;
 			self.create(this.S(instance));
 
 			S(this.scope)
 				.off('.fndtn.accordion')
-				.on('click.fndtn.accordion', '[' + this.attr_name() + '] > dd > a, [' + this.attr_name() + '] > li > a', function (e) {
+				.on('click.fndtn.accordion', '[' + this.attr_name() + '] > dd > a, [' + this.attr_name() + '] > li > a', function (e)
+				{
 					var accordion = S(this).closest('[' + self.attr_name() + ']'),
 						groupSelector = self.attr_name() + '=' + accordion.attr(self.attr_name()),
 						settings = accordion.data(self.attr_name(true) + '-init') || self.settings,
@@ -46,7 +51,8 @@
 					if (settings.toggleable && target.is(active_content)) {
 						target.parent('dd, li').toggleClass(settings.active_class, false);
 						target.toggleClass(settings.active_class, false);
-						S(this).attr('aria-expanded', function (i, attr) {
+						S(this).attr('aria-expanded', function (i, attr)
+						{
 							return attr === 'true' ? 'false' : 'true';
 						});
 						settings.callback(target);
@@ -69,7 +75,8 @@
 				});
 		},
 
-		create: function ($instance) {
+		create: function ($instance)
+		{
 			var self = this,
 				accordion = $instance,
 				aunts = $('> .accordion-navigation', accordion),
@@ -83,10 +90,12 @@
 			}
 		},
 
-		off: function () {
+		off: function ()
+		{
 		},
 
-		reflow: function () {
+		reflow: function ()
+		{
 		}
 	};
 }(jQuery, window, window.document));

@@ -1,7 +1,7 @@
-function base_stretch_object() {
-
-	$('.str-obj').each(function () {
-
+function base_stretch_object()
+{
+	$('.str-obj').each(function ()
+	{
 		var str_obj = $(this),
 			str_con = str_obj.parent('.str-con'),
 			str_ref = str_con.parent().find('.str-ref');

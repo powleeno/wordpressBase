@@ -1,5 +1,6 @@
 ;
-(function ($, window, document, undefined) {
+(function ($, window, document, undefined)
+{
 	'use strict';
 
 	Foundation.libs.tab = {
@@ -9,7 +10,8 @@
 
 		settings: {
 			active_class: 'active',
-			callback: function () {
+			callback: function ()
+			{
 			},
 			deep_linking: false,
 			scroll_to_content: true,
@@ -18,14 +20,16 @@
 
 		default_tab_hashes: [],
 
-		init: function (scope, method, options) {
+		init: function (scope, method, options)
+		{
 			var self = this,
 				S = this.S;
 
 			// Store the default active tabs which will be referenced when the
 			// location hash is absent, as in the case of navigating the tabs and
 			// returning to the first viewing via the browser Back button.
-			S('[' + this.attr_name() + '] > .active > a', this.scope).each(function () {
+			S('[' + this.attr_name() + '] > .active > a', this.scope).each(function ()
+			{
 				self.default_tab_hashes.push(this.hash);
 			});
 
@@ -37,11 +41,13 @@
 			this.handle_location_hash_change();
 		},
 
-		events: function () {
+		events: function ()
+		{
 			var self = this,
 				S = this.S;
 
-			var usual_tab_behavior = function (e, target) {
+			var usual_tab_behavior = function (e, target)
+			{
 				var settings = S(target).closest('[' + self.attr_name() + ']').data(self.attr_name(true) + '-init');
 				if (!settings.is_hover || Modernizr.touch) {
 					e.preventDefault();
@@ -53,7 +59,8 @@
 			S(this.scope)
 				.off('.tab')
 				// Key event: focus/tab key
-				.on('keydown.fndtn.tab', '[' + this.attr_name() + '] > * > a', function (e) {
+				.on('keydown.fndtn.tab', '[' + this.attr_name() + '] > * > a', function (e)
+				{
 					var el = this;
 					var keyCode = e.keyCode || e.which;
 					// if user pressed tab key
@@ -64,12 +71,14 @@
 					}
 				})
 				// Click event: tab title
-				.on('click.fndtn.tab', '[' + this.attr_name() + '] > * > a', function (e) {
+				.on('click.fndtn.tab', '[' + this.attr_name() + '] > * > a', function (e)
+				{
 					var el = this;
 					usual_tab_behavior(e, el);
 				})
 				// Hover event: tab title
-				.on('mouseenter.fndtn.tab', '[' + this.attr_name() + '] > * > a', function (e) {
+				.on('mouseenter.fndtn.tab', '[' + this.attr_name() + '] > * > a', function (e)
+				{
 					var settings = S(this).closest('[' + self.attr_name() + ']').data(self.attr_name(true) + '-init');
 					if (settings.is_hover) {
 						self.toggle_active_tab(S(this).parent());
@@ -77,18 +86,21 @@
 				});
 
 			// Location hash change event
-			S(window).on('hashchange.fndtn.tab', function (e) {
+			S(window).on('hashchange.fndtn.tab', function (e)
+			{
 				e.preventDefault();
 				self.handle_location_hash_change();
 			});
 		},
 
-		handle_location_hash_change: function () {
+		handle_location_hash_change: function ()
+		{
 
 			var self = this,
 				S = this.S;
 
-			S('[' + this.attr_name() + ']', this.scope).each(function () {
+			S('[' + this.attr_name() + ']', this.scope).each(function ()
+			{
 				var settings = S(this).data(self.attr_name(true) + '-init');
 				if (settings.deep_linking) {
 					// Match the location hash to a label
@@ -124,7 +136,8 @@
 			});
 		},
 
-		toggle_active_tab: function (tab, location_hash) {
+		toggle_active_tab: function (tab, location_hash)
+		{
 			var self = this,
 				S = self.S,
 				tabs = tab.closest('[' + this.attr_name() + ']'),
@@ -134,7 +147,8 @@
 				target = S(target_hash),
 				siblings = tab.siblings(),
 				settings = tabs.data(this.attr_name(true) + '-init'),
-				interpret_keyup_action = function (e) {
+				interpret_keyup_action = function (e)
+				{
 					// Light modification of Heydon Pickering's Practical ARIA Examples: http://heydonworks.com/practical_aria_examples/js/a11y.js
 
 					// define current, previous and next (possible) tabs
@@ -180,7 +194,8 @@
 						.attr('aria-hidden', null);
 
 				},
-				go_to_hash = function (hash) {
+				go_to_hash = function (hash)
+				{
 					// This function allows correct behaviour of the browser's back button when deep linking is enabled. Without it
 					// the user would get continually redirected to the default hash.
 					var is_entry_location = window.location.href === self.entry_location,
@@ -236,7 +251,8 @@
 			tab_link.off('keydown').on('keydown', interpret_keyup_action);
 		},
 
-		data_attr: function (str) {
+		data_attr: function (str)
+		{
 			if (this.namespace.length > 0) {
 				return this.namespace + '-' + str;
 			}
@@ -244,10 +260,12 @@
 			return str;
 		},
 
-		off: function () {
+		off: function ()
+		{
 		},
 
-		reflow: function () {
+		reflow: function ()
+		{
 		}
 	};
 }(jQuery, window, window.document));

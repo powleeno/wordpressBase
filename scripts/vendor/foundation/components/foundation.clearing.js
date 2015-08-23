@@ -1,5 +1,6 @@
 ;
-(function ($, window, document, undefined) {
+(function ($, window, document, undefined)
+{
 	'use strict';
 
 	Foundation.libs.clearing = {
@@ -34,7 +35,8 @@
 			locked: false
 		},
 
-		init: function (scope, method, options) {
+		init: function (scope, method, options)
+		{
 			var self = this;
 			Foundation.inherit(this, 'throttle image_loaded');
 
@@ -43,13 +45,15 @@
 			if (self.S(this.scope).is('[' + this.attr_name() + ']')) {
 				this.assemble(self.S('li', this.scope));
 			} else {
-				self.S('[' + this.attr_name() + ']', this.scope).each(function () {
+				self.S('[' + this.attr_name() + ']', this.scope).each(function ()
+				{
 					self.assemble(self.S('li', this));
 				});
 			}
 		},
 
-		events: function (scope) {
+		events: function (scope)
+		{
 			var self = this,
 				S = self.S,
 				$scroll_container = $('.scroll-container');
@@ -61,7 +65,8 @@
 			S(this.scope)
 				.off('.clearing')
 				.on('click.fndtn.clearing', 'ul[' + this.attr_name() + '] li ' + this.settings.open_selectors,
-				function (e, current, target) {
+				function (e, current, target)
+				{
 					var current = current || S(this),
 						target = target || current,
 						next = current.next('li'),
@@ -90,37 +95,44 @@
 				})
 
 				.on('click.fndtn.clearing', '.clearing-main-next',
-				function (e) {
+				function (e)
+				{
 					self.nav(e, 'next')
 				})
 				.on('click.fndtn.clearing', '.clearing-main-prev',
-				function (e) {
+				function (e)
+				{
 					self.nav(e, 'prev')
 				})
 				.on('click.fndtn.clearing', this.settings.close_selectors,
-				function (e) {
+				function (e)
+				{
 					Foundation.libs.clearing.close(e, this)
 				});
 
 			$(document).on('keydown.fndtn.clearing',
-				function (e) {
+				function (e)
+				{
 					self.keydown(e)
 				});
 
 			S(window).off('.clearing').on('resize.fndtn.clearing',
-				function () {
+				function ()
+				{
 					self.resize()
 				});
 
 			this.swipe_events(scope);
 		},
 
-		swipe_events: function (scope) {
+		swipe_events: function (scope)
+		{
 			var self = this,
 				S = self.S;
 
 			S(this.scope)
-				.on('touchstart.fndtn.clearing', '.visible-img', function (e) {
+				.on('touchstart.fndtn.clearing', '.visible-img', function (e)
+				{
 					if (!e.touches) {
 						e = e.originalEvent;
 					}
@@ -135,7 +147,8 @@
 					S(this).data('swipe-transition', data);
 					e.stopPropagation();
 				})
-				.on('touchmove.fndtn.clearing', '.visible-img', function (e) {
+				.on('touchmove.fndtn.clearing', '.visible-img', function (e)
+				{
 					if (!e.touches) {
 						e = e.originalEvent;
 					}
@@ -167,13 +180,15 @@
 						self.nav(e, direction);
 					}
 				})
-				.on('touchend.fndtn.clearing', '.visible-img', function (e) {
+				.on('touchend.fndtn.clearing', '.visible-img', function (e)
+				{
 					S(this).data('swipe-transition', {});
 					e.stopPropagation();
 				});
 		},
 
-		assemble: function ($li) {
+		assemble: function ($li)
+		{
 			var $el = $li.parent();
 
 			if ($el.parent().hasClass('carousel')) {
@@ -208,7 +223,8 @@
 			holder.after(wrapper).remove();
 		},
 
-		open: function ($image, current, target) {
+		open: function ($image, current, target)
+		{
 			var self = this,
 				body = $(document.body),
 				root = target.closest('.clearing-assembled'),
@@ -220,17 +236,22 @@
 				loaded = {};
 
 			// Event to disable scrolling on touch devices when Clearing is activated
-			$('body').on('touchmove', function (e) {
+			$('body').on('touchmove', function (e)
+			{
 				e.preventDefault();
 			});
 
-			image.error(function () {
+			image.error(function ()
+			{
 				error = true;
 			});
 
-			function startLoad() {
-				setTimeout(function () {
-					this.image_loaded(image, function () {
+			function startLoad()
+			{
+				setTimeout(function ()
+				{
+					this.image_loaded(image, function ()
+					{
 						if (image.outerWidth() === 1 && !error) {
 							startLoad.call(this);
 						} else {
@@ -240,7 +261,8 @@
 				}.bind(this), 100);
 			}
 
-			function cb(image) {
+			function cb(image)
+			{
 				var $image = $(image);
 				$image.css('visibility', 'visible');
 				$image.trigger('imageVisible');
@@ -252,7 +274,8 @@
 				this.fix_height(target)
 					.caption(self.S('.clearing-caption', visible_image), self.S('img', target))
 					.center_and_label(image, label)
-					.shift(current, target, function () {
+					.shift(current, target, function ()
+					{
 						target.closest('li').siblings().removeClass('visible');
 						target.closest('li').addClass('visible');
 					});
@@ -278,10 +301,12 @@
 			}
 		},
 
-		close: function (e, el) {
+		close: function (e, el)
+		{
 			e.preventDefault();
 
-			var root = (function (target) {
+			var root = (function (target)
+				{
 					if (/blackout/.test(target.selector)) {
 						return target;
 					} else {
@@ -310,11 +335,13 @@
 			return false;
 		},
 
-		is_open: function (current) {
+		is_open: function (current)
+		{
 			return current.parent().prop('style').length > 0;
 		},
 
-		keydown: function (e) {
+		keydown: function (e)
+		{
 			var clearing = $('.clearing-blackout ul[' + this.attr_name() + ']'),
 				NEXT_KEY = this.rtl ? 37 : 39,
 				PREV_KEY = this.rtl ? 39 : 37,
@@ -331,14 +358,16 @@
 			}
 		},
 
-		nav: function (e, direction) {
+		nav: function (e, direction)
+		{
 			var clearing = $('ul[' + this.attr_name() + ']', '.clearing-blackout');
 
 			e.preventDefault();
 			this.go(clearing, direction);
 		},
 
-		resize: function () {
+		resize: function ()
+		{
 			var image = $('img', '.clearing-blackout .visible-img'),
 				label = $('.clearing-touch-label', '.clearing-blackout');
 
@@ -349,11 +378,13 @@
 		},
 
 		// visual adjustments
-		fix_height: function (target) {
+		fix_height: function (target)
+		{
 			var lis = target.parent().children(),
 				self = this;
 
-			lis.each(function () {
+			lis.each(function ()
+			{
 				var li = self.S(this),
 					image = li.find('img');
 
@@ -367,7 +398,8 @@
 			return this;
 		},
 
-		update_paddles: function (target) {
+		update_paddles: function (target)
+		{
 			target = target.closest('li');
 			var visible_image = target
 				.closest('.carousel')
@@ -386,7 +418,8 @@
 			}
 		},
 
-		center_and_label: function (target, label) {
+		center_and_label: function (target, label)
+		{
 			if (!this.rtl && label.length > 0) {
 				label.css({
 					marginLeft: -(label.outerWidth() / 2),
@@ -405,7 +438,8 @@
 
 		// image loading and preloading
 
-		load: function ($image) {
+		load: function ($image)
+		{
 			var href,
 				interchange,
 				closest_a;
@@ -427,13 +461,15 @@
 			}
 		},
 
-		preload: function ($image) {
+		preload: function ($image)
+		{
 			this
 				.img($image.closest('li').next(), 'next')
 				.img($image.closest('li').prev(), 'prev');
 		},
 
-		img: function (img, sibling_type) {
+		img: function (img, sibling_type)
+		{
 			if (img.length) {
 				var preload_img = $('.clearing-preload-' + sibling_type),
 					new_a = this.S('a', img),
@@ -462,7 +498,8 @@
 
 		// image caption
 
-		caption: function (container, $image) {
+		caption: function (container, $image)
+		{
 			var caption = $image.attr('data-caption');
 
 			if (caption) {
@@ -479,7 +516,8 @@
 
 		// directional methods
 
-		go: function ($ul, direction) {
+		go: function ($ul, direction)
+		{
 			var current = this.S('.visible', $ul),
 				target = current[direction]();
 
@@ -495,7 +533,8 @@
 			}
 		},
 
-		shift: function (current, target, callback) {
+		shift: function (current, target, callback)
+		{
 			var clearing = target.parent(),
 				old_index = this.settings.prev_index || target.index(),
 				direction = this.direction(clearing, current, target),
@@ -537,7 +576,8 @@
 			callback();
 		},
 
-		direction: function ($el, current, target) {
+		direction: function ($el, current, target)
+		{
 			var lis = this.S('li', $el),
 				li_width = lis.outerWidth() + (lis.outerWidth() / 4),
 				up_count = Math.floor(this.S('.clearing-container').outerWidth() / li_width) - 1,
@@ -563,7 +603,8 @@
 			return response;
 		},
 
-		adjacent: function (current_index, target_index) {
+		adjacent: function (current_index, target_index)
+		{
 			for (var i = target_index + 1; i >= target_index - 1; i--) {
 				if (i === current_index) {
 					return true;
@@ -574,24 +615,29 @@
 
 		// lock management
 
-		lock: function () {
+		lock: function ()
+		{
 			this.settings.locked = true;
 		},
 
-		unlock: function () {
+		unlock: function ()
+		{
 			this.settings.locked = false;
 		},
 
-		locked: function () {
+		locked: function ()
+		{
 			return this.settings.locked;
 		},
 
-		off: function () {
+		off: function ()
+		{
 			this.S(this.scope).off('.fndtn.clearing');
 			this.S(window).off('.fndtn.clearing');
 		},
 
-		reflow: function () {
+		reflow: function ()
+		{
 			this.init();
 		}
 	};

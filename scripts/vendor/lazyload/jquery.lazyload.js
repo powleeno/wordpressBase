@@ -13,10 +13,12 @@
  *
  */
 
-(function ($, window, document, undefined) {
+(function ($, window, document, undefined)
+{
 	var $window = $(window);
 
-	$.fn.lazyload = function (options) {
+	$.fn.lazyload = function (options)
+	{
 		var elements = this;
 		var $container;
 		var settings = {
@@ -32,10 +34,12 @@
 			placeholder: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAANSURBVBhXYzh8+PB/AAffA0nNPuCLAAAAAElFTkSuQmCC"
 		};
 
-		function update() {
+		function update()
+		{
 			var counter = 0;
 
-			elements.each(function () {
+			elements.each(function ()
+			{
 				var $this = $(this);
 				if (settings.skip_invisible && !$this.is(":visible")) {
 					return;
@@ -76,12 +80,14 @@
 
 		/* Fire one scroll event per scroll. Not one scroll event per image. */
 		if (0 === settings.event.indexOf("scroll")) {
-			$container.bind(settings.event, function () {
+			$container.bind(settings.event, function ()
+			{
 				return update();
 			});
 		}
 
-		this.each(function () {
+		this.each(function ()
+		{
 			var self = this;
 			var $self = $(self);
 
@@ -95,14 +101,16 @@
 			}
 
 			/* When appear is triggered load original image. */
-			$self.one("appear", function () {
+			$self.one("appear", function ()
+			{
 				if (!this.loaded) {
 					if (settings.appear) {
 						var elements_left = elements.length;
 						settings.appear.call(self, elements_left, settings);
 					}
 					$("<img />")
-						.bind("load", function () {
+						.bind("load", function ()
+						{
 
 							var original = $self.attr("data-" + settings.data_attribute);
 							$self.hide();
@@ -116,7 +124,8 @@
 							self.loaded = true;
 
 							/* Remove image from array so it is not looped next time. */
-							var temp = $.grep(elements, function (element) {
+							var temp = $.grep(elements, function (element)
+							{
 								return !element.loaded;
 							});
 							elements = $(temp);
@@ -133,7 +142,8 @@
 			/* When wanted event is triggered load original image */
 			/* by triggering appear.                              */
 			if (0 !== settings.event.indexOf("scroll")) {
-				$self.bind(settings.event, function () {
+				$self.bind(settings.event, function ()
+				{
 					if (!self.loaded) {
 						$self.trigger("appear");
 					}
@@ -142,16 +152,19 @@
 		});
 
 		/* Check if something appears when window is resized. */
-		$window.bind("resize", function () {
+		$window.bind("resize", function ()
+		{
 			update();
 		});
 
 		/* With IOS5 force loading images when navigating with back button. */
 		/* Non optimal workaround. */
 		if ((/(?:iphone|ipod|ipad).*os 5/gi).test(navigator.appVersion)) {
-			$window.bind("pageshow", function (event) {
+			$window.bind("pageshow", function (event)
+			{
 				if (event.originalEvent && event.originalEvent.persisted) {
-					elements.each(function () {
+					elements.each(function ()
+					{
 						$(this).trigger("appear");
 					});
 				}
@@ -159,7 +172,8 @@
 		}
 
 		/* Force initial check if images should appear. */
-		$(document).ready(function () {
+		$(document).ready(function ()
+		{
 			update();
 		});
 
@@ -169,7 +183,8 @@
 	/* Convenience methods in jQuery namespace.           */
 	/* Use as  $.belowthefold(element, {threshold : 100, container : window}) */
 
-	$.belowthefold = function (element, settings) {
+	$.belowthefold = function (element, settings)
+	{
 		var fold;
 
 		if (settings.container === undefined || settings.container === window) {
@@ -181,7 +196,8 @@
 		return fold <= $(element).offset().top - settings.threshold;
 	};
 
-	$.rightoffold = function (element, settings) {
+	$.rightoffold = function (element, settings)
+	{
 		var fold;
 
 		if (settings.container === undefined || settings.container === window) {
@@ -193,7 +209,8 @@
 		return fold <= $(element).offset().left - settings.threshold;
 	};
 
-	$.abovethetop = function (element, settings) {
+	$.abovethetop = function (element, settings)
+	{
 		var fold;
 
 		if (settings.container === undefined || settings.container === window) {
@@ -205,7 +222,8 @@
 		return fold >= $(element).offset().top + settings.threshold + $(element).height();
 	};
 
-	$.leftofbegin = function (element, settings) {
+	$.leftofbegin = function (element, settings)
+	{
 		var fold;
 
 		if (settings.container === undefined || settings.container === window) {
@@ -217,7 +235,8 @@
 		return fold >= $(element).offset().left + settings.threshold + $(element).width();
 	};
 
-	$.inviewport = function (element, settings) {
+	$.inviewport = function (element, settings)
+	{
 		return !$.rightoffold(element, settings) && !$.leftofbegin(element, settings) && !$.belowthefold(element, settings) && !$.abovethetop(element, settings);
 	};
 
@@ -226,29 +245,37 @@
 	/* $("img").filter(":below-the-fold").something() which is faster */
 
 	$.extend($.expr[":"], {
-		"below-the-fold": function (a) {
+		"below-the-fold": function (a)
+		{
 			return $.belowthefold(a, {threshold: 0});
 		},
-		"above-the-top": function (a) {
+		"above-the-top": function (a)
+		{
 			return !$.belowthefold(a, {threshold: 0});
 		},
-		"right-of-screen": function (a) {
+		"right-of-screen": function (a)
+		{
 			return $.rightoffold(a, {threshold: 0});
 		},
-		"left-of-screen": function (a) {
+		"left-of-screen": function (a)
+		{
 			return !$.rightoffold(a, {threshold: 0});
 		},
-		"in-viewport": function (a) {
+		"in-viewport": function (a)
+		{
 			return $.inviewport(a, {threshold: 0});
 		},
 		/* Maintain BC for couple of versions. */
-		"above-the-fold": function (a) {
+		"above-the-fold": function (a)
+		{
 			return !$.belowthefold(a, {threshold: 0});
 		},
-		"right-of-fold": function (a) {
+		"right-of-fold": function (a)
+		{
 			return $.rightoffold(a, {threshold: 0});
 		},
-		"left-of-fold": function (a) {
+		"left-of-fold": function (a)
+		{
 			return !$.rightoffold(a, {threshold: 0});
 		}
 	});

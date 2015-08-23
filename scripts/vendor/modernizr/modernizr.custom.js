@@ -4,7 +4,8 @@
 ;
 
 
-window.Modernizr = (function (window, document, undefined) {
+window.Modernizr = (function (window, document, undefined)
+{
 
 	var version = '2.8.3',
 
@@ -46,7 +47,8 @@ window.Modernizr = (function (window, document, undefined) {
 		featureName,
 
 
-		injectElementWithStyles = function (rule, callback, nodes, testnames) {
+		injectElementWithStyles = function (rule, callback, nodes, testnames)
+		{
 
 			var style, ret, node, docOverflow,
 				div = document.createElement('div'),
@@ -85,7 +87,8 @@ window.Modernizr = (function (window, document, undefined) {
 
 		},
 
-		testMediaQuery = function (mq) {
+		testMediaQuery = function (mq)
+		{
 
 			var matchMedia = window.matchMedia || window.msMatchMedia;
 			if (matchMedia) {
@@ -94,7 +97,8 @@ window.Modernizr = (function (window, document, undefined) {
 
 			var bool;
 
-			injectElementWithStyles('@media ' + mq + ' { #' + mod + ' { position: absolute; } }', function (node) {
+			injectElementWithStyles('@media ' + mq + ' { #' + mod + ' { position: absolute; } }', function (node)
+			{
 				bool = (window.getComputedStyle ?
 					getComputedStyle(node, null) :
 					node.currentStyle)['position'] == 'absolute';
@@ -106,19 +110,22 @@ window.Modernizr = (function (window, document, undefined) {
 		_hasOwnProperty = ({}).hasOwnProperty, hasOwnProp;
 
 	if (!is(_hasOwnProperty, 'undefined') && !is(_hasOwnProperty.call, 'undefined')) {
-		hasOwnProp = function (object, property) {
+		hasOwnProp = function (object, property)
+		{
 			return _hasOwnProperty.call(object, property);
 		};
 	}
 	else {
-		hasOwnProp = function (object, property) {
+		hasOwnProp = function (object, property)
+		{
 			return ((property in object) && is(object.constructor.prototype[property], 'undefined'));
 		};
 	}
 
 
 	if (!Function.prototype.bind) {
-		Function.prototype.bind = function bind(that) {
+		Function.prototype.bind = function bind(that)
+		{
 
 			var target = this;
 
@@ -127,11 +134,13 @@ window.Modernizr = (function (window, document, undefined) {
 			}
 
 			var args = slice.call(arguments, 1),
-				bound = function () {
+				bound = function ()
+				{
 
 					if (this instanceof bound) {
 
-						var F = function () {
+						var F = function ()
+						{
 						};
 						F.prototype = target.prototype;
 						var self = new F();
@@ -160,23 +169,28 @@ window.Modernizr = (function (window, document, undefined) {
 		};
 	}
 
-	function setCss(str) {
+	function setCss(str)
+	{
 		mStyle.cssText = str;
 	}
 
-	function setCssAll(str1, str2) {
+	function setCssAll(str1, str2)
+	{
 		return setCss(prefixes.join(str1 + ';') + ( str2 || '' ));
 	}
 
-	function is(obj, type) {
+	function is(obj, type)
+	{
 		return typeof obj === type;
 	}
 
-	function contains(str, substr) {
+	function contains(str, substr)
+	{
 		return !!~('' + str).indexOf(substr);
 	}
 
-	function testProps(props, prefixed) {
+	function testProps(props, prefixed)
+	{
 		for (var i in props) {
 			var prop = props[i];
 			if (!contains(prop, "-") && mStyle[prop] !== undefined) {
@@ -186,7 +200,8 @@ window.Modernizr = (function (window, document, undefined) {
 		return false;
 	}
 
-	function testDOMProps(props, obj, elem) {
+	function testDOMProps(props, obj, elem)
+	{
 		for (var i in props) {
 			var item = obj[props[i]];
 			if (item !== undefined) {
@@ -203,7 +218,8 @@ window.Modernizr = (function (window, document, undefined) {
 		return false;
 	}
 
-	function testPropsAll(prop, prefixed, elem) {
+	function testPropsAll(prop, prefixed, elem)
+	{
 
 		var ucProp = prop.charAt(0).toUpperCase() + prop.slice(1),
 			props = (prop + ' ' + cssomPrefixes.join(ucProp + ' ') + ucProp).split(' ');
@@ -217,73 +233,87 @@ window.Modernizr = (function (window, document, undefined) {
 		}
 	}
 
-	tests['flexbox'] = function () {
+	tests['flexbox'] = function ()
+	{
 		return testPropsAll('flexWrap');
 	};
 
 
-	tests['flexboxlegacy'] = function () {
+	tests['flexboxlegacy'] = function ()
+	{
 		return testPropsAll('boxDirection');
 	};
 
 
-	tests['rgba'] = function () {
+	tests['rgba'] = function ()
+	{
 		setCss('background-color:rgba(150,255,150,.5)');
 
 		return contains(mStyle.backgroundColor, 'rgba');
 	};
 
-	tests['hsla'] = function () {
+	tests['hsla'] = function ()
+	{
 		setCss('background-color:hsla(120,40%,100%,.5)');
 
 		return contains(mStyle.backgroundColor, 'rgba') || contains(mStyle.backgroundColor, 'hsla');
 	};
 
-	tests['multiplebgs'] = function () {
+	tests['multiplebgs'] = function ()
+	{
 		setCss('background:url(https://),url(https://),red url(https://)');
 
 		return (/(url\s*\(.*?){3}/).test(mStyle.background);
 	};
-	tests['backgroundsize'] = function () {
+	tests['backgroundsize'] = function ()
+	{
 		return testPropsAll('backgroundSize');
 	};
 
-	tests['borderimage'] = function () {
+	tests['borderimage'] = function ()
+	{
 		return testPropsAll('borderImage');
 	};
 
 
-	tests['borderradius'] = function () {
+	tests['borderradius'] = function ()
+	{
 		return testPropsAll('borderRadius');
 	};
 
-	tests['boxshadow'] = function () {
+	tests['boxshadow'] = function ()
+	{
 		return testPropsAll('boxShadow');
 	};
 
-	tests['textshadow'] = function () {
+	tests['textshadow'] = function ()
+	{
 		return document.createElement('div').style.textShadow === '';
 	};
 
 
-	tests['opacity'] = function () {
+	tests['opacity'] = function ()
+	{
 		setCssAll('opacity:.55');
 
 		return (/^0.55$/).test(mStyle.opacity);
 	};
 
 
-	tests['cssanimations'] = function () {
+	tests['cssanimations'] = function ()
+	{
 		return testPropsAll('animationName');
 	};
 
 
-	tests['csscolumns'] = function () {
+	tests['csscolumns'] = function ()
+	{
 		return testPropsAll('columnCount');
 	};
 
 
-	tests['cssgradients'] = function () {
+	tests['cssgradients'] = function ()
+	{
 		var str1 = 'background-image:',
 			str2 = 'gradient(linear,left top,right bottom,from(#9f9),to(white));',
 			str3 = 'linear-gradient(left top,#9f9, white);';
@@ -297,23 +327,27 @@ window.Modernizr = (function (window, document, undefined) {
 	};
 
 
-	tests['cssreflections'] = function () {
+	tests['cssreflections'] = function ()
+	{
 		return testPropsAll('boxReflect');
 	};
 
 
-	tests['csstransforms'] = function () {
+	tests['csstransforms'] = function ()
+	{
 		return !!testPropsAll('transform');
 	};
 
 
-	tests['csstransforms3d'] = function () {
+	tests['csstransforms3d'] = function ()
+	{
 
 		var ret = !!testPropsAll('perspective');
 
 		if (ret && 'webkitPerspective' in docElement.style) {
 
-			injectElementWithStyles('@media (transform-3d),(-webkit-transform-3d){#modernizr{left:9px;position:absolute;height:3px;}}', function (node, rule) {
+			injectElementWithStyles('@media (transform-3d),(-webkit-transform-3d){#modernizr{left:9px;position:absolute;height:3px;}}', function (node, rule)
+			{
 				ret = node.offsetLeft === 9 && node.offsetHeight === 3;
 			});
 		}
@@ -321,15 +355,18 @@ window.Modernizr = (function (window, document, undefined) {
 	};
 
 
-	tests['csstransitions'] = function () {
+	tests['csstransitions'] = function ()
+	{
 		return testPropsAll('transition');
 	};
 
 
-	tests['fontface'] = function () {
+	tests['fontface'] = function ()
+	{
 		var bool;
 
-		injectElementWithStyles('@font-face {font-family:"font";src:url("https://")}', function (node, rule) {
+		injectElementWithStyles('@font-face {font-family:"font";src:url("https://")}', function (node, rule)
+		{
 			var style = document.getElementById('smodernizr'),
 				sheet = style.sheet || style.styleSheet,
 				cssText = sheet ? (sheet.cssRules && sheet.cssRules[0] ? sheet.cssRules[0].cssText : sheet.cssText || '') : '';
@@ -340,27 +377,32 @@ window.Modernizr = (function (window, document, undefined) {
 		return bool;
 	};
 
-	tests['generatedcontent'] = function () {
+	tests['generatedcontent'] = function ()
+	{
 		var bool;
 
-		injectElementWithStyles(['#', mod, '{font:0/0 a}#', mod, ':after{content:"', smile, '";visibility:hidden;font:3px/1 a}'].join(''), function (node) {
+		injectElementWithStyles(['#', mod, '{font:0/0 a}#', mod, ':after{content:"', smile, '";visibility:hidden;font:3px/1 a}'].join(''), function (node)
+		{
 			bool = node.offsetHeight >= 3;
 		});
 
 		return bool;
 	};
-	tests['svg'] = function () {
+	tests['svg'] = function ()
+	{
 		return !!document.createElementNS && !!document.createElementNS(ns.svg, 'svg').createSVGRect;
 	};
 
-	tests['inlinesvg'] = function () {
+	tests['inlinesvg'] = function ()
+	{
 		var div = document.createElement('div');
 		div.innerHTML = '<svg/>';
 		return (div.firstChild && div.firstChild.namespaceURI) == ns.svg;
 	};
 
 
-	tests['svgclippaths'] = function () {
+	tests['svgclippaths'] = function ()
+	{
 		return !!document.createElementNS && /SVGClipPath/.test(toString.call(document.createElementNS(ns.svg, 'clipPath')));
 	};
 
@@ -374,7 +416,8 @@ window.Modernizr = (function (window, document, undefined) {
 	}
 
 
-	Modernizr.addTest = function (feature, test) {
+	Modernizr.addTest = function (feature, test)
+	{
 		if (typeof feature == 'object') {
 			for (var key in feature) {
 				if (hasOwnProp(feature, key)) {
@@ -406,7 +449,8 @@ window.Modernizr = (function (window, document, undefined) {
 	modElem = inputElem = null;
 
 	;
-	(function (window, document) {
+	(function (window, document)
+	{
 		var version = '3.7.0';
 
 		var options = window.html5 || {};
@@ -425,13 +469,15 @@ window.Modernizr = (function (window, document, undefined) {
 
 		var supportsUnknownElements;
 
-		(function () {
+		(function ()
+		{
 			try {
 				var a = document.createElement('a');
 				a.innerHTML = '<xyz></xyz>';
 				supportsHtml5Styles = ('hidden' in a);
 
-				supportsUnknownElements = a.childNodes.length == 1 || (function () {
+				supportsUnknownElements = a.childNodes.length == 1 || (function ()
+				{
 					(document.createElement)('a');
 					var frag = document.createDocumentFragment();
 					return (
@@ -447,7 +493,8 @@ window.Modernizr = (function (window, document, undefined) {
 
 		}());
 
-		function addStyleSheet(ownerDocument, cssText) {
+		function addStyleSheet(ownerDocument, cssText)
+		{
 			var p = ownerDocument.createElement('p'),
 				parent = ownerDocument.getElementsByTagName('head')[0] || ownerDocument.documentElement;
 
@@ -455,12 +502,14 @@ window.Modernizr = (function (window, document, undefined) {
 			return parent.insertBefore(p.lastChild, parent.firstChild);
 		}
 
-		function getElements() {
+		function getElements()
+		{
 			var elements = html5.elements;
 			return typeof elements == 'string' ? elements.split(' ') : elements;
 		}
 
-		function getExpandoData(ownerDocument) {
+		function getExpandoData(ownerDocument)
+		{
 			var data = expandoData[ownerDocument[expando]];
 			if (!data) {
 				data = {};
@@ -471,7 +520,8 @@ window.Modernizr = (function (window, document, undefined) {
 			return data;
 		}
 
-		function createElement(nodeName, ownerDocument, data) {
+		function createElement(nodeName, ownerDocument, data)
+		{
 			if (!ownerDocument) {
 				ownerDocument = document;
 			}
@@ -494,7 +544,8 @@ window.Modernizr = (function (window, document, undefined) {
 			return node.canHaveChildren && !reSkip.test(nodeName) && !node.tagUrn ? data.frag.appendChild(node) : node;
 		}
 
-		function createDocumentFragment(ownerDocument, data) {
+		function createDocumentFragment(ownerDocument, data)
+		{
 			if (!ownerDocument) {
 				ownerDocument = document;
 			}
@@ -512,7 +563,8 @@ window.Modernizr = (function (window, document, undefined) {
 			return clone;
 		}
 
-		function shivMethods(ownerDocument, data) {
+		function shivMethods(ownerDocument, data)
+		{
 			if (!data.cache) {
 				data.cache = {};
 				data.createElem = ownerDocument.createElement;
@@ -521,7 +573,8 @@ window.Modernizr = (function (window, document, undefined) {
 			}
 
 
-			ownerDocument.createElement = function (nodeName) {
+			ownerDocument.createElement = function (nodeName)
+			{
 				if (!html5.shivMethods) {
 					return data.createElem(nodeName);
 				}
@@ -531,7 +584,8 @@ window.Modernizr = (function (window, document, undefined) {
 			ownerDocument.createDocumentFragment = Function('h,f', 'return function(){' +
 				'var n=f.cloneNode(),c=n.createElement;' +
 				'h.shivMethods&&(' +
-				getElements().join().replace(/[\w\-]+/g, function (nodeName) {
+				getElements().join().replace(/[\w\-]+/g, function (nodeName)
+				{
 					data.createElem(nodeName);
 					data.frag.createElement(nodeName);
 					return 'c("' + nodeName + '")';
@@ -540,7 +594,8 @@ window.Modernizr = (function (window, document, undefined) {
 			)(html5, data.frag);
 		}
 
-		function shivDocument(ownerDocument) {
+		function shivDocument(ownerDocument)
+		{
 			if (!ownerDocument) {
 				ownerDocument = document;
 			}
@@ -595,7 +650,8 @@ window.Modernizr = (function (window, document, undefined) {
 	Modernizr.mq = testMediaQuery;
 
 
-	Modernizr.testProp = function (prop) {
+	Modernizr.testProp = function (prop)
+	{
 		return testProps([prop]);
 	};
 
@@ -611,33 +667,43 @@ window.Modernizr = (function (window, document, undefined) {
 
 })(this, this.document);
 /*yepnope1.5.4|WTFPL*/
-(function (a, b, c) {
-	function d(a) {
+(function (a, b, c)
+{
+	function d(a)
+	{
 		return "[object Function]" == o.call(a)
 	}
 
-	function e(a) {
+	function e(a)
+	{
 		return "string" == typeof a
 	}
 
-	function f() {
+	function f()
+	{
 	}
 
-	function g(a) {
+	function g(a)
+	{
 		return !a || "loaded" == a || "complete" == a || "uninitialized" == a
 	}
 
-	function h() {
+	function h()
+	{
 		var a = p.shift();
-		q = 1, a ? a.t ? m(function () {
+		q = 1, a ? a.t ? m(function ()
+		{
 			("c" == a.t ? B.injectCss : B.injectJs)(a.s, 0, a.a, a.x, a.e, 1)
 		}, 0) : (a(), h()) : q = 0
 	}
 
-	function i(a, c, d, e, f, i, j) {
-		function k(b) {
+	function i(a, c, d, e, f, i, j)
+	{
+		function k(b)
+		{
 			if (!o && g(l.readyState) && (u.r = o = 1, !q && h(), l.onload = l.onreadystatechange = null, b)) {
-				"img" != a && m(function () {
+				"img" != a && m(function ()
+				{
 					t.removeChild(l)
 				}, 50);
 				for (var d in y[c])y[c].hasOwnProperty(d) && y[c][d].onload()
@@ -645,29 +711,36 @@ window.Modernizr = (function (window, document, undefined) {
 		}
 
 		var j = j || B.errorTimeout, l = b.createElement(a), o = 0, r = 0, u = {t: d, s: c, e: f, a: i, x: j};
-		1 === y[c] && (r = 1, y[c] = []), "object" == a ? l.data = c : (l.src = c, l.type = a), l.width = l.height = "0", l.onerror = l.onload = l.onreadystatechange = function () {
+		1 === y[c] && (r = 1, y[c] = []), "object" == a ? l.data = c : (l.src = c, l.type = a), l.width = l.height = "0", l.onerror = l.onload = l.onreadystatechange = function ()
+		{
 			k.call(this, r)
 		}, p.splice(e, 0, u), "img" != a && (r || 2 === y[c] ? (t.insertBefore(l, s ? null : n), m(k, j)) : y[c].push(l))
 	}
 
-	function j(a, b, c, d, f) {
+	function j(a, b, c, d, f)
+	{
 		return q = 0, b = b || "j", e(a) ? i("c" == b ? v : u, a, b, this.i++, c, d, f) : (p.splice(this.i++, 0, a), 1 == p.length && h()), this
 	}
 
-	function k() {
+	function k()
+	{
 		var a = B;
 		return a.loader = {load: j, i: 0}, a
 	}
 
-	var l = b.documentElement, m = a.setTimeout, n = b.getElementsByTagName("script")[0], o = {}.toString, p = [], q = 0, r = "MozAppearance"in l.style, s = r && !!b.createRange().compareNode, t = s ? l : n.parentNode, l = a.opera && "[object Opera]" == o.call(a.opera), l = !!b.attachEvent && !l, u = r ? "object" : l ? "script" : "img", v = l ? "script" : u, w = Array.isArray || function (a) {
+	var l = b.documentElement, m = a.setTimeout, n = b.getElementsByTagName("script")[0], o = {}.toString, p = [], q = 0, r = "MozAppearance"in l.style, s = r && !!b.createRange().compareNode, t = s ? l : n.parentNode, l = a.opera && "[object Opera]" == o.call(a.opera), l = !!b.attachEvent && !l, u = r ? "object" : l ? "script" : "img", v = l ? "script" : u, w = Array.isArray || function (a)
+		{
 			return "[object Array]" == o.call(a)
 		}, x = [], y = {}, z = {
-		timeout: function (a, b) {
+		timeout: function (a, b)
+		{
 			return b.length && (a.timeout = b[0]), a
 		}
 	}, A, B;
-	B = function (a) {
-		function b(a) {
+	B = function (a)
+	{
+		function b(a)
+		{
 			var a = a.split("!"), b = x.length, c = a.pop(), d = a.length, c = {
 				url: c,
 				origUrl: c,
@@ -678,28 +751,37 @@ window.Modernizr = (function (window, document, undefined) {
 			return c
 		}
 
-		function g(a, e, f, g, h) {
+		function g(a, e, f, g, h)
+		{
 			var i = b(a), j = i.autoCallback;
-			i.url.split(".").pop().split("?").shift(), i.bypass || (e && (e = d(e) ? e : e[a] || e[g] || e[a.split("/").pop().split("?")[0]]), i.instead ? i.instead(a, e, f, g, h) : (y[i.url] ? i.noexec = !0 : y[i.url] = 1, f.load(i.url, i.forceCSS || !i.forceJS && "css" == i.url.split(".").pop().split("?").shift() ? "c" : c, i.noexec, i.attrs, i.timeout), (d(e) || d(j)) && f.load(function () {
+			i.url.split(".").pop().split("?").shift(), i.bypass || (e && (e = d(e) ? e : e[a] || e[g] || e[a.split("/").pop().split("?")[0]]), i.instead ? i.instead(a, e, f, g, h) : (y[i.url] ? i.noexec = !0 : y[i.url] = 1, f.load(i.url, i.forceCSS || !i.forceJS && "css" == i.url.split(".").pop().split("?").shift() ? "c" : c, i.noexec, i.attrs, i.timeout), (d(e) || d(j)) && f.load(function ()
+			{
 				k(), e && e(i.origUrl, h, g), j && j(i.origUrl, h, g), y[i.url] = 2
 			})))
 		}
 
-		function h(a, b) {
-			function c(a, c) {
+		function h(a, b)
+		{
+			function c(a, c)
+			{
 				if (a) {
-					if (e(a))c || (j = function () {
+					if (e(a))c || (j = function ()
+					{
 						var a = [].slice.call(arguments);
 						k.apply(this, a), l()
-					}), g(a, j, b, 0, h); else if (Object(a) === a)for (n in m = function () {
+					}), g(a, j, b, 0, h); else if (Object(a) === a)for (n in m = function ()
+					{
 						var b = 0, c;
 						for (c in a)a.hasOwnProperty(c) && b++;
 						return b
-					}(), a)a.hasOwnProperty(n) && (!c && !--m && (d(j) ? j = function () {
+					}(), a)a.hasOwnProperty(n) && (!c && !--m && (d(j) ? j = function ()
+					{
 						var a = [].slice.call(arguments);
 						k.apply(this, a), l()
-					} : j[n] = function (a) {
-						return function () {
+					} : j[n] = function (a)
+					{
+						return function ()
+						{
 							var b = [].slice.call(arguments);
 							a && a.apply(this, b), l()
 						}
@@ -713,29 +795,37 @@ window.Modernizr = (function (window, document, undefined) {
 
 		var i, j, l = this.yepnope.loader;
 		if (e(a))g(a, 0, l, 0); else if (w(a))for (i = 0; i < a.length; i++)j = a[i], e(j) ? g(j, 0, l, 0) : w(j) ? B(j) : Object(j) === j && h(j, l); else Object(a) === a && h(a, l)
-	}, B.addPrefix = function (a, b) {
+	}, B.addPrefix = function (a, b)
+	{
 		z[a] = b
-	}, B.addFilter = function (a) {
+	}, B.addFilter = function (a)
+	{
 		x.push(a)
-	}, B.errorTimeout = 1e4, null == b.readyState && b.addEventListener && (b.readyState = "loading", b.addEventListener("DOMContentLoaded", A = function () {
+	}, B.errorTimeout = 1e4, null == b.readyState && b.addEventListener && (b.readyState = "loading", b.addEventListener("DOMContentLoaded", A = function ()
+	{
 		b.removeEventListener("DOMContentLoaded", A, 0), b.readyState = "complete"
-	}, 0)), a.yepnope = k(), a.yepnope.executeStack = h, a.yepnope.injectJs = function (a, c, d, e, i, j) {
+	}, 0)), a.yepnope = k(), a.yepnope.executeStack = h, a.yepnope.injectJs = function (a, c, d, e, i, j)
+	{
 		var k = b.createElement("script"), l, o, e = e || B.errorTimeout;
 		k.src = a;
 		for (o in d)k.setAttribute(o, d[o]);
-		c = j ? h : c || f, k.onreadystatechange = k.onload = function () {
+		c = j ? h : c || f, k.onreadystatechange = k.onload = function ()
+		{
 			!l && g(k.readyState) && (l = 1, c(), k.onload = k.onreadystatechange = null)
-		}, m(function () {
+		}, m(function ()
+		{
 			l || (l = 1, c(1))
 		}, e), i ? k.onload() : n.parentNode.insertBefore(k, n)
-	}, a.yepnope.injectCss = function (a, c, d, e, g, i) {
+	}, a.yepnope.injectCss = function (a, c, d, e, g, i)
+	{
 		var e = b.createElement("link"), j, c = i ? h : c || f;
 		e.href = a, e.rel = "stylesheet", e.type = "text/css";
 		for (j in d)e.setAttribute(j, d[j]);
 		g || (n.parentNode.insertBefore(e, n), m(c, 0))
 	}
 })(this, document);
-Modernizr.load = function () {
+Modernizr.load = function ()
+{
 	yepnope.apply(window, [].slice.call(arguments, 0));
 };
 ;
