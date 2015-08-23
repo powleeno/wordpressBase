@@ -100,11 +100,11 @@ function base_load_scripts()
 
 	/** Google Maps JavaScript API :: https://developers.google.com/maps/documentation/javascript/ **/
 	$scripts['google_js_api'] = array(
-		'active' => false,
+		'active' => true,
 		'deregister_first' => false,
 		'handler' => 'google_js_api',
-		'cdn' => 'http://maps.googleapis.com/maps/api/js', // make sure the protocol is 'http' and not 'https'
-		'local' => $scripts_path . 'vendor/google/google-maps-api.js',
+		'cdn' => 'http://maps.googleapis.com/maps/api/js?language='.base_wpml_active_language(), // make sure the protocol is 'http' and not 'https'
+		'local' => $scripts_path . 'vendor/google/google-maps-api-'.base_wpml_active_language().'js',
 		'dependencies' => false,
 		'version' => '3.0.0',
 		'set_in_footer' => true

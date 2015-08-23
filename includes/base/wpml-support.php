@@ -33,12 +33,12 @@ function base_wpml_active_language($fallback='en')
 		if (1 < count($languages)) {
 			foreach ($languages as $language) {
 				if ($language['active']) {
-					echo base_wpml_rectify_code($language['language_code']);
+					return base_wpml_rectify_code($language['language_code']);
 				}
 			}
 		}
 	} else {
-		echo $fallback;
+		return $fallback;
 	}
 }
 
