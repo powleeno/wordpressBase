@@ -39,14 +39,14 @@
 		<section class="top-bar-section">
 			<ul class="left">
 				<?php
-				wp_nav_menu(
-					array(
-						'theme_location' => 'base_menu_header',
-						'container' => '',
-						'items_wrap' => '%3$s',
-						'walker' => new top_bar_walker()
-					)
-				);
+					wp_nav_menu(
+						array(
+							'theme_location' => 'base_menu_header',
+							'container' => '',
+							'items_wrap' => '%3$s',
+							'walker' => new top_bar_walker()
+						)
+					);
 				?>
 			</ul>
 			<ul class="right">
