@@ -17,7 +17,7 @@ $meta_boxes['leftColumn'] = array(
 	'fields' => array(
 		array(
 			'name' => __('Left Column', 'custom metaboxes'),
-			'id' => $fields_prefix . 'left_column',
+			'id' => $base_fields_prefix . 'left_column',
 			'sanitization_cb' => false,
 			'type' => 'wysiwyg',
 			'options' => $wysiwygFull
@@ -39,7 +39,7 @@ $meta_boxes['rightColumn'] = array(
 	'fields' => array(
 		array(
 			'name' => __('Right Column', 'custom metaboxes'),
-			'id' => $fields_prefix . 'right_column',
+			'id' => $base_fields_prefix . 'right_column',
 			'sanitization_cb' => false,
 			'type' => 'wysiwyg',
 			'options' => $wysiwygFull
@@ -51,7 +51,7 @@ $meta_boxes['rightColumn'] = array(
 // Example #3 -----------------------------------
 
 $meta_boxes['blocks_section'] = array(
-	'id' => $fields_prefix . 'blocks_section',
+	'id' => $base_fields_prefix . 'blocks_section',
 	'title' => __('Blocks Section', 'custom metaboxes'),
 	'object_types' => array('page'),
 	'context' => 'normal',
@@ -60,7 +60,7 @@ $meta_boxes['blocks_section'] = array(
 	'fields' => array(
 		array(
 			'name' => __('Activation', 'custom metaboxes'),
-			'id' => $fields_prefix . 'blocks_section_activation',
+			'id' => $base_fields_prefix . 'blocks_section_activation',
 			'type' => 'radio_inline',
 			'desc' => __('Select whether this section is to be displayed in the front-end.', 'custom metaboxes'),
 			'default' => 'active',
@@ -70,7 +70,7 @@ $meta_boxes['blocks_section'] = array(
 			),
 		),
 		array(
-			'id' => $fields_prefix . 'blocks',
+			'id' => $base_fields_prefix . 'blocks',
 			'type' => 'group',
 			// 'desc' => __( 'Insert Page Blocks', 'custom metaboxes' ),
 			'options' => array(
@@ -83,7 +83,7 @@ $meta_boxes['blocks_section'] = array(
 			'fields' => array(
 				array(
 					'name' => __('Layout', 'custom metaboxes'),
-					'id' => $fields_prefix . 'block_layout',
+					'id' => $base_fields_prefix . 'block_layout',
 					'type' => 'radio_inline',
 					'desc' => __('Select block layout.', 'custom metaboxes'),
 					'default' => 'full',
@@ -95,14 +95,14 @@ $meta_boxes['blocks_section'] = array(
 				),
 				array(
 					'name' => __('Image', 'custom metaboxes'),
-					'id' => $fields_prefix . 'block_image',
+					'id' => $base_fields_prefix . 'block_image',
 					'type' => 'file',
 					'desc' => __('Only available with "Boxed" layout.', 'custom metaboxes'),
 					'allow' => array('url', 'attachment') // limit to just attachments with array( 'attachment' )
 				),
 				array(
 					'name' => __('Float', 'custom metaboxes'),
-					'id' => $fields_prefix . 'block_float',
+					'id' => $base_fields_prefix . 'block_float',
 					'type' => 'radio_inline',
 					'desc' => __('Select image float. Only available with "Boxed" layout.', 'custom metaboxes'),
 					'default' => 'left',
@@ -113,14 +113,14 @@ $meta_boxes['blocks_section'] = array(
 				),
 				array(
 					'name' => __('Main Column', 'custom metaboxes'),
-					'id' => $fields_prefix . 'block_main_column',
+					'id' => $base_fields_prefix . 'block_main_column',
 					'sanitization_cb' => false,
 					'type' => 'wysiwyg',
 					'options' => $wysiwygFull
 				),
 				array(
 					'name' => __('Secondary Column', 'custom metaboxes'),
-					'id' => $fields_prefix . 'block_secondary_column',
+					'id' => $base_fields_prefix . 'block_secondary_column',
 					'desc' => __('Only available with "Split Width" layout.', 'custom metaboxes'),
 					'sanitization_cb' => false,
 					'type' => 'wysiwyg',
@@ -145,14 +145,14 @@ $meta_boxes['locations'] = array(
 	'fields' => array(
 		array(
 			'name' => __('Address', 'custom metaboxes'),
-			'id' => $fields_prefix . 'address',
+			'id' => $base_fields_prefix . 'address',
 			'desc' => __('', 'custom metaboxes'),
 			'sanitization_cb' => false,
 			'type' => 'text',
 		),
 		array(
 			'name' => __('Information', 'custom metaboxes'),
-			'id' => $fields_prefix . 'information',
+			'id' => $base_fields_prefix . 'information',
 			'desc' => __('', 'custom metaboxes'),
 			'sanitization_cb' => false,
 			'type' => 'wysiwyg',

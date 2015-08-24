@@ -21,9 +21,9 @@ function base_after_setup_theme_hook()
 	// Menus
 	register_nav_menus(
 		array(
-			'header-menu' => __('Header Menu', 'menus'),
-			'footer-menu' => __('Footer Menu', 'menus'),
-			'mobile-menu' => __('Mobile Menu', 'menus'),
+			'base_menu_header' => __('Header Menu', 'menus'),
+			'base_menu_footer' => __('Footer Menu', 'menus'),
+			'base_menu_mobile' => __('Mobile Menu', 'menus'),
 		)
 	);
 

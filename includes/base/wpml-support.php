@@ -13,11 +13,11 @@ define('ICL_DONT_LOAD_LANGUAGES_JS', true);
 function base_wpml_topbar_language_selector()
 {
 	if (function_exists('icl_get_languages')) {
-		$languages = icl_get_languages('skip_missing=1');
-		if (1 < count($languages)) {
-			foreach ($languages as $language) {
-				if (!$language['active']) {
-					echo '<li><a href="' . $language['url'] . '">' . strtoupper(base_wpml_rectify_code($language['language_code'])) . '</a></li>';
+		$base_languages = icl_get_languages('skip_missing=1');
+		if (1 < count($base_languages)) {
+			foreach ($base_languages as $base_language) {
+				if (!$base_language['active']) {
+					echo '<li><a href="' . $base_language['url'] . '">' . strtoupper(base_wpml_rectify_code($base_language['language_code'])) . '</a></li>';
 				}
 			}
 		}
@@ -26,19 +26,19 @@ function base_wpml_topbar_language_selector()
 
 
 //
-function base_wpml_active_language($fallback='en')
+function base_wpml_active_language($base_fallback_language='en')
 {
 	if (function_exists('icl_get_languages')) {
-		$languages = icl_get_languages('skip_missing=1');
-		if (1 < count($languages)) {
-			foreach ($languages as $language) {
-				if ($language['active']) {
-					return base_wpml_rectify_code($language['language_code']);
+		$base_languages = icl_get_languages('skip_missing=1');
+		if (1 < count($base_languages)) {
+			foreach ($base_languages as $base_language) {
+				if ($base_language['active']) {
+					return base_wpml_rectify_code($base_language['language_code']);
 				}
 			}
 		}
 	} else {
-		return $fallback;
+		return $base_fallback_language;
 	}
 }
 
@@ -69,9 +69,9 @@ function base_wpml_rectify_code($code)
 function base_wpml_home_page_url()
 {
 	if (function_exists('icl_get_home_url')) {
-		$home_url = icl_get_home_url();
+		$base_home_url = icl_get_home_url();
 	} else {
-		$home_url = get_site_url();
+		$base_home_url = get_site_url();
 	}
-	return $home_url;
+	return $base_home_url;
 }

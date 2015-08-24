@@ -18,10 +18,8 @@
 	<title><?php bloginfo('name'); ?></title>
 	<?php
 		// Sets favicons; place files in $path
-		$favicon_path = get_template_directory_uri() . '/images/favicon/';
-		base_set_favicons($favicon_path);
-		// Sets session variables for use across pages
-		base_set_session_variables();
+		$favicons_path = get_template_directory_uri() . '/images/favicon/';
+		base_set_favicons($favicons_path);
 		wp_head();
 	?>
 </head>
@@ -43,7 +41,7 @@
 				<?php
 				wp_nav_menu(
 					array(
-						'theme_location' => 'header-menu',
+						'theme_location' => 'base_menu_header',
 						'container' => '',
 						'items_wrap' => '%3$s',
 						'walker' => new top_bar_walker()

@@ -6,7 +6,7 @@
 
 function base_set_custom_post_types()
 {
-	$post_types = array();
+	$base_post_types = array();
 
 	/*
 	 *
@@ -14,14 +14,14 @@ function base_set_custom_post_types()
 	 *
 	 */
 
-	if ($post_types) {
-		foreach ($post_types as $post_type) {
+	if ($base_post_types) {
+		foreach ($base_post_types as $base_post_type) {
 			// Register post type
-			if ($post_type['post_type_name'] && $post_type['post_type_args']) {
-				register_post_type($post_type['post_type_name'], $post_type['post_type_args']);
+			if ($base_post_type['post_type_name'] && $base_post_type['post_type_args']) {
+				register_post_type($base_post_type['post_type_name'], $base_post_type['post_type_args']);
 				// Register taxonomy for post type
-				if ($post_type['taxonomy_name'] && $post_type['taxonomy_args']) {
-					register_taxonomy($post_type['taxonomy_name'], $post_type['post_type_name'], $post_type['taxonomy_args']);
+				if ($base_post_type['taxonomy_name'] && $base_post_type['taxonomy_args']) {
+					register_taxonomy($base_post_type['taxonomy_name'], $base_post_type['post_type_name'], $base_post_type['taxonomy_args']);
 				}
 			}
 		}

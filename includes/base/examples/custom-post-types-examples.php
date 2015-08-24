@@ -5,7 +5,7 @@
 
 // Example #1 -----------------------------------
 
-$post_types['subjects'] = array(
+$base_post_types['subjects'] = array(
 	'post_type_name' => 'subjects',
 	'post_type_args' => array(
 		'labels' => array(
@@ -68,7 +68,7 @@ $post_types['subjects'] = array(
 
 // Example #2 -----------------------------------
 
-$post_types['locations'] = array(
+$base_post_types['locations'] = array(
 	'post_type_name' => 'locations',
 	'post_type_args' => array(
 		'labels' => array(

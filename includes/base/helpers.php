@@ -1,6 +1,16 @@
 <?php
 
 
+// SESSION VARIABLES -----------------------------------------------------
+
+function base_set_session_variables($base_session_variable_label, $base_session_variable_value)
+{
+	if (!isset($_SESSION[$base_session_variable_label])) {
+		$_SESSION[$base_session_variable_label] = $base_session_variable_value;
+	}
+}
+
+
 // THUMBNAIL SUPPORT -----------------------------------------------------
 
 function base_thumbnail_support()
@@ -33,12 +43,12 @@ function base_register_media_taxonomies()
 
 function base_fields_prefix()
 {
-	$fields_prefix = '_base_';
-	return $fields_prefix;
+	$base_fields_prefix = '_base_';
+	return $base_fields_prefix;
 }
 
 
-// UNUSED FEATURES REMOVAL -----------------------------------------------
+// WORDPRESS FEATURES REMOVAL --------------------------------------------
 
 function base_remove_admin_bar()
 {
