@@ -36,9 +36,18 @@
 }
 
 @mixin base_placeholder_style($color, $style) {
-	&::-webkit-input-placeholder,
-	&::-moz-placeholder,
-	&:-moz-placeholder,
+	&::-webkit-input-placeholder {
+		color: $color;
+		font-style: $style;
+	}
+	&::-moz-placeholder {
+		color: $color;
+		font-style: $style;
+	}
+	&:-moz-placeholder {
+		color: $color;
+		font-style: $style;
+	}
 	&:-ms-input-placeholder {
 		color: $color;
 		font-style: $style;

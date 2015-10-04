@@ -13,7 +13,7 @@ function base_set_session_variables($base_session_variable_label, $base_session_
 
 // THUMBNAIL SUPPORT -----------------------------------------------------
 
-function base_thumbnail_support()
+function base_add_thumbnail_support()
 {
 	add_theme_support('post-thumbnails');
 	// Image Size Names: left out for lack of any actual use
@@ -56,7 +56,7 @@ function base_remove_admin_bar()
 	remove_action('wp_head', '_admin_bar_bump_cb');
 }
 
-function base_remove_wordpress_version()
+function base_remove_version()
 {
 	remove_action('wp_head', 'wp_generator');
 }

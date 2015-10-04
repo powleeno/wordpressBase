@@ -54,3 +54,48 @@ function base_stretch_object()
 	});
 
 }
+
+
+function base_form_validation()
+{
+	$('#form').each(function ()
+	{
+		var form = $(this);
+		form.validate({
+			rules: {
+				first_name: {
+					required: true
+				},
+				last_name: {
+					required: true
+				},
+				email: {
+					required: true
+				},
+				enterprise: {
+					required: true
+				},
+				subject: {
+					required: true
+				},
+				message: {
+					required: true
+				}
+			},
+			invalidHandler: function(form, validator)
+			{
+				$('.base_form_notice').addClass('error');
+				/*
+				 for (var i = 0; i < validator.errorList.length; i++) {
+				 var label = $(validator.errorList[i].element).siblings();
+				 label.addClass('error');
+				 }
+				 */
+			},
+			errorPlacement: function (error, element)
+			{
+				return false;
+			}
+		});
+	});
+}

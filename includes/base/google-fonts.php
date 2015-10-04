@@ -1,6 +1,6 @@
 <?php
 
-function base_load_google_fonts()
+function base_set_google_fonts()
 {
 	$base_google_fonts = array();
 

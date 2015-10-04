@@ -35,3 +35,55 @@
 	margin: 0;
 	padding: 0;
 }
+
+.base_form_layout {
+	input {
+		&[type="text"] {
+
+		}
+		&[type="submit"] {
+
+		}
+	}
+	textarea {
+		resize: none;
+	}
+	.base_form_label {
+
+	}
+	.base_form_notice {
+
+	}
+	.base_form_sent {
+
+	}
+	.base_form_errors {
+
+	}
+}
+
+.base_form_styles {
+	input {
+		&[type="text"] {
+
+		}
+		&[type="submit"] {
+
+		}
+	}
+	textarea {
+		resize: none;
+	}
+	.base_form_label {
+
+	}
+	.base_form_notice {
+
+	}
+	.base_form_sent {
+
+	}
+	.base_form_errors {
+
+	}
+}

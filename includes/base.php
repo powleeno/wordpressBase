@@ -33,7 +33,7 @@ function base_after_setup_theme_hook()
 	}
 
 	// Thumbnail support
-	base_thumbnail_support();
+	base_add_thumbnail_support();
 }
 
 add_action('after_setup_theme', 'base_after_setup_theme_hook');
@@ -51,8 +51,9 @@ function base_init_hook()
 	if (!class_exists('CMB2_Bootstrap_208')) {
 		require_once('vendor/custom-meta-boxes/init.php');
 		require_once 'base/custom-meta-boxes.php';
-		add_filter('cmb2_meta_boxes', 'set_custom_meta_boxes');
+		add_filter('cmb2_meta_boxes', 'base_set_custom_meta_boxes');
 		base_remove_templates_support();
+		base_remove_pages_support();
 	}
 
 	// Custom Post Types
@@ -76,7 +77,7 @@ function base_get_header_hook()
 	base_remove_admin_bar();
 
 	// Remove Wordpress version
-	base_remove_wordpress_version();
+	base_remove_version();
 
 	// Remove header links
 	base_remove_header_links();
@@ -94,11 +95,11 @@ function base_wp_enqueue_scripts_hook()
 
 	// Google Fonts
 	require_once 'base/google-fonts.php';
-	base_load_google_fonts();
+	base_set_google_fonts();
 
 	// Scripts
 	require_once 'base/scripts.php';
-	base_load_scripts();
+	base_set_scripts();
 
 
 }

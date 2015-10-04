@@ -1031,3 +1031,7 @@ th.hide-for-touch { display: table-cell !important; }
 .base_table .base_table_cell { display: table-cell; vertical-align: middle; }
 
 .base_list_reset { list-style-type: none; margin: 0; padding: 0; }
+
+.base_form_layout textarea { resize: none; }
+
+.base_form_styles textarea { resize: none; }

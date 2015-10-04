@@ -1,7 +1,7 @@
 <?php
 
 
-function base_load_scripts()
+function base_set_scripts()
 {
 	$base_scripts = array();
 	$base_scripts_path = get_template_directory_uri() . '/scripts/';

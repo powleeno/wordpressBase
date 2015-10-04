@@ -6,7 +6,7 @@
 
 // Example #1 -----------------------------------
 
-$meta_boxes['left_column'] = array(
+$base_meta_boxes['left_column'] = array(
 	'id' => 'left_column',
 	'title' => __('Left Column', 'custom metaboxes'),
 	// 'object_types' => array('page'),
@@ -20,7 +20,7 @@ $meta_boxes['left_column'] = array(
 			'id' => $base_fields_prefix . 'left_column',
 			'sanitization_cb' => false,
 			'type' => 'wysiwyg',
-			'options' => $wysiwygFull
+			'options' => $base_wysiwyg_options_full
 		),
 	)
 );
@@ -28,7 +28,7 @@ $meta_boxes['left_column'] = array(
 
 // Example #2 -----------------------------------
 
-$meta_boxes['right_column'] = array(
+$base_meta_boxes['right_column'] = array(
 	'id' => 'right_column',
 	'title' => __('Right Column', 'custom metaboxes'),
 	// 'object_types' => array('page'),
@@ -43,7 +43,7 @@ $meta_boxes['right_column'] = array(
 			'desc' => __('', 'custom metaboxes'),
 			'sanitization_cb' => false,
 			'type' => 'wysiwyg',
-			'options' => $wysiwygFull
+			'options' => $base_wysiwyg_options_full
 		),
 	)
 );
@@ -51,7 +51,7 @@ $meta_boxes['right_column'] = array(
 
 // Example #3 -----------------------------------
 
-$meta_boxes['blocks_section'] = array(
+$base_meta_boxes['blocks_section'] = array(
 	'id' => $base_fields_prefix . 'blocks_section',
 	'title' => __('Blocks Section', 'custom metaboxes'),
 	// 'object_types' => array('page'),
@@ -118,7 +118,7 @@ $meta_boxes['blocks_section'] = array(
 					'desc' => __('', 'custom metaboxes'),
 					'sanitization_cb' => false,
 					'type' => 'wysiwyg',
-					'options' => $wysiwygFull
+					'options' => $base_wysiwyg_options_full
 				),
 				array(
 					'name' => __('Secondary Column', 'custom metaboxes'),
@@ -126,7 +126,7 @@ $meta_boxes['blocks_section'] = array(
 					'desc' => __('', 'custom metaboxes'),
 					'sanitization_cb' => false,
 					'type' => 'wysiwyg',
-					'options' => $wysiwygFull
+					'options' => $base_wysiwyg_options_full
 				),
 			),
 		),
@@ -136,7 +136,7 @@ $meta_boxes['blocks_section'] = array(
 
 // Example #4 -----------------------------------
 
-$meta_boxes['map_locations'] = array(
+$base_meta_boxes['map_locations'] = array(
 	'id' => 'map_locations',
 	'title' => __('Map Location', 'custom metaboxes'),
 	// 'object_types' => array('page'),
@@ -158,7 +158,7 @@ $meta_boxes['map_locations'] = array(
 			'desc' => __('', 'custom metaboxes'),
 			'sanitization_cb' => false,
 			'type' => 'wysiwyg',
-			'options' => $wysiwygFull
+			'options' => $base_wysiwyg_options_full
 		),
 	)
 );
@@ -166,7 +166,7 @@ $meta_boxes['map_locations'] = array(
 
 // WYSIWYG Options Arrays ------------------------------------------------
 
-$wysiwygMinimal = array(
+$base_wysiwyg_options_minimal = array(
 	'wpautop' => false,
 	'media_buttons' => false,
 	'textarea_rows' => get_option('default_post_edit_rows', 5),
@@ -178,7 +178,7 @@ $wysiwygMinimal = array(
 	'tinymce' => false,
 	'quicktags' => false
 );
-$wysiwygFull = array(
+$base_wysiwyg_options_full = array(
 	'wpautop' => true,
 	'media_buttons' => true,
 	'textarea_rows' => get_option('default_post_edit_rows', 10),
@@ -194,7 +194,7 @@ $wysiwygFull = array(
 
 // Remove feature support for specific custom page template --------------
 
-$templates['blocks-page'] = array(
+$base_templates['blocks-page'] = array(
 	'page_file' => 'page-blocks.php',
 	'remove_support' => array('editor', 'comments', 'custom-fields', 'discussion', 'author', 'thumbnail')
 );

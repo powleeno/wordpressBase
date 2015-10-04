@@ -77,3 +77,46 @@ function ericbdev_email_shortcode($atts, $content = null)
 }
 
 add_shortcode('email', 'ericbdev_email_shortcode');
+
+
+function base_button_shortcode($atts, $content = null)
+{
+	$parameters = shortcode_atts(array(
+		'url' => '',
+	), $atts, 'button_shortcode');
+	$return_html = '';
+	$return_html .= '<a href="' . $parameters['url'] . '" class="button">' . $content . '</a>';
+
+	return $return_html;
+}
+
+add_shortcode('button', 'base_button_shortcode');
+
+
+function base_row_shortcode($atts, $content = null)
+{
+	$return_html = '';
+	$return_html .= '<div class="row">' . do_shortcode($content) . '</div>';
+	return $return_html;
+}
+
+add_shortcode('row', 'base_row_shortcode');
+
+
+function base_column_shortcode($atts, $content = null)
+{
+	$parameters = shortcode_atts(array(
+		'small' => '',
+		'medium' => '',
+		'large' => '',
+	), $atts, 'column_shortcode');
+	$return_html = '';
+	$return_html .= '<div class="columns ';
+	$return_html .= ($parameters['small'] ? 'small-' . $parameters['small'] . ' ' : '');
+	$return_html .= ($parameters['medium'] ? 'medium-' . $parameters['medium'] . ' ' : '');
+	$return_html .= ($parameters['large'] ? 'large-' . $parameters['large'] . ' ' : '');
+	$return_html .= '">' . do_shortcode($content) . '</div>';
+	return $return_html;
+}
+
+add_shortcode('column', 'base_column_shortcode');

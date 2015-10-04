@@ -73,3 +73,30 @@ function ericbdev_accordion(_obj)
 		}
 	}
 }
+
+function ericbdev_email_replace()
+{
+	/** Use JavaScript to replace <a> with a mail link, to reduce potential spam**/
+	var _varPre = "mailto:",
+		_selector = ".js-replacer-text";
+	if ($(_selector).length > 0) {
+		$(_selector).each(function ()
+		{
+			var _varUpdate = $(this).data('update'),
+				_varEnd = $(this).data('domain'),
+				_varMid = $(this).data('extra'),
+				_varText = $(this).data('text');
+			$(this).attr('href', _varPre + _varMid + '@' + _varEnd);
+			if (typeof _varUpdate == 'boolean' && _varUpdate != true) {
+
+
+			} else {
+				if (typeof _varText !== 'undefined') {
+					$(this).html(_varText);
+				} else {
+					$(this).text(_varMid + '@' + _varEnd);
+				}
+			}
+		});
+	}
+}

@@ -4,7 +4,7 @@
 /** Custom Meta Boxes 2 :: https://github.com/WebDevStudios/CMB2 **/
 
 
-function set_custom_meta_boxes(array $meta_boxes)
+function base_set_custom_meta_boxes(array $base_meta_boxes)
 {
 	// Start with an underscore to hide fields from custom fields list
 	$base_fields_prefix = base_fields_prefix();
@@ -15,7 +15,7 @@ function set_custom_meta_boxes(array $meta_boxes)
 	 *
 	 */
 
-	return $meta_boxes;
+	return $base_meta_boxes;
 
 }
 
@@ -48,3 +48,11 @@ function base_remove_templates_support()
 }
 
 
+// Remove feature support for pages
+function base_remove_pages_support()
+{
+	$base_features = array( /* 'editor', 'comments', 'custom-fields', 'discussion', 'author', 'thumbnail' */ );
+	foreach ($base_features as $base_feature) {
+		remove_post_type_support('page', $base_feature);
+	}
+}
