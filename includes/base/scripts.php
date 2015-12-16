@@ -34,6 +34,18 @@ function base_set_scripts()
 
 	// FOOTER ------------------------------------------------------------
 
+	/** from Eric B. Dev - Simple Grid Wordpress :: https://github.com/ericbdev/simpleGridWordPress **/
+	$base_scripts['ericbdev'] = array(
+		'active' => true,
+		'deregister_first' => false,
+		'handler' => 'ericbdev',
+		'cdn' => '', // make sure the protocol is 'http' and not 'https'
+		'local' => $base_scripts_path . 'vendor/ericbdev/ericbdev.js',
+		'dependencies' => false,
+		'version' => '1.0.0',
+		'set_in_footer' => true
+	);
+
 	/** Fancybox 2 :: https://github.com/fancyapps/fancyBox **/
 	$base_scripts['fancybox'] = array(
 		'active' => false,
@@ -100,71 +112,13 @@ function base_set_scripts()
 
 	/** Google Maps JavaScript API :: https://developers.google.com/maps/documentation/javascript/ **/
 	$base_scripts['google_js_api'] = array(
-		'active' => true,
+		'active' => false,
 		'deregister_first' => false,
 		'handler' => 'google_js_api',
 		'cdn' => 'http://maps.googleapis.com/maps/api/js?language='.base_wpml_active_language(), // make sure the protocol is 'http' and not 'https'
 		'local' => $base_scripts_path . 'vendor/google/google-maps-api-'.base_wpml_active_language().'js',
 		'dependencies' => false,
 		'version' => '3.0.0',
-		'set_in_footer' => true
-	);
-
-	/** Lazy Load :: https://github.com/tuupola/jquery_lazyload **/
-	$base_scripts['lazyload'] = array(
-		'active' => false,
-		'deregister_first' => false,
-		'handler' => 'lazyload',
-		'cdn' => 'http://cdnjs.cloudflare.com/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js', // make sure the protocol is 'http' and not 'https'
-		'local' => $base_scripts_path . 'vendor/lazyload/jquery.lazyload.min.js',
-		'dependencies' => false,
-		'version' => '1.9.1',
-		'set_in_footer' => true
-	);
-
-	/** Masonry :: https://github.com/desandro/masonry **/
-	$base_scripts['masonry'] = array(
-		'active' => false,
-		'deregister_first' => false,
-		'handler' => 'masonry',
-		'cdn' => 'http://cdnjs.cloudflare.com/ajax/libs/masonry/3.3.1/masonry.pkgd.min.js', // make sure the protocol is 'http' and not 'https'
-		'local' => $base_scripts_path . 'vendor/masonry/masonry.pkgd.min.js',
-		'dependencies' => false,
-		'version' => '3.3.1',
-		'set_in_footer' => true
-	);
-
-	/** Modernizr :: https://github.com/Modernizr/Modernizr **/
-	$base_scripts['modernizr'] = array(
-		'active' => false,
-		'deregister_first' => false,
-		'handler' => 'modernizr',
-		'cdn' => 'http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js', // make sure the protocol is 'http' and not 'https'
-		'local' => $base_scripts_path . 'vendor/modernizr/modernizr.custom.min.js',
-		'dependencies' => false,
-		'version' => '2.8.3',
-		'set_in_footer' => true
-	);
-
-	/** Scroll Magic :: https://github.com/janpaepke/ScrollMagic **/
-	$base_scripts['scrollmagic'] = array(
-		'active' => false,
-		'deregister_first' => false,
-		'handler' => 'scrollmagic',
-		'cdn' => 'http://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/ScrollMagic.min.js', // make sure the protocol is 'http' and not 'https'
-		'local' => $base_scripts_path . 'vendor/masonry/masonry.pkgd.min.js',
-		'dependencies' => false,
-		'version' => '2.05',
-		'set_in_footer' => true
-	);
-	$base_scripts['scrollmagic_indicators'] = array(
-		'active' => false,
-		'deregister_first' => false,
-		'handler' => 'scrollmagic_indicators',
-		'cdn' => 'http://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/plugins/debug.addIndicators.min.js', // make sure the protocol is 'http' and not 'https'
-		'local' => $base_scripts_path . 'vendor/masonry/masonry.pkgd.min.js',
-		'dependencies' => false,
-		'version' => '2.05',
 		'set_in_footer' => true
 	);
 
@@ -191,10 +145,6 @@ function base_set_scripts()
 		'version' => '1.5.5',
 		'set_in_footer' => true
 	);
-
-
-	/** fullPage.js :: https://github.com/ericbdev/fullPage.js **/
-
 
 	/** Validate :: https://github.com/jzaefferer/jquery-validation **/
 
