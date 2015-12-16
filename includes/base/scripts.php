@@ -147,6 +147,16 @@ function base_set_scripts()
 	);
 
 	/** Validate :: https://github.com/jzaefferer/jquery-validation **/
+	$scripts['jQuery_validate'] = array(
+		'active' => true,
+		'deregister_first' => false,
+		'handler' => 'jQuery_validate',
+		'cdn' => 'http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.min.js', // make sure the protocol is 'http' and not 'https'
+		'local' => $base_scripts_path . 'vendor/validate/jquery.validate.min.js',
+		'dependencies' => false,
+		'version' => '1.14.0',
+		'set_in_footer' => true
+	);
 
 
 	/** BASE THEME SCRIPTS ---------------------------------------- **/
@@ -202,19 +212,19 @@ function base_set_scripts()
 function base_register_scripts($base_scripts)
 {
 	$base_script_handlers = array();
-	if ($base_scripts) {
+	if (!empty($base_scripts)) {
 		foreach ($base_scripts as $base_script) {
-			if ($base_script['active']) {
+			if (!empty($base_script['active'])) {
 				array_push($base_script_handlers, $base_script['handler']);
-				if ($base_script['deregister_first']) {
+				if (!empty($base_script['deregister_first'])) {
 					wp_deregister_script($base_script['handler']);
 				}
-				if ($base_script['cdn']) {
+				if (!empty($base_script['cdn'])) {
 					$base_http_headers = get_headers($base_script['cdn']);
 					if (substr($base_http_headers[0], 9, 3) == '200') {
 						$base_script_source = $base_script['cdn'];
 					}
-				} else if ($base_script['local']) {
+				} else if (!empty($base_script['local'])) {
 					$base_script_source = $base_script['local'];
 				} else {
 					continue;
