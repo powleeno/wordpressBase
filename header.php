@@ -50,7 +50,7 @@
 				?>
 			</ul>
 			<ul class="right">
-				<?php base_wpml_topbar_language_selector(); ?>
+				<?php echo base_wpml_topbar_language_selector(); ?>
 			</ul>
 		</section>
 	</nav>
