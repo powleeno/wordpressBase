@@ -32,9 +32,9 @@ function base_remove_templates_support()
      */
 
 	foreach ($base_templates as $base_template) {
-		if ($base_template['page_file'] && $base_template['remove_support']) {
+		if (!empty($base_template['page_file']) && !empty($base_template['remove_support'])) {
 			$post_id = $_GET['post'] ? $_GET['post'] : $_POST['post_ID'];
-			if (isset($post_id)) {
+			if (!empty($post_id)) {
 				$base_template_file = get_post_meta($post_id, '_wp_page_template', true);
 				if ($base_template_file == $base_template['page_file']) {
 					foreach ($base_template['remove_support'] as $base_template_support) {

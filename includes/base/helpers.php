@@ -1,16 +1,6 @@
 <?php
 
 
-// SESSION VARIABLES -----------------------------------------------------
-
-function base_set_session_variables($base_session_variable_label, $base_session_variable_value)
-{
-	if (!isset($_SESSION[$base_session_variable_label])) {
-		$_SESSION[$base_session_variable_label] = $base_session_variable_value;
-	}
-}
-
-
 // THUMBNAIL SUPPORT -----------------------------------------------------
 
 function base_add_thumbnail_support()
@@ -92,4 +82,22 @@ function base_disable_auto_updates()
 	add_filter('auto_update_theme', '__return_false');
 	add_filter('auto_update_core', '__return_false');
 	add_filter('automatic_updater_disabled', '__return_true');
+}
+
+
+// MISCELLANEOUS ---------------------------------------------------------
+
+function base_limit_string($original_string, $character_limit = 25, $string_suffix = '...')
+{
+	if (!empty($string_suffix)) {
+		$sufixed_limit = $character_limit - strlen($string_suffix);
+	} else {
+		$sufixed_limit = $character_limit;
+	}
+	if (strlen($original_string) >= $character_limit) {
+		$limited_string = substr($original_string, 0, $sufixed_limit) . $string_suffix;
+	} else {
+		$limited_string = $original_string;
+	}
+	return $limited_string;
 }
