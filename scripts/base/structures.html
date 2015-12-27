@@ -1,32 +1,32 @@
-<!-- To apply with stretch_object() ---------------------------------- -->
+<!-- To apply with base_stretch_object() ---------------------------------- -->
 
 <div>
 
     <!-- --------------------------------------------
-    Reference :: .str-ref
+    Reference :: .base_str_ref
         serves as height reference for container to be stretched vertically;
         stretching utilizes outerHeight so css property margin is best avoided;
         -->
-    <div class="str-ref">Your content here.</div>
+    <div class="base_str_ref">Your content here.</div>
 
     <!-- --------------------------------------------
-    Container :: .str-con
-        this basically has it's height stretched to match .str-ref;
-        height of .str-obj depends of this;
+    Container :: .base_str_con
+        this basically has it's height stretched to match .base_str_ref;
+        height of .base_str_obj depends of this;
         -->
-    <div class="str-con">
+    <div class="base_str_con">
 
         <!-- --------------------------------------------
-        Object :: .str-obj
+        Object :: .base_str_obj
             this has it's width stretched and is positioned according to classes assigned;
             it receives the following classes:
-                .str-box :
-                    with this, .str-obj gets stretched to match .str-con (as in a box);
-                .str-top :
-                    with this, .str-obj gets stretched to the edge of the window;
-                    with .str-top, either .str-left or .str-right must be assigned to .str-obj; they regulate it's float;
+                .base_str_box :
+                    with this, .base_str_obj gets stretched to match .base_str_con (as in a box);
+                .base_str_top :
+                    with this, .base_str_obj gets stretched to the edge of the window;
+                    with .base_str_top, either .base_str_left or .base_str_right must be assigned to .base_str_obj; they regulate it's float;
                     -->
-        <div class="str-obj str-top str-right"></div>
+        <div class="base_str_obj base_str_top base_str_right"></div>
 
         <div>More content can go here if intended.</div>
     </div>
@@ -37,9 +37,9 @@
 <!-- Example 1: a left floated image background stretched to the window edges -->
 
 <div>
-    <div class="str-ref">Your content here.</div>
-    <div class="str-con">
-        <div class="str-obj str-top str-left" style="background-image: url('path/to/image')"></div>
+    <div class="base_str_ref">Your content here.</div>
+    <div class="base_str_con">
+        <div class="base_str_obj base_str_top base_str_left" style="background-image: url('path/to/image')"></div>
         <div>More content can go here if intended.</div>
     </div>
 </div>
@@ -47,8 +47,8 @@
 
 <!-- Example 2: a box with an image -->
 <div>
-    <div class="str-ref">Your content here.</div>
-    <div class="str-con">
-        <div class="str-obj str-box" style="background-image: url('path/to/image')"></div>
+    <div class="base_str_ref">Your content here.</div>
+    <div class="base_str_con">
+        <div class="base_str_obj base_str_box" style="background-image: url('path/to/image')"></div>
     </div>
 </div>
