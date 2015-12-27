@@ -16,6 +16,11 @@ require_once 'base/shortcodes.php';
 
 
 
+// Browser detection
+require_once 'base/browser-detection.php';
+
+
+
 function base_after_setup_theme_hook()
 {
 	// Menus
