@@ -3,9 +3,11 @@
 function base_get_browser_info()
 {
 	$user_agent = $_SERVER['HTTP_USER_AGENT'];
-	$browser_name = 'Unknown';
-	$platform = 'Unknown';
-	$browser_version = "";
+	$browser_name = '';
+	$browser_short = "";
+	$platform = '';
+	$browser_version = '';
+	$pattern = '';
 	//First get the platform?
 	if (preg_match('/linux/i', $user_agent)) {
 		$platform = 'linux';
