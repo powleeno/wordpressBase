@@ -1,117 +1,91 @@
 <?php
 
-
 // SERVER SIDE VALIDATION-------------------------------------------------
 
-function base_form_build_message($first_name, $last_name, $email, $phone, $enterprise, $message)
-{
-	$body = '<html>';
-	$body .= '<table width="100%">';
-	$body .= '<tr><td>' . apply_filters('the_content', $message) . '</td></tr>';
-	$body .= '<tr><td>&nbsp;</td></tr>';
-	$body .= '<tr><td><strong>' . $first_name . ' ' . $last_name . '</strong></td></tr>';
-	$body .= '<tr><td><strong>' . $enterprise . '</strong></td></tr>';
-	$body .= '<tr><td>' . $email . '</td></tr>';
-	if ($phone) {
-		$body .= '<tr><td>' . $phone . '</td></tr>';
-	}
-	$body .= '<tr><td><br/>&nbsp;</td></tr>';
-	$body .= '</table>';
-	$body .= '</html>';
+$base_browser_is_ie = base_browser_is_ie();
+$base_form_errors = false;
+$base_form_sent = false;
 
-	return $body;
-}
-
-
-function base_form_build_headers($first_name, $last_name, $email)
-{
-	$headers = 'From: ' . $first_name . ' ' . $last_name . ' <' . $email . '>' . "\r\n";
-	$headers .= "MIME-Version: 1.0\r\n";
-	$headers .= "Content-Type: text/html; charset=utf-8\r\n";
-
-	return $headers;
-}
-
-
-$form_errors = false;
-$sent_mail = false;
-
-if ($_REQUEST['submit']) {
-	$first_name = sanitize_text_field($_REQUEST['first_name']);
-	$last_name = sanitize_text_field($_REQUEST['last_name']);
-	$email = sanitize_text_field($_REQUEST['email']);
-	$phone = sanitize_text_field($_REQUEST['phone']);
-	$enterprise = sanitize_text_field($_REQUEST['enterprise']);
-	$subject = sanitize_text_field($_REQUEST['subject']);
-	$message = sanitize_text_field($_REQUEST['message']);
-	if ($first_name && $last_name && $email && $enterprise && $subject && $message) {
-		$sent_mail = wp_mail(
+if (!empty($_REQUEST['submit'])) {
+	$form_subject = sanitize_text_field($_REQUEST['form_subject']);
+	$form_name = sanitize_text_field($_REQUEST['form_name']);
+	$form_email = sanitize_text_field($_REQUEST['form_email']);
+	$form_country = sanitize_text_field($_REQUEST['form_country']);
+	$form_phone = sanitize_text_field($_REQUEST['form_phone']);
+	$form_message = sanitize_text_field($_REQUEST['form_message']);
+	if (!empty($form_subject) && !empty($form_name) && !empty($form_email) && !empty($form_country) && !empty($form_phone) && !empty($form_message)) {
+		$base_form_sent = wp_mail(
 			get_option('admin_email'),
-			sprintf(__('Website Form Submission : %s', 'form'), $subject),
-			base_form_build_message($first_name, $last_name, $email, $phone, $enterprise, $message),
-			base_form_build_headers($first_name, $last_name, $email)
+			sprintf(__('Website Form Submission : %s', 'form'), $form_subject),
+			base_form_build_message($form_name, $form_email, $form_country, $form_phone, $form_message),
+			base_form_build_headers($form_name, $form_email)
 		);
-
 	} else {
-		$form_errors = true;
+		$base_form_errors = true;
 	}
 }
 
 // -----------------------------------------------------------------------
 
-
-if ($sent_mail) { ?>
+if ($base_form_sent) { ?>
 	<div class="base_form_sent">
 		<h4><?php echo __('Your message has been sent.', 'form'); ?></h4>
 	</div>
 <?php } else { ?>
-	<?php if ($form_errors) { ?>
+	<?php if ($base_form_errors) { ?>
 		<div class="base_form_errors">
 			<h4><?php echo __('Please make sure you\'ve filled the form correctly.', 'form'); ?></h4>
 		</div>
 	<?php } ?>
 	<form id="form" name="form" action="<?php the_permalink(); ?>#base_form_anchor" method="post">
 		<div class="row">
-			<div class="columns small-12 medium-6">
-				<p class="base_form_label"><?php echo __('Last Name *', 'form'); ?></p>
-				<input id="last_name" name="last_name" type="text"/>
-			</div>
-			<div class="columns small-12 medium-6">
-				<p class="base_form_label"><?php echo __('First Name *', 'form'); ?></p>
-				<input id="first_name" name="first_name" type="text"/>
+			<div class="columns small-12">
+				<?php if($base_browser_is_ie) { ?>
+					<label id="form_subject" for="form_subject"><?php echo __('Subject', 'form'); ?></label>
+				<?php } ?>
+				<input id="form_subject" name="form_subject" placeholder="<?php echo __('Subject', 'form'); ?>" type="text"/>
 			</div>
 		</div>
 		<div class="row">
 			<div class="columns small-12 medium-6">
-				<p class="base_form_label"><?php echo __('Email *', 'form'); ?></p>
-				<input id="email" name="email" type="text"/>
+				<?php if($base_browser_is_ie) { ?>
+					<label id="form_name" for="form_name"><?php echo __('Name', 'form'); ?></label>
+				<?php } ?>
+				<input id="form_name" name="form_name" placeholder="<?php echo __('Name', 'form'); ?>" type="text"/>
 			</div>
 			<div class="columns small-12 medium-6">
-				<p class="base_form_label"><?php echo __('Phone', 'form'); ?></p>
-				<input id="phone" name="phone" type="text"/>
+				<?php if($base_browser_is_ie) { ?>
+					<label id="form_email" for="form_email"><?php echo __('Email', 'form'); ?></label>
+				<?php } ?>
+				<input id="form_email" name="form_email" placeholder="<?php echo __('Email', 'form'); ?>" type="text"/>
 			</div>
 		</div>
 		<div class="row">
 			<div class="columns small-12 medium-6">
-				<p class="base_form_label"><?php echo __('Enterprise *', 'form'); ?></p>
-				<input id="enterprise" name="enterprise" type="text"/>
+				<?php if($base_browser_is_ie) { ?>
+					<label id="form_country" for="form_country"><?php echo __('Country', 'form'); ?></label>
+				<?php } ?>
+				<input id="form_country" name="form_country" placeholder="<?php echo __('Country', 'form'); ?>" type="text"/>
 			</div>
 			<div class="columns small-12 medium-6">
-				<p class="base_form_label"><?php echo __('Subject *', 'form'); ?></p>
-				<input id="subject" name="subject" type="text"/>
+				<?php if($base_browser_is_ie) { ?>
+					<label id="form_phone" for="form_phone"><?php echo __('Phone', 'form'); ?></label>
+				<?php } ?>
+				<input id="form_phone" name="form_phone" placeholder="<?php echo __('Phone', 'form'); ?>" type="text"/>
 			</div>
 		</div>
 		<div class="row">
 			<div class="columns small-12">
-				<p class="base_form_label"><?php echo __('Message *', 'form'); ?></p>
-				<textarea id="message" name="message"></textarea>
+				<?php if($base_browser_is_ie) { ?>
+					<label id="form_message" for="form_message"><?php echo __('Message', 'form'); ?></label>
+				<?php } ?>
+				<textarea id="form_message" placeholder="<?php echo __('Message', 'form'); ?>" name="form_message"></textarea>
 			</div>
 		</div>
 		<div class="row">
 			<div class="columns small-12">
-				<p class="base_form_notice"><?php echo __('* required field', 'form'); ?></p>
 				<input name="submit" type="submit" value="<?php echo __('Send', 'form'); ?>"/>
 			</div>
 		</div>
 	</form>
-<? }
+<?php } ?>

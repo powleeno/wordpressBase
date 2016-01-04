@@ -67,7 +67,6 @@ function base_form_build_message($form_name, $form_email, $form_country, $form_p
 	return $body;
 }
 
-
 function base_form_build_headers($form_name, $form_email)
 {
 	$headers = 'From: ' . $form_name . ' <' . $form_email . '>' . "\r\n";
