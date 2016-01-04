@@ -1,0 +1,33 @@
+.sidr {
+	display: none;
+	position: absolute;
+	position: fixed;
+	top: 0;
+	height: 100%;
+	width: $sidr-width;
+	z-index: $sidr-z-index;
+	overflow-x: none;
+	overflow-y: auto;
+	&.right {
+		left: auto;
+		right: -$sidr-width;
+	}
+	&.left {
+		left: -$sidr-width;
+		right: auto;
+	}
+	ul {
+		margin: $column-gutter/2 0 0 0;
+		padding: 0;
+		li {
+			margin: 0;
+			a {
+				padding: 0 $column-gutter/2;
+				display: block;
+			}
+			ul {
+				margin: 0 0 $column-gutter/3;
+			}
+		}
+	}
+}

@@ -1,0 +1,27 @@
+.sidr {
+	list-style-type: none;
+	font-family: $font-family-serif;
+	font-size: $h4-font-size;
+	background: $vapor;
+	color: $secondary-color;
+	a {
+		text-decoration: none;
+		color: $secondary-color;
+	}
+	ul {
+		li {
+			a {
+				line-height: 2;
+				font-size: $h5-font-size;
+			}
+			ul {
+				li {
+					a {
+						line-height: 1.5;
+						font-size: $h6-font-size;
+					}
+				}
+			}
+		}
+	}
+}

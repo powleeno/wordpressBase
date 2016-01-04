@@ -1,52 +1,3 @@
-// fancybox --------------------------------------
-
-//colors
-$color_alabaster_approx: #f9f9f9;
-$color_tundora_approx: #444;
-$black_50: rgba(0, 0, 0, 0.5);
-$black_80: rgba(0, 0, 0, 0.8);
-$color_log_cabin_approx: #222;
-$white: #fff;
-$black: #000;
-
-//fonts
-$font_0: Helvetica Neue;
-$font_1: Helvetica;
-$font_2: Arial;
-$font_3: sans-serif;
-
-//urls
-$url_0: url(../images/vendor/fancybox/fancybox_sprite.png);
-$url_1: url(../images/vendor/fancybox/fancybox_loading.gif);
-$url_2: url(../images/vendor/fancybox/blank.gif);
-$url_3: url(../images/vendor/fancybox/fancybox_overlay.png);
-$url_4: url(../images/vendor/fancybox/fancybox_sprite@2x.png);
-$url_5: url(../images/vendor/fancybox/fancybox_loading@2x.gif);
-$url_6: url(../images/vendor/fancybox/fancybox_buttons.png);
-
-// buttons --------------------------------------
-
-//colors
-$white: #fff;
-$color_log_cabin_approx: #222;
-$color_woodsmoke_approx: #111;
-
-// thumbs --------------------------------------
-
-//colors
-$color_woodsmoke_approx: #111;
-$white_5: rgba(255, 255, 255, .05);
-$mine_shaft: rgb(50, 50, 50);
-$color_tundora_approx: rgb(68, 68, 68);
-$color_tuatara_approx: rgb(52, 52, 52);
-$color_shark_approx: rgb(41, 41, 41);
-$color_mine_shaft_approx: rgb(51, 51, 51);
-$color_log_cabin_approx: #222222;
-$color_masala_approx: #3e3e3e;
-
-//@extend-elements
-//original selectors
-//.fancybox-wrap, .fancybox-skin, .fancybox-outer, .fancybox-inner, .fancybox-image, .fancybox-wrap iframe, .fancybox-wrap object, .fancybox-nav, .fancybox-nav span, .fancybox-tmp
 %extend_1 {
 	padding: 0;
 	margin: 0;
@@ -55,13 +6,13 @@ $color_masala_approx: #3e3e3e;
 	vertical-align: top;
 }
 
-//original selectors
-//.fancybox-image, .fancybox-iframe
 %extend_2 {
 	display: block;
 	width: 100%;
 	height: 100%;
 }
+
+
 
 .fancybox-wrap {
 	@extend %extend_1;
@@ -69,9 +20,7 @@ $color_masala_approx: #3e3e3e;
 	top: 0;
 	left: 0;
 	z-index: 8020;
-	iframe {
-		@extend %extend_1;
-	}
+	iframe,
 	object {
 		@extend %extend_1;
 	}
@@ -80,12 +29,10 @@ $color_masala_approx: #3e3e3e;
 .fancybox-skin {
 	@extend %extend_1;
 	position: relative;
-	background: $color_alabaster_approx;
-	color: $color_tundora_approx;
-	//Instead of the line below you could use @includetext-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+	background: transparent;
+	color: $white;
 	text-shadow: none;
-	//Instead of the line below you could use @includeborder-radius($radius, $vertical-radius)
-	border-radius: 4px;
+	border-radius: 0;
 }
 
 .fancybox-outer {
@@ -114,7 +61,7 @@ $color_masala_approx: #3e3e3e;
 	height: 100%;
 	cursor: pointer;
 	text-decoration: none;
-	background: transparent $url_2;
+	background: transparent $fancybox_graphics_blank;
 	z-index: 8040;
 	span {
 		@extend %extend_1;
@@ -145,8 +92,7 @@ $color_masala_approx: #3e3e3e;
 .fancybox-opened {
 	z-index: 8030;
 	.fancybox-skin {
-		//Instead of the line below you could use @includebox-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
-		box-shadow: 0 10px 25px $black_50;
+		// box-shadow: 0 10px 25px rgba($black, 0.5);
 	}
 	.fancybox-title {
 		visibility: visible;
@@ -154,8 +100,10 @@ $color_masala_approx: #3e3e3e;
 }
 
 .fancybox-error {
-	color: $color_tundora_approx;
-	font: 14px/20px $font_0, $font_1, $font_2, $font_3;
+	color: $tuatara;
+	font: 14px;
+	line-height: 20px;
+	font-family: $font-family-sans-serif;
 	margin: 0;
 	padding: 15px;
 	white-space: nowrap;
@@ -166,7 +114,7 @@ $color_masala_approx: #3e3e3e;
 }
 
 #fancybox-loading {
-	background-image: $url_0;
+	background-image: $fancybox_graphics_sprite;
 	position: fixed;
 	top: 50%;
 	left: 50%;
@@ -179,12 +127,12 @@ $color_masala_approx: #3e3e3e;
 	div {
 		width: 44px;
 		height: 44px;
-		background: $url_1 center center no-repeat;
+		background: $fancybox_graphics_loading center center no-repeat;
 	}
 }
 
 .fancybox-close {
-	background-image: $url_0;
+	background-image: $fancybox_graphics_sprite;
 	position: absolute;
 	top: -18px;
 	right: -18px;
@@ -197,7 +145,7 @@ $color_masala_approx: #3e3e3e;
 .fancybox-prev {
 	left: 0;
 	span {
-		background-image: $url_0;
+		background-image: $fancybox_graphics_sprite;
 		left: 10px;
 		background-position: 0 -36px;
 	}
@@ -206,7 +154,7 @@ $color_masala_approx: #3e3e3e;
 .fancybox-next {
 	right: 0;
 	span {
-		background-image: $url_0;
+		background-image: $fancybox_graphics_sprite;
 		right: 10px;
 		background-position: 0 -72px;
 	}
@@ -235,7 +183,7 @@ $color_masala_approx: #3e3e3e;
 	overflow: hidden;
 	display: none;
 	z-index: 8010;
-	background: $url_3;
+	background: $fancybox_graphics_overlay;
 }
 
 .fancybox-overlay-fixed {
@@ -246,9 +194,8 @@ $color_masala_approx: #3e3e3e;
 
 .fancybox-title {
 	visibility: hidden;
-	font: normal 13px/20px $font_0, $font_1, $font_2, $font_3;
+	font: normal 13px/20px $font-family-sans-serif;
 	position: relative;
-	//Instead of the line below you could use @includetext-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
 	text-shadow: none;
 	z-index: 8050;
 }
@@ -265,11 +212,9 @@ $color_masala_approx: #3e3e3e;
 		margin-right: -100%;
 		padding: 2px 20px;
 		background: transparent;
-		background: $black_80;
-		//Instead of the line below you could use @includeborder-radius($radius, $vertical-radius)
+		background: rgba($black, 0.8);
 		border-radius: 15px;
-		//Instead of the line below you could use @includetext-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
-		text-shadow: 0 1px 2px $color_log_cabin_approx;
+		text-shadow: 0 1px 2px $jet;
 		color: $white;
 		font-weight: bold;
 		line-height: 24px;
@@ -294,31 +239,22 @@ $color_masala_approx: #3e3e3e;
 	color: $white;
 	padding: 10px;
 	background: $black;
-	background: $black_80;
+	background: rgba($black, 0.8);
 }
 
 @media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min--moz-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 1.5) {
 	#fancybox-loading {
-		background-image: $url_4;
+		background-image: $fancybox_graphics_sprite_2x;
 		background-size: 44px 152px;
 		div {
-			background-image: $url_5;
+			background-image: $fancybox_graphics_loading_2x;
 			background-size: 24px 24px;
 		}
 	}
-
-	.fancybox-close {
-		background-image: $url_4;
-		background-size: 44px 152px;
-	}
-
-	.fancybox-prev span {
-		background-image: $url_4;
-		background-size: 44px 152px;
-	}
-
-	.fancybox-next span {
-		background-image: $url_4;
+	.fancybox-close,
+	.fancybox-prev span,
+	.fancybox-next span, {
+		background-image: $fancybox_graphics_sprite_2x;
 		background-size: 44px 152px;
 	}
 
@@ -342,14 +278,12 @@ $color_masala_approx: #3e3e3e;
 		margin: 0 auto;
 		padding: 0;
 		list-style: none;
-		border: 1px solid $color_woodsmoke_approx;
-		//Instead of the line below you could use @includeborder-radius($radius, $vertical-radius)
+		border: 1px solid $black;
 		border-radius: 3px;
-		//Instead of the line below you could use @includebox-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
-		box-shadow: inset 0 0 0 1px $white_5;
-		background: $mine_shaft;
-		background: linear-gradient(top, $color_tundora_approx 0, $color_tuatara_approx 50%, $color_shark_approx 50%, $color_mine_shaft_approx 100%);
-		filter: progid:dximagetransform.microsoft.gradient(startcolorstr='$color_tundora_approx', endcolorstr='$color_log_cabin_approx', gradienttype=0);
+		box-shadow: inset 0 0 0 1px rgba($white, 0.5);
+		background: $oil;
+		background: linear-gradient(top, $tuatara 0, $oil 50%, $oil 50%, $charcoal 100%);
+		filter: progid:dximagetransform.microsoft.gradient(startcolorstr='$tuatara', endcolorstr='$jet', gradienttype=0);
 		li {
 			float: left;
 			margin: 0;
@@ -362,7 +296,7 @@ $color_masala_approx: #3e3e3e;
 		height: 30px;
 		text-indent: -9999px;
 		background-color: transparent;
-		background-image: $url_6;
+		background-image: $fancybox_graphics_buttons;
 		background-repeat: no-repeat;
 		outline: none;
 		opacity: 0.8;
@@ -374,7 +308,7 @@ $color_masala_approx: #3e3e3e;
 		}
 		&.btnNext {
 			background-position: -33px 0;
-			border-right: 1px solid $color_masala_approx;
+			border-right: 1px solid $oil;
 		}
 		&.btnPlay {
 			background-position: 0 -30px;
@@ -384,15 +318,15 @@ $color_masala_approx: #3e3e3e;
 		}
 		&.btnToggle {
 			background-position: 3px -60px;
-			border-left: 1px solid $color_woodsmoke_approx;
-			border-right: 1px solid $color_masala_approx;
+			border-left: 1px solid $black;
+			border-right: 1px solid $oil;
 			width: 35px;
 		}
 		&.btnToggleOn {
 			background-position: -27px -60px;
 		}
 		&.btnClose {
-			border-left: 1px solid $color_woodsmoke_approx;
+			border-left: 1px solid $black;
 			width: 35px;
 			background-position: -56px 0;
 		}
@@ -436,8 +370,8 @@ $color_masala_approx: #3e3e3e;
 				display: block;
 				position: relative;
 				overflow: hidden;
-				border: 1px solid $color_log_cabin_approx;
-				background: $color_woodsmoke_approx;
+				border: 1px solid $jet;
+				background: $black;
 				outline: none;
 			}
 			img {

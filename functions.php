@@ -32,6 +32,51 @@ function base_set_favicons($favicons_path)
 }
 
 
+function base_limit_string($string, $limit = 25, $suffix = '...')
+{
+	if ($suffix) {
+		$sufixed_limit = $limit - strlen($suffix);
+	} else {
+		$sufixed_limit = $limit;
+	}
+	if (strlen($string) >= $limit) {
+		$limited_string = substr($string, 0, $sufixed_limit) . $suffix;
+	} else {
+		$limited_string = $string;
+	}
+	return $limited_string;
+}
+
+
+function base_form_build_message($form_name, $form_email, $form_country, $form_phone, $form_message)
+{
+	$body = '<html>';
+	$body .= '<table width="100%">';
+	$body .= '<tr><td>' . apply_filters('the_content', $form_message) . '</td></tr>';
+	$body .= '<tr><td>&nbsp;</td></tr>';
+	$body .= '<tr><td><strong>' . $form_name . '</strong></td></tr>';
+	$body .= '<tr><td><strong>' . $form_country . '</strong></td></tr>';
+	$body .= '<tr><td>' . $form_email . '</td></tr>';
+	if (!empty($form_phone)) {
+		$body .= '<tr><td>' . $form_phone . '</td></tr>';
+	}
+	$body .= '<tr><td><br/>&nbsp;</td></tr>';
+	$body .= '</table>';
+	$body .= '</html>';
+
+	return $body;
+}
+
+
+function base_form_build_headers($form_name, $form_email)
+{
+	$headers = 'From: ' . $form_name . ' <' . $form_email . '>' . "\r\n";
+	$headers .= "MIME-Version: 1.0\r\n";
+	$headers .= "Content-Type: text/html; charset=utf-8\r\n";
+
+	return $headers;
+}
+
 // THEME -----------------------------------------------------------------
 
 // Retrieves locations post type information for passing to Google Map
