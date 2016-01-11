@@ -9,6 +9,44 @@ function base_set_custom_meta_boxes(array $base_meta_boxes)
 	// Start with an underscore to hide fields from custom fields list
 	$base_fields_prefix = base_fields_prefix();
 
+	// WYSIWYG options ---------------------------------------------------
+	$base_wysiwyg_options_minimal = array(
+		'wpautop' => true,
+		'media_buttons' => false,
+		'textarea_rows' => get_option('default_post_edit_rows', 5),
+		'tabindex' => '',
+		'editor_css' => '',
+		'editor_class' => '',
+		'teeny' => false,
+		'dfw' => false,
+		'tinymce' => false,
+		'quicktags' => false
+	);
+	$base_wysiwyg_options_small = array(
+		'wpautop' => true,
+		'media_buttons' => true,
+		'textarea_rows' => get_option('default_post_edit_rows', 5),
+		'tabindex' => '',
+		'editor_css' => '',
+		'editor_class' => '',
+		'teeny' => false,
+		'dfw' => false,
+		'tinymce' => true,
+		'quicktags' => true
+	);
+	$base_wysiwyg_options_full = array(
+		'wpautop' => true,
+		'media_buttons' => true,
+		'textarea_rows' => get_option('default_post_edit_rows', 10),
+		'tabindex' => '',
+		'editor_css' => '',
+		'editor_class' => '',
+		'teeny' => false,
+		'dfw' => false,
+		'tinymce' => true,
+		'quicktags' => true
+	);
+
 	/*
 	 *
 	 * Left empty : populate after examples library
