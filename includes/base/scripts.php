@@ -36,7 +36,7 @@ function base_set_scripts()
 
 	/** from Eric B. Dev - Simple Grid Wordpress :: https://github.com/ericbdev/simpleGridWordPress **/
 	$base_scripts['ericbdev'] = array(
-		'active' => true,
+		'active' => false,
 		'deregister_first' => false,
 		'handler' => 'ericbdev',
 		'cdn' => '', // make sure the protocol is 'http' and not 'https'
@@ -147,8 +147,8 @@ function base_set_scripts()
 	);
 
 	/** Validate :: https://github.com/jzaefferer/jquery-validation **/
-	$scripts['jQuery_validate'] = array(
-		'active' => true,
+	$base_scripts['jQuery_validate'] = array(
+		'active' => false,
 		'deregister_first' => false,
 		'handler' => 'jQuery_validate',
 		'cdn' => 'http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.min.js', // make sure the protocol is 'http' and not 'https'
