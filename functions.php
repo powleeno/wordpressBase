@@ -48,14 +48,13 @@ function base_limit_string($string, $limit = 25, $suffix = '...')
 }
 
 
-function base_form_build_message($form_name, $form_email, $form_country, $form_phone, $form_message)
+function base_form_build_message($form_first_name, $form_last_name, $form_phone, $form_email, $form_message)
 {
 	$body = '<html>';
 	$body .= '<table width="100%">';
 	$body .= '<tr><td>' . apply_filters('the_content', $form_message) . '</td></tr>';
 	$body .= '<tr><td>&nbsp;</td></tr>';
-	$body .= '<tr><td><strong>' . $form_name . '</strong></td></tr>';
-	$body .= '<tr><td><strong>' . $form_country . '</strong></td></tr>';
+	$body .= '<tr><td><strong>' . $form_first_name . ' ' . $form_last_name . '</strong></td></tr>';
 	$body .= '<tr><td>' . $form_email . '</td></tr>';
 	if (!empty($form_phone)) {
 		$body .= '<tr><td>' . $form_phone . '</td></tr>';
@@ -67,12 +66,12 @@ function base_form_build_message($form_name, $form_email, $form_country, $form_p
 	return $body;
 }
 
-function base_form_build_headers($form_name, $form_email)
+function base_form_build_headers($first_name, $last_name, $email, $reply_to)
 {
-	$headers = 'From: ' . $form_name . ' <' . $form_email . '>' . "\r\n";
-	$headers .= "MIME-Version: 1.0\r\n";
-	$headers .= "Content-Type: text/html; charset=utf-8\r\n";
-
+	$headers = 'From: ' . $first_name . ' ' . $last_name . ' <' . $email . '>;' . "\r\n";
+	$headers .= 'Reply-to: ' . $reply_to . "\r\n";
+	$headers .= 'MIME-Version: 1.0;' . "\r\n";
+	$headers .= 'Content-Type: text/html; charset=utf-8;' . "\r\n";
 	return $headers;
 }
 

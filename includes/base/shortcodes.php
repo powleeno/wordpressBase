@@ -46,34 +46,37 @@ add_shortcode('fancy_gallery', 'base_fancybox_gallery_shortcode');
 /** Adapted from Eric B. Dev - Simple Grid Wordpress :: https://github.com/ericbdev/simpleGridWordPress
  *
  * Instructions:
- * [email]foo@bar.com[/email]
- * [email email='foo@bar.com']email me![/email]
- * [email email='foo@bar.com' data-update='false']<foo>Bar html -- this doesnt get touched by js </foo>[/email]
+ * [ericbdev_email]foo@bar.com[/ericbdev_email]
+ * [ericbdev_email email='foo@bar.com']email me![/ericbdev_email]
  *
  **/
 function ericbdev_email_shortcode($atts, $content = null)
 {
-	extract(shortcode_atts(array('email' => '', 'class' => '', 'update_text' => true), $atts));
-	$classes = "js-replacer-text $class";
-	$classes = trim($classes);
-	$toSplit = ($email !== '' ? $email : do_shortcode($content));
-	$outputContent = ($email !== '' ? do_shortcode($content) : '');
-	$splitVals = explode('@', $toSplit);
-	$domain = array_pop($splitVals);
-	$email = $splitVals[0];
-	$dataTags = '';
-	$dataTags .= ($domain !== '' ? " data-domain='$domain'" : '');
-	$dataTags .= ($email !== '' ? " data-extra='$email'" : '');
-	$dataTags .= ($update_text !== true ? " data-update='false'" : '');
-	$dataTags .= ($outputContent !== '' && $update_text === true ? " data-text='$outputContent'" : '');
-	$returnContent = "<a class='$classes' href='#' $dataTags>";
-	if ($update_text !== true):
-		$returnContent .= $outputContent;
-	else:
-		$returnContent .= __('Please enable JavaScript', 'shortcodes');
-	endif;
-	$returnContent .= "</a>";
-	return $returnContent;
+	$parameters = shortcode_atts(array(
+		'email' => '',
+	), $atts, 'ericbdev_email_shortcode');
+	if(!empty($parameters['email'])) {
+		$exploded_email = explode('@', $parameters['email']);
+		$text = do_shortcode($content);
+	} else {
+		$exploded_email = explode('@', do_shortcode($content));
+		$text = '';
+	}
+	$domain = array_pop($exploded_email);
+	$extra = $exploded_email[0];
+	$return_html = '';
+	$return_html .= '<a class="js-replacer-text" href="#" ';
+	if(!empty($domain)) {
+		$return_html .= ' data-domain="' . $domain . '"';
+	}
+	if(!empty($extra)) {
+		$return_html .= ' data-extra="' . $extra . '"';
+	}
+	if(!empty($text)) {
+		$return_html .= ' data-text="' . $text . '"';
+	}
+	$return_html .= '>' . __('Please enable JavaScript', 'shortcodes') . '</a>';
+	return $return_html;
 }
 
 add_shortcode('email', 'ericbdev_email_shortcode');
