@@ -11,7 +11,7 @@
 
 class top_bar_walker extends Walker_Nav_Menu
 {
-	function start_el(&$output, $item, $depth, $args)
+	function start_el(&$output, $item, $depth, $args, $id = 0)
 	{
 		if ( has_nav_menu( 'base_menu_header' ) )
 		{
@@ -48,7 +48,7 @@ class top_bar_walker extends Walker_Nav_Menu
 			$item_output .= (!in_array('section', $classes)) ? '</a>' : '';
 			$item_output .= $args->after;
 
-			$output .= apply_filters('walker_nav_menu_start_el', $item_output, $item, $depth, $args);
+			$output .= apply_filters('walker_nav_menu_start_el', $item_output, $item, $depth, $args, $id);
 		}
 	}
 
