@@ -82,6 +82,17 @@ function ericbdev_email_shortcode($atts, $content = null)
 add_shortcode('email', 'ericbdev_email_shortcode');
 
 
+function base_phone_shortcode($atts, $content = null)
+{
+	$parameters = shortcode_atts(array(), $atts, 'base_phone_shortcode');
+	$return_html = '';
+	$return_html .= '<a href="' . base_phone_string($content) . '" class="phone">' . $content . '</a>';
+	return $return_html;
+}
+
+add_shortcode('base_phone', 'base_phone_shortcode');
+
+
 function base_button_shortcode($atts, $content = null)
 {
 	$parameters = shortcode_atts(array(
