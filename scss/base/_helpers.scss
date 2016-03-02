@@ -36,6 +36,13 @@
 	padding: 0;
 }
 
+.base_phone {
+	@media #{$but-small} {
+		pointer-events: none;
+		cursor: default;
+	}
+}
+
 .base_form_layout {
 	input {
 		&[type="text"] {
