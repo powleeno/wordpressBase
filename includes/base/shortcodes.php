@@ -86,7 +86,7 @@ function base_phone_shortcode($atts, $content = null)
 {
 	$parameters = shortcode_atts(array(), $atts, 'base_phone_shortcode');
 	$return_html = '';
-	$return_html .= '<a href="' . base_phone_string($content) . '" class="phone">' . $content . '</a>';
+	$return_html .= '<a href="tel:' . base_phone_string($content) . '" class="phone">' . $content . '</a>';
 	return $return_html;
 }
 
