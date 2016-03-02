@@ -104,10 +104,10 @@ function base_limit_string($string, $limit = 25, $suffix = '...')
 
 function base_phone_string($string)
 {
-	$string = str_replace('(','',$string);
-	$string = str_replace(')','',$string);
-	$string = str_replace('-','',$string) ;
-	$string = str_replace(' ','',$string) ;
+	$characters = array('(', ')', '-', ' ');
+	foreach ($characters as $character) {
+		$string = str_replace($character,'',$string);
+	}
 	return $string;
 }
 
