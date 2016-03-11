@@ -1032,6 +1032,8 @@ th.hide-for-touch { display: table-cell !important; }
 
 .base_list_reset { list-style-type: none; margin: 0; padding: 0; }
 
+@media only screen and (min-width: 40.0625em) { .base_phone { pointer-events: none; cursor: default; } }
+
 .base_form_layout textarea { resize: none; }
 
 .base_form_styles textarea { resize: none; }
