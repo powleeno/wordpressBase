@@ -54,7 +54,7 @@ function ericbdev_email_shortcode($atts, $content = null)
 {
 	$parameters = shortcode_atts(array(
 		'email' => '',
-	), $atts, 'ericbdev_email_shortcode');
+	), $atts, 'email');
 	if(!empty($parameters['email'])) {
 		$exploded_email = explode('@', $parameters['email']);
 		$text = do_shortcode($content);
@@ -84,7 +84,6 @@ add_shortcode('email', 'ericbdev_email_shortcode');
 
 function base_phone_shortcode($atts, $content = null)
 {
-	$parameters = shortcode_atts(array(), $atts, 'base_phone_shortcode');
 	$return_html = '';
 	$return_html .= '<a href="tel:' . base_phone_string($content) . '" class="base_phone">' . $content . '</a>';
 	return $return_html;
@@ -97,7 +96,7 @@ function base_button_shortcode($atts, $content = null)
 {
 	$parameters = shortcode_atts(array(
 		'url' => '',
-	), $atts, 'button_shortcode');
+	), $atts, 'button');
 	$return_html = '';
 	$return_html .= '<a href="' . $parameters['url'] . '" class="button">' . $content . '</a>';
 
@@ -123,7 +122,7 @@ function base_column_shortcode($atts, $content = null)
 		'small' => '',
 		'medium' => '',
 		'large' => '',
-	), $atts, 'column_shortcode');
+	), $atts, 'column');
 	$return_html = '';
 	$return_html .= '<div class="columns ';
 	$return_html .= ($parameters['small'] ? 'small-' . $parameters['small'] . ' ' : '');
