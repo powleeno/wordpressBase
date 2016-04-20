@@ -99,7 +99,7 @@ function base_wp_enqueue_scripts_hook()
 
 	// Scripts
 	require_once 'base/scripts.php';
-	base_set_scripts();
+	base_set_scripts(get_template_directory_uri() . '/scripts/');
 
 
 }

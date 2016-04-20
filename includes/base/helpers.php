@@ -144,25 +144,25 @@ function base_form_build_headers($first_name, $last_name, $email, $reply_to)
 
 // MISC ------------------------------------------------------------------
 
-// Sets favicons; place files in $favicons_path
+// Sets favicons; place files in $base_favicons_path
 // Favicon generator online tool :: http://www.favicon-generator.org
-function base_set_favicons($favicons_path = '/images/favicon/')
+function base_set_favicons($base_favicons_path)
 {
-	echo '<link rel="apple-touch-icon" sizes="57x57" href="' . $favicons_path . 'apple-icon-57x57.png">';
-	echo '<link rel="apple-touch-icon" sizes="60x60" href="' . $favicons_path . 'apple-icon-60x60.png">';
-	echo '<link rel="apple-touch-icon" sizes="72x72" href="' . $favicons_path . 'apple-icon-72x72.png">';
-	echo '<link rel="apple-touch-icon" sizes="76x76" href="' . $favicons_path . 'apple-icon-76x76.png">';
-	echo '<link rel="apple-touch-icon" sizes="114x114" href="' . $favicons_path . 'apple-icon-114x114.png">';
-	echo '<link rel="apple-touch-icon" sizes="120x120" href="' . $favicons_path . 'apple-icon-120x120.png">';
-	echo '<link rel="apple-touch-icon" sizes="144x144" href="' . $favicons_path . 'apple-icon-144x144.png">';
-	echo '<link rel="apple-touch-icon" sizes="152x152" href="' . $favicons_path . 'apple-icon-152x152.png">';
-	echo '<link rel="apple-touch-icon" sizes="180x180" href="' . $favicons_path . 'apple-icon-180x180.png">';
-	echo '<link rel="icon" type="image/png" sizes="192x192"  href="' . $favicons_path . 'android-icon-192x192.png">';
-	echo '<link rel="icon" type="image/png" sizes="32x32" href="' . $favicons_path . 'favicon-32x32.png">';
-	echo '<link rel="icon" type="image/png" sizes="96x96" href="' . $favicons_path . 'favicon-96x96.png">';
-	echo '<link rel="icon" type="image/png" sizes="16x16" href="' . $favicons_path . 'favicon-16x16.png">';
-	echo '<link rel="manifest" href="' . $favicons_path . 'manifest.json">';
+	echo '<link rel="apple-touch-icon" sizes="57x57" href="' . $base_favicons_path . 'apple-icon-57x57.png">';
+	echo '<link rel="apple-touch-icon" sizes="60x60" href="' . $base_favicons_path . 'apple-icon-60x60.png">';
+	echo '<link rel="apple-touch-icon" sizes="72x72" href="' . $base_favicons_path . 'apple-icon-72x72.png">';
+	echo '<link rel="apple-touch-icon" sizes="76x76" href="' . $base_favicons_path . 'apple-icon-76x76.png">';
+	echo '<link rel="apple-touch-icon" sizes="114x114" href="' . $base_favicons_path . 'apple-icon-114x114.png">';
+	echo '<link rel="apple-touch-icon" sizes="120x120" href="' . $base_favicons_path . 'apple-icon-120x120.png">';
+	echo '<link rel="apple-touch-icon" sizes="144x144" href="' . $base_favicons_path . 'apple-icon-144x144.png">';
+	echo '<link rel="apple-touch-icon" sizes="152x152" href="' . $base_favicons_path . 'apple-icon-152x152.png">';
+	echo '<link rel="apple-touch-icon" sizes="180x180" href="' . $base_favicons_path . 'apple-icon-180x180.png">';
+	echo '<link rel="icon" type="image/png" sizes="192x192"  href="' . $base_favicons_path . 'android-icon-192x192.png">';
+	echo '<link rel="icon" type="image/png" sizes="32x32" href="' . $base_favicons_path . 'favicon-32x32.png">';
+	echo '<link rel="icon" type="image/png" sizes="96x96" href="' . $base_favicons_path . 'favicon-96x96.png">';
+	echo '<link rel="icon" type="image/png" sizes="16x16" href="' . $base_favicons_path . 'favicon-16x16.png">';
+	echo '<link rel="manifest" href="' . $base_favicons_path . 'manifest.json">';
 	echo '<meta name="msapplication-TileColor" content="#ffffff">';
-	echo '<meta name="msapplication-TileImage" content="' . $favicons_path . 'ms-icon-144x144.png">';
+	echo '<meta name="msapplication-TileImage" content="' . $base_favicons_path . 'ms-icon-144x144.png">';
 	echo '<meta name="theme-color" content="#ffffff">';
 }
