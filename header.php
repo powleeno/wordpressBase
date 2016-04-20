@@ -18,8 +18,7 @@
 	<title><?php bloginfo('name'); ?></title>
 	<?php
 		// Sets favicons; place files in $path
-		$favicons_path = get_template_directory_uri() . '/images/favicon/';
-		base_set_favicons($favicons_path);
+		base_set_favicons();
 		wp_head();
 	?>
 </head>

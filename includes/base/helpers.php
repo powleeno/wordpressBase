@@ -146,7 +146,7 @@ function base_form_build_headers($first_name, $last_name, $email, $reply_to)
 
 // Sets favicons; place files in $favicons_path
 // Favicon generator online tool :: http://www.favicon-generator.org
-function base_set_favicons($favicons_path)
+function base_set_favicons($favicons_path = '/images/favicon/')
 {
 	echo '<link rel="apple-touch-icon" sizes="57x57" href="' . $favicons_path . 'apple-icon-57x57.png">';
 	echo '<link rel="apple-touch-icon" sizes="60x60" href="' . $favicons_path . 'apple-icon-60x60.png">';
